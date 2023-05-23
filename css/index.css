@@ -1,108 +1,301 @@
-/* *{
-    outline: 1px solid red;
-} */
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 
-.container{
-    width: 1200px;
-    margin: 0 auto;
+* {
+  /* outline: 1px solid red; */
+  font-family: "LINESeedKR-Bd";
+  /* background-color: aquamarine; */
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  /* background: rgba(0, 0, 0, 0.3); */
+  /* box-shadow: 0px 7px 4px -4px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42); */
+}
+
+/* 23.05.23 철민 */
+.nav-container {
+  width: 1200px;
+  margin: 0 auto;
 }
 
 /* 23.05.23. header 서경 */
 
 header {
-    line-height: 150px;
+  /* 23.05.23 line-height from 150 to 85 철민 */
+  line-height: 85px;
 }
 
-header .container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} 
+header .container .nav-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 h1 img {
-    width: 150px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
 
 nav {
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    border: 2px solid #000;
-    /* display: none; */
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  border: 2px solid #000;
+  /* display: none; */
 }
 
 nav ul li {
-    line-height: 100px;
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
+  line-height: 100px;
+  font-size: 25px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-nav ul li:last-child{
-    border-bottom: inherit;
+nav ul li:last-child {
+  border-bottom: inherit;
 }
 
 nav.on {
-    display: block;
+  display: block;
 }
 
 header .header_btn {
-    width: 300px;
-    font-size: 17px;
+  width: 300px;
+  font-size: 17px;
 }
 
 header .header_btn a {
-    margin: 0 30px 0 0;
+  margin: 0 30px 0 0;
 }
 
 header .menu_btn {
-   width: 300px;
-   text-align: right;
-   font-size: 24px;
+  width: 300px;
+  text-align: right;
+  font-size: 24px;
 }
 
-.menu_btn.on i:nth-child(1), .menu_btn i:nth-child(2) {
-    display: none;
+.menu_btn.on i:nth-child(1),
+.menu_btn i:nth-child(2) {
+  display: none;
 }
 
 header .menu_btn.on i:nth-child(2) {
-    display: block;
-    padding-bottom: 4px;
+  display: block;
+  padding-bottom: 4px;
 }
 
 /* 23.05.23. header 서경 */
 
 section {
-    height: 100vh;
+  /* height: 100vh; */
 }
 
 /* 23.05.23. footer 서경 */
 footer {
-    background-color: #000;
-    padding: 50px 0 100px 0
+  background-color: #000;
+  padding: 50px 0 100px 0;
 }
 
 footer .container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 footer img {
-    width: 130px;
-    height: auto;
+  width: 130px;
+  height: auto;
 }
 
 footer .content {
-    color: #ddd;
-    margin: 30px 0 0 0;
+  color: #ddd;
+  margin: 30px 0 0 0;
 }
 /* 23.05.23. footer 서경 */
+
+/* main content */
+img {
+  object-fit: cover;
+}
+
+.main-container {
+  width: 1200px;
+  margin: 100px auto;
+}
+
+span {
+  font-size: 1.8rem;
+}
+
+h3 {
+  margin: 5px 0px 20px;
+}
+
+.button-cover {
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.button-cover > a {
+  padding: 0 13px;
+  display: inline-block;
+  line-height: 28px;
+  height: 25px;
+  text-align: center;
+  border-radius: 1rem;
+  color: #ffffff;
+  margin-right: 3px;
+  background-color: rgb(138, 138, 138);
+}
+
+.bar {
+  margin: 17px auto;
+  width: 100%;
+  border: 0;
+  height: 2px;
+  background-color: rgba(138, 138, 138, 0.5);
+}
+
+.graph-container {
+  display: inline-block;
+  width: 58%;
+  height: 300px;
+}
+
+.report-container {
+  display: inline-block;
+  width: 38%;
+  height: 300px;
+}
+
+.report-container > li {
+  display: block;
+  border: 2px solid rgba(138, 138, 138, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.new-challenge {
+  margin-top: 40px;
+}
+
+.new-challenge-count {
+  margin-left: 10px;
+  font-size: 2.5rem;
+}
+
+.goal {
+  text-align: right;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.card-image-container {
+  float: left;
+  width: 190px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-content-container {
+  float: left;
+  width: 180px;
+}
+
+.card-content-container > h2 {
+  margin: 15px;
+  font-size: 2rem;
+}
+
+.card-content-container > h3 {
+  margin: 15px;
+  font-size: 1.6rem;
+}
+
+.card-tags {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-align: right;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border: solid 3px gray;
+}
+
+.top-card-container {
+  margin-top: 30px;
+}
+
+.top-challenge {
+  margin-top: 50px;
+}
+
+.top-card {
+  padding: 10px;
+  border: solid 3px rgb(71, 71, 71);
+  border-radius: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+  line-height: 43px;
+}
+
+.top-card-image-container {
+  text-align: center;
+
+  float: left;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.top-card-image-container::after {
+}
+
+.top-card-content-container {
+  width: 80%;
+  float: left;
+  position: relative;
+}
+
+.top-card-content-container::after {
+}
+
+.top-card-content-container > h2 {
+  margin: 15px;
+  font-size: 3rem;
+}
+
+.top-card-content-container > h3 {
+  margin: 15px;
+  font-size: 1.7rem;
+}
+
+.top-card-tags {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+}
+
+/* main content end */
