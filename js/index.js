@@ -3,26 +3,26 @@ import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 
 /* 페이지 로딩 */
 window.onload = () => {
-  handleListLoad();
+    handleListLoad();
 };
 
 /* 메인화면 List 불러오는 함수 */
 async function handleListLoad() {
-  const response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
-    method: "GET",
-  });
+    const response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
+        method: "GET",
+    });
 
-  const responseJson = await response.json();
+    const responseJson = await response.json();
 
-  const newChallenge = responseJson.new_challenge;
-  const newChallengeCountData = newChallenge.count;
-  const newChallengeListData = newChallenge.list;
-  console.log(newChallengeListData);
+    const newChallenge = responseJson.new_challenge;
+    const newChallengeCountData = newChallenge.count;
+    const newChallengeListData = newChallenge.list;
+    console.log(newChallengeListData);
 
-  const newChallengeList = document.querySelector(".slider");
+    const newChallengeList = document.querySelector(".slider");
 
-  newChallengeListData.forEach((element) => {
-    newChallengeList.innerHTML += `<div class="card">
+    newChallengeListData.forEach((element) => {
+        newChallengeList.innerHTML += `<div class="card">
                                     <div class="card-image-container">
                                       <img src="./fake-img/paris.png">
                                     </div>
@@ -36,12 +36,7 @@ async function handleListLoad() {
                                       </div>
                                     </div>
                                   </div>`;
-  });
-}
-
-function handleBtn() {
-  document.querySelector("nav").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
+    });
 }
 
 /* Slider */
@@ -49,16 +44,16 @@ const next = document.querySelectorAll(".next");
 const prev = document.querySelectorAll(".prev");
 const slider = document.querySelectorAll(".slider");
 for (let i = 0; i < slider.length; i++) {
-  makeSlider(slider[i], prev[i], next[i]);
+    makeSlider(slider[i], prev[i], next[i]);
 }
 function makeSlider(element, prev, next) {
-  next.addEventListener("click", () => {
-    const offsetX = element.offsetWidth;
-    element.scrollBy(offsetX, 0);
-  });
-  prev.addEventListener("click", () => {
-    const offsetX = element.offsetWidth;
-    element.scrollBy(-offsetX, 0);
-  });
+    next.addEventListener("click", () => {
+        const offsetX = element.offsetWidth;
+        element.scrollBy(offsetX, 0);
+    });
+    prev.addEventListener("click", () => {
+        const offsetX = element.offsetWidth;
+        element.scrollBy(-offsetX, 0);
+    });
 }
 /* Slider end */
