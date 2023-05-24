@@ -6,6 +6,8 @@
 
 .inner_box {
     width: 40%;
+    text-align: right;
+    margin-right: 3%;
 }
 
 .container {

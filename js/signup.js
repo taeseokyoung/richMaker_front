@@ -1,4 +1,4 @@
-// import { BACK_BASE_URL, FRONT_BASE_URL } from "./api.js";
+// import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 const BACK_BASE_URL = "http://127.0.0.1:8000"
 const FRONT_BASE_URL = "http://127.0.0.1:5501"
 const API_USERS = "api/users"
@@ -97,7 +97,7 @@ async function EmailAuthentication() {
     const response_json = await response.json()
     if (response.status == 200) {
         alert(response_json.message)
-        window.location.replace(`${FRONT_BASE_URL}/html/signin.html`)
+        window.location.replace(`${FRONT_BASE_URL}/html/login.html`)
     } else if (response.status == 400 || response.status == 401) {
         alert(response_json.message)
     } else if (response.status == 404) {

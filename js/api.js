@@ -31,8 +31,12 @@ export async function login() {
         );
         localStorage.setItem("payload", jsonPayload);
         window.location.replace(`${FRONT_BASE_URL}/html/main.html`);
+    } else {
+        document.getElementById("password").value = ""
+        alert("회원정보가 일치하지 않습니다.")
     }
 }
+
 export async function signup() {
     const url = `${BACK_BASE_URL}/api/users/sign-up/`;
     const email = document.getElementById("email").value;
@@ -63,3 +67,10 @@ export async function signup() {
     }
 }
 
+//  로그아웃
+function logout() {
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    location.reload();
+}
