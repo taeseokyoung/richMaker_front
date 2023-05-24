@@ -1,0 +1,21 @@
+.title {
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+.inner_box {
+    width: 40%;
+    text-align: right;
+    margin-right: 3%;
+}
+
+.container {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.button_box {
+    text-align: right;
+}
