@@ -1,14 +1,22 @@
-const frontend_base_url = "http://127.0.0.1:5501"
-const backend_base_url = "http://127.0.0.1:8000"
+// import { BACK_BASE_URL, FRONT_BASE_URL } from "./api.js";
+const BACK_BASE_URL = "http://127.0.0.1:8000"
+const FRONT_BASE_URL = "http://127.0.0.1:5501"
 const API_USERS = "api/users"
 
 
-// window.onload = async () => {
-//     const response = await fetch(`${backend_base_url}/${API_USERS}/3/`)
-//     const response_json = await response.json()
-//     console.log(response_json)
-// }
 
+window.onload = async function () {
+    // document.getElementById('signup').addEventListener('click', async function () {
+    //     signup();
+    // })
+
+    // document.getElementById('verify').addEventListener('click', async function () {
+    //     emailconfirm();
+    // })
+    const response = await fetch(`${BACK_BASE_URL}/${API_USERS}/1/`)
+    const response_json = await response.json()
+    console.log(response_json)
+}
 
 
 
@@ -36,7 +44,7 @@ async function handleSignup() {
             formdata.append('profile_image', '')
         }
         try {
-            const response = await fetch(`${backend_base_url}/${API_USERS}/sign-up/`, {
+            const response = await fetch(`${BACK_BASE_URL}/${API_USERS}/sign-up/`, {
                 enctype: "multipart/form-data",
                 method: 'POST',
                 body: formdata
@@ -76,7 +84,7 @@ async function EmailAuthentication() {
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
     console.log(email, auth_code)
-    const response = await fetch(`${backend_base_url}/${API_USERS}/sign-up/`, {
+    const response = await fetch(`${BACK_BASE_URL}/${API_USERS}/sign-up/`, {
         headers: {
             'content-type': 'application/json',
         },
@@ -89,7 +97,7 @@ async function EmailAuthentication() {
     const response_json = await response.json()
     if (response.status == 200) {
         alert(response_json.message)
-        window.location.replace(`${frontend_base_url}/html/signin.html`)
+        window.location.replace(`${FRONT_BASE_URL}/html/signin.html`)
     } else if (response.status == 400 || response.status == 401) {
         alert(response_json.message)
     } else if (response.status == 404) {
@@ -108,3 +116,5 @@ function readURL(input) {
         document.getElementById('preview').src = "";
     }
 }
+
+

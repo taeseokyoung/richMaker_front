@@ -1,0 +1,23 @@
+{
+  "name": "230522richmaker_front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./css/index.scss ./css/index2.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Churnobyl/richMaker_front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Churnobyl/richMaker_front/issues"
+  },
+  "homepage": "https://github.com/Churnobyl/richMaker_front#readme",
+  "dependencies": {
+    "sass": "^1.62.1"
+  }
+}

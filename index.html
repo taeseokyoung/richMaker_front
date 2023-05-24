@@ -2,55 +2,302 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <script src="./js/index.js"></script>
-    <title>리치메이커 : 소비챌린지</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/index2.css" />
+  <title>리치메이커 : 소비챌린지</title>
 </head>
 
 <body>
-    <div class="Wrap">
-        <header>
-            <div class="container">
-                <div class="header_btn">
-                    <a href="">회원가입</a>
-                    <a href="">로그인</a>
-                </div>
-                <!-- <div class="header_btn">
-                    <a href="">로그아웃</a>
-                </div> -->
-                <h1>
-                    <img src="./img/richmaker-logo.png" alt="">
-                </h1>
-                <div class="menu_btn" onclick="hadnleBtn()">
-                    <i class="xi-bars"></i>
-                    <i class="xi-close"></i>
-                </div>
+  <div class="Wrap">
+    <header>
+      <div class="container">
+        <div class="nav-container">
+          <!-- navbar 삽입 -->
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="">나의 가계부</a></li>
+          <li><a href="">리치메이커 챌린지</a></li>
+          <li><a href="">마이페이지</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="Main">
+      <div class="main-container">
+        <div class="main-report">
+          <div class="main-nav">
+            <span>나의 소비 통계</span>
+            <div class="button-cover">
+              <a href="">영수증 인증하기</a>
+              <a href="">이번달 소비 목록 확인</a>
+              <a href="">이번달 수입 기록</a>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="">나의 가계부</a></li>
-                    <li><a href="">리치메이커 챌린지</a></li>
-                    <li><a href="">마이페이지</a></li>
-                </ul>
-            </nav>
-        </header>
-        <section class="Main">
+          </div>
+          <hr class="bar">
+          <div class="consume-cover">
+            <div class="graph-container">
+              <h3>나의 이번 달 적정 소비 금액 : 3만원</h3>
+              <img src="./fake-img/main-graph.png" alt="main-graph" style="height: 300px;">
+            </div>
+            <div class="report-container">
+              <h3>리포트</h3>
+              <li>지난 주에는 밥을 많이 드셨어요🍚 <span>지출금액: 12만원</span></li>
+              <li>옷을 사셨네요? 꼭.필.요.한.소.비.였.나.요?😁<span>지출금액: 32만원</span></li>
+              <h3 class="goal">목표금액 30만원을 향해 달려요!🏃‍♀️🏃‍♀️</h3>
+            </div>
+          </div>
+        </div>
+        <div class="new-challenge">
+          <div class="main-nav">
+            <span>이달의 신규 챌린지</span>
+            <span class="new-challenge-count">89</span>
+            <div class="button-cover">
+              <a href="">+</a>
+            </div>
+          </div>
+          <hr class="bar">
+          <section>
+            <div class="new-card-container">
+              <div class="slider">
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/paris.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>와인 가서 프랑스 한잔</h2>
+                    <h3>목표: 300만원</h3>
+                    <h3>12개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">여행</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-image-container">
+                    <img src="./fake-img/house.png">
+                  </div>
+                  <div class="card-content-container">
+                    <h2>내집 마련의 꿈..!</h2>
+                    <h3>목표: 3억 1000만원</h3>
+                    <h3>84개월</h3>
+                    <div class="card-tags">
+                      <a href="">장기</a>
+                      <a href="">내집</a>
+                    </div>
+                  </div>
+                </div>
 
-        </section>
-        <footer>
-            <div class="container">
-                <img src="./img/richmaker-logo.png" alt="">
-                <div class="content">
-                    <p>소비를 현명하게! 소비를 도와주는 가계부와 챌린지를 만드는 리치메이커 입니다.</p>
-                </div>
+              </div>
+              <div class="prev"><i class="fa-solid fa-angle-right prev-arrow"></i></div>
+              <div class="next"><i class="fa-solid fa-angle-right"></i></div>
             </div>
-        </footer>
-    </div>
+          </section>
+        </div>
+        <div class="top-challenge">
+          <div class="main-nav">
+            <span>상위 챌린지</span>
+            <div class="button-cover">
+              <a href="">+</a>
+            </div>
+          </div>
+          <hr class="bar">
+          <div>
+            <div class="top-card-container">
+              <div class="top-card">
+                <div class="top-card-image-container">
+                  <img src="./fake-img/startup.png">
+                </div>
+                <div class="top-card-content-container">
+                  <h2>이대론 못 살아! 창업하기</h2>
+                  <h3>목표: 1억원</h3>
+                  <h3>60개월</h3>
+                  <div class="top-card-tags">
+                    <a href="">장기</a>
+                    <a href="">기타</a>
+                  </div>
+                </div>
+              </div>
+              <div class="top-card">
+                <div class="top-card-image-container">
+                  <img src="./fake-img/car.png">
+                </div>
+                <div class="top-card-content-container">
+                  <h2>갈 땐 가더라도 드림카 한번 쯤은 괜찮잖아?</h2>
+                  <h3>목표: 3억원</h3>
+                  <h3>108개월</h3>
+                  <div class="top-card-tags">
+                    <a href="">장기</a>
+                    <a href="">내차</a>
+                  </div>
+                </div>
+              </div>
+              <div class="top-card">
+                <div class="top-card-image-container">
+                  <img src="./fake-img/hermes.png">
+                </div>
+                <div class="top-card-content-container">
+                  <h2>어차피 식비로 나갈 거</h2>
+                  <h3>목표: 6700만원</h3>
+                  <h3>48개월</h3>
+                  <div class="top-card-tags">
+                    <a href="">장기</a>
+                    <a href="">패션</a>
+                  </div>
+                </div>
+              </div>
+              <div class="top-card">
+                <div class="top-card-image-container">
+                  <img src="./fake-img/villa.png">
+                </div>
+                <div class="top-card-content-container">
+                  <h2>가끔씩은 풀빌라</h2>
+                  <h3>목표: 35만원</h3>
+                  <h3>3개월</h3>
+                  <div class="top-card-tags">
+                    <a href="">단기</a>
+                    <a href="">욜로</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+  </section>
+  <footer>
+    <!-- footer 삽입 -->
+  </footer>
+  </div>
+
+  <!-- script -->
+  <script src="./js/index.js"></script>
+  <script src="js/nav.js"></script>
+  <!-- script end -->
 </body>
 
 </html>

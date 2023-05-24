@@ -1,0 +1,167 @@
+.main {
+    width:900px;
+    height: 1250px;
+}
+
+/* 프로필 카드 */
+.profile-card {
+    margin:20px 20px 20px 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid black;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+  
+  /* 프로필 카드 헤더  */
+.card-header {
+    background: transparent;
+    padding: 60px 40px 40px 40px;
+    height: 200px;
+  }
+
+.card-group {
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.consumecontainer {
+    position: absolute; 
+    top:180px;
+    left: 500px; 
+    text-align:left;
+    font-size: 30px;
+    
+}
+.myinterestingchallenge {
+    position: absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+}
+.myconsumestatus {
+    padding-top:300px;
+    position:absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+    height: 300px;
+}
+.smallfont {
+    font-size: 20px;
+}
+.line {
+    margin-top: 10px;
+    border: 1px solid gray;
+    width:100%;
+}
+.line2 {
+    margin-top: 10px;
+    border: 1px solid gray;
+    width:100%;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+header {
+    line-height: 150px;
+}
+
+header .container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+h1 {
+    text-align: center;
+}
+
+h1 img {
+    width: 150px;
+    height: auto;
+}
+
+nav {
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    border: 2px solid #000;
+    /* display: none; */
+}
+
+nav ul li {
+    line-height: 100px;
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+
+nav ul li:last-child{
+    border-bottom: inherit;
+}
+
+nav.on {
+    display: block;
+}
+
+header .header_btn {
+    width: 300px;
+    font-size: 17px;
+}
+
+header .header_btn a {
+    margin: 0 30px 0 0;
+}
+
+header .menu_btn {
+   width: 300px;
+   text-align: right;
+   font-size: 24px;
+}
+
+.menu_btn.on i:nth-child(1), .menu_btn i:nth-child(2) {
+    display: none;
+}
+
+header .menu_btn.on i:nth-child(2) {
+    display: block;
+    padding-bottom: 4px;
+}
+
+/* 23.05.23. header 서경 */
+
+section {
+    height: 100vh;
+}
+
+/* 23.05.23. footer 서경 */
+footer {
+    background-color: #000;
+    padding: 50px 0 100px 0
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer img {
+    width: 130px;
+    height: auto;
+}
+
+footer .content {
+    color: #ddd;
+    margin: 30px 0 0 0;
+}
+/* 23.05.23. footer 서경 */
