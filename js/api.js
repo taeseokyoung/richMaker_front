@@ -33,7 +33,7 @@ export async function login(){
 export async function signup(){
     const url= `${BACK_BASE_URL}/api/users/sign-up/`
     const email = document.getElementById("email").value
-    const nickname = document.getElementById("nickname").value
+    const username = document.getElementById("username").value
     
     const emailconfirm = document.getElementById("emailconfirm").value
     const password = document.getElementById("password").value
@@ -51,7 +51,7 @@ export async function signup(){
             body:JSON.stringify({
                 'email':email,
                 'password':password,
-                'nickname':nickname,
+                'username':username,
                 "code":emailconfirm
             })
         })
