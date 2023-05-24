@@ -6,11 +6,6 @@ window.onload = () => {
   handleListLoad();
 };
 
-function handleBtn() {
-  document.querySelector("nav").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
-}
-
 /* 메인화면 List 불러오는 함수 */
 async function handleListLoad() {
   const response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
@@ -45,6 +40,7 @@ async function handleListLoad() {
                                   </div>`;
   });
 }
+
 
 /* Slider */
 const next = document.querySelectorAll(".next");

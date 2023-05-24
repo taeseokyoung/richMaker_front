@@ -16,13 +16,13 @@ ul {
   text-align: center;
 }
 
-ul > li {
+.pagination > li {
   display: inline-block;
   font-size: 2.2rem;
   float: left;
   margin-right: 10px;
 }
 
-ul > li > a {
+.pagination > li > a {
   float: none;
 }

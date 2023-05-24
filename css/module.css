@@ -37,15 +37,21 @@ h1 img {
 .nav-drop-menu {
   position: absolute;
   display: none;
-  top: 50%;
+  top: 50vh;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: 300px;
   border: 2px solid #000;
+  border-radius: 5px;
+  background: #fff;
   /* display: none; */
 }
 
-.nav-drop-menu ul li {
+.nav-drop-menu ul {
+  text-align: center;
+}
+
+.nav-drop-menu ul li{
   line-height: 100px;
   font-size: 25px;
   text-align: center;
@@ -58,6 +64,7 @@ h1 img {
 
 .nav-drop-menu.on {
   display: block;
+  z-index: 999;
 }
 
 header .header_btn {
@@ -87,9 +94,9 @@ header .menu_btn.on i:nth-child(2) {
 
 /* 23.05.23. header 서경 */
 
-section {
-  height: 100vh;
-}
+/* section {
+  min-height: calc(100vh - 300px);
+} */
 
 /* 23.05.23. footer 서경 */
 footer {
@@ -112,3 +119,4 @@ footer .content {
   margin: 30px 0 0 0;
 }
 /* 23.05.23. footer 서경 */
+
