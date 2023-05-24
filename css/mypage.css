@@ -2,41 +2,8 @@
     width:900px;
     height: 1250px;
 }
-.main2 {
-    width:900px;
-    height:600px;
-    justify-content: center;
-    padding-left: 30%;
-}
 
-/*프로필 수정 전체 박스*/
-.bigbox {
-    width: 700px;
-    height: 550px;
-    border-radius: 10px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    font-size:30px;
-    text-align: center;
-    padding-top:15px;
-}
-/*프로필 기본 사진*/
-.box {
-    width: 150px;
-    height: 150px;
-    border-radius: 70%;
-    
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-}
-.profile {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 
-}
 
 /* 프로필 카드 */
 .profile-card {
@@ -74,9 +41,11 @@
     text-align:left;
     font-size: 30px;
     padding-left: 30px;
+    padding-top: 150px;
 }
 .myconsumestatus {
-    padding-top:300px;
+    padding-top:500px;
+    
     position:absolute;  
     text-align:left;
     font-size: 30px;
@@ -101,102 +70,3 @@
     margin: 0 auto;
 }
 
-
-
-header {
-    line-height: 150px;
-}
-
-header .container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} 
-
-h1 {
-    text-align: center;
-}
-
-h1 img {
-    width: 150px;
-    height: auto;
-}
-
-nav {
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    border: 2px solid #000;
-    /* display: none; */
-}
-
-nav ul li {
-    line-height: 100px;
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-}
-
-nav ul li:last-child{
-    border-bottom: inherit;
-}
-
-nav.on {
-    display: block;
-}
-
-header .header_btn {
-    width: 300px;
-    font-size: 17px;
-}
-
-header .header_btn a {
-    margin: 0 30px 0 0;
-}
-
-header .menu_btn {
-   width: 300px;
-   text-align: right;
-   font-size: 24px;
-}
-
-.menu_btn.on i:nth-child(1), .menu_btn i:nth-child(2) {
-    display: none;
-}
-
-header .menu_btn.on i:nth-child(2) {
-    display: block;
-    padding-bottom: 4px;
-}
-
-/* 23.05.23. header 서경 */
-
-section {
-    height: 100vh;
-}
-
-/* 23.05.23. footer 서경 */
-footer {
-    background-color: #000;
-    padding: 50px 0 100px 0
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-}
-
-footer img {
-    width: 130px;
-    height: auto;
-}
-
-footer .content {
-    color: #ddd;
-    margin: 30px 0 0 0;
-}
-/* 23.05.23. footer 서경 */
