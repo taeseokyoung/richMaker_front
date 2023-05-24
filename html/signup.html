@@ -14,18 +14,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>리치메이커 : 회원가입 페이지</title>
 </head>
-<!-- 이메일 인증 부분 -->
-<script>
-  function hello() {
-    alert("인증번호를 발송했습니다.");
-  }
-</script>
-<!-- 여기까지  -->
-
-
 
 <body>
   <div class="nav-container">
@@ -74,25 +65,26 @@
         </div>
       </div>
     </div>
-    <div>
 
-      <div class="container text-center">
-        <div class="imgbox">
-          <img id="preview" class="resized-img"
-            src="https://png.pngtree.com/png-vector/20191115/ourmid/pngtree-beautiful-profile-line-vector-icon-png-image_1990469.jpg" />
-        </div>
-        <label for="formFile" class="form-label">profile image</label>
-        <div class="input-group mb-3">
-          <input type="file" id="image" onchange="readURL(this);" class="form-control">
-        </div>
-        <div class="row align-items-end" style="margin-top: 30%;">
-          <button type="button" class="btn btn-outline-secondary" style="color:black;" onclick="handleSignup()">인증
+    <div class="right_box">
+      <div class="imgbox">
+        <img id="preview" class="resized-img"
+          src="https://png.pngtree.com/png-vector/20191115/ourmid/pngtree-beautiful-profile-line-vector-icon-png-image_1990469.jpg" />
+        <div><span style="text-align: center;">profile image</span></div>
+      </div>
+
+
+      <div class="input-group">
+        <input type="file" id="image" onchange="readURL(this);" class="form-control">
+      </div>
+      <div class="button_group">
+        <div class="button_box">
+          <button type="button" class="btn btn-outline-secondary custom-button" onclick="handleSignup()">인증
             코드
             발급 받기</button>
         </div>
-
-        <div class="row align-items-end" style="margin-top: 6%">
-          <button type="button" class="btn btn-outline-secondary" style="color: black;"
+        <div class="button_box">
+          <button type="button" class="btn btn-outline-secondary custom-button"
             onclick="EmailAuthentication()">가입</button>
         </div>
       </div>

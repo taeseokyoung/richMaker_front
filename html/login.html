@@ -13,12 +13,14 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
 
+
+
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
   <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="/css/signup.css" />
+  <link rel="stylesheet" href="/css/login.css" />
   <script src="./js/index.js"></script>
-  <title>리치메이커 : 소비챌린지</title>
+  <title>리치메이커 : 로그인 페이지</title>
 </head>
 
 <body>
@@ -42,15 +44,36 @@
     </footer>
   </div> -->
   <div class="title">
-    <div class="d-flex">
-      <div class="p-2 w-100">
-        <h1>WELCOME</h1>
-      </div>
-      <div class="p-2 flex-shrink-1">
-        <div>회원이 아니신가요?</div>
+    <div>
+      <h1>WELCOME</h1>
+    </div>
+    <div style="margin-left: 1%;">
+      <div>회원이 아니신가요?</div>
+      <a>
         <div>회원가입 하러 가기</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="inner_box">
+      <div class="mb-3 row">
+        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="email" placeholder="이메일을 입력해 주세요.">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password:</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
+        </div>
+      </div>
+      <div class="button_box">
+        <button type="button" class="btn btn-outline-light" style="color: black;">로그인 하기</button>
       </div>
     </div>
+
   </div>
 
   <!-- script -->
