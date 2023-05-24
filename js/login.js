@@ -1,8 +1,13 @@
 // import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 const BACK_BASE_URL = "http://127.0.0.1:8000"
-const FRONT_BASE_URL = "http://127.0.0.1:5501"
+const FRONT_BASE_URL = "http://127.0.0.1:5500"
 const API_USERS = "api/users"
 
+window.onload = async () => {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    console.log(payload_parse)
+}
 
 //  추후 api.js에서 사용될 코드들, 개발환경에서 잠시 사용중!
 
@@ -38,7 +43,7 @@ async function handleLogin() {
 
             localStorage.setItem("payload", jsonPayload)
 
-            window.location.replace(`${FRONT_BASE_URL}/html/main.html`);
+            window.location.replace(`${FRONT_BASE_URL}/index.html`);
         } else {
             document.getElementById("password").value = ""
             alert("회원정보가 일치하지 않습니다.")

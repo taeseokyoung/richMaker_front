@@ -156,10 +156,19 @@ async function handlePost() {
         styles.push(parseInt(el.value))
     })
 
+    //const formdata = new FormData();
+
+    //formdata.append("minus_money", Cost)
+    //formdata.append("placename", placeName)
+    //formdata.append("placewhere", placeWhere)
+    //formdata.append("amount", Amount)
+    //formdata.append("consumer_style", styles)
+
     const request_post = await fetch(`${backend_base_url}/api/post/minus/`, {
         method: 'POST',
         headers: {
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
         },
         body: JSON.stringify({
             "minus_money": Cost,
@@ -170,5 +179,10 @@ async function handlePost() {
         })
     })
 
-    //location.href = ``
+    if (request_post.status == 200) {
+        alert("작성 완료!")
+        window.location.replace(`${frontend_base_url}/index.html`);
+    } else {
+        alert(request_post.status)
+    }
 }
