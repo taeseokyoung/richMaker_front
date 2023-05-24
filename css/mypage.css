@@ -1,0 +1,73 @@
+.main {
+    width:900px;
+    height: 1250px;
+}
+
+/* 프로필 카드 */
+.profile-card {
+    margin:20px 20px 20px 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid black;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  /* 프로필 카드 헤더  */
+.card-header {
+    background: transparent;
+    padding: 60px 40px 40px 40px;
+    height: 200px;
+  }
+
+.card-group {
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.consumecontainer {
+    position: absolute; 
+    top:180px;
+    left: 500px; 
+    text-align:left;
+    font-size: 30px;
+
+}
+.myinterestingchallenge {
+    position: absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+    padding-top: 40px;
+}
+.myconsumestatus {
+    padding-top:300px;
+    position:absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+    height: 300px;
+}
+.smallfont {
+    font-size: 20px;
+    padding-top: 10px;
+}
+.line {
+    margin-top: 10px;
+    border: 1px solid gray;
+    width:100%;
+}
+.line2 {
+    margin-top: 10px;
+    border: 1px solid gray;
+    width:100%;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+
