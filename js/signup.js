@@ -4,48 +4,31 @@ const FRONT_BASE_URL = "http://127.0.0.1:5501"
 const API_USERS = "api/users"
 
 
-
-window.onload = async function () {
-    // document.getElementById('signup').addEventListener('click', async function () {
-    //     signup();
-    // })
-
-    // document.getElementById('verify').addEventListener('click', async function () {
-    //     emailconfirm();
-    // })
-    const response = await fetch(`${BACK_BASE_URL}/${API_USERS}/1/`)
-    const response_json = await response.json()
-    console.log(response_json)
-}
-
-
-
-
 async function handleSignup() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
     const password2 = document.getElementById("password2").value
     const username = document.getElementById("username").value
     const bio = document.getElementById("bio").value
-    const profile_image = document.getElementById("image").files[0]
+    const profile_image = document.getElementById("image")
 
     if (password != password2) {
         alert("입력하신 두 비밀번호가 일치하지 않습니다.")
     } else {
-        const formdata = new FormData()
+        const formdata = new FormData();
         formdata.append('email', email)
         formdata.append('password', password)
         formdata.append('username', username)
         formdata.append('bio', bio)
 
         if (profile_image) {
-            formdata.append('profile_image', profile_image)
+            formdata.append('profile_image', profile_image.files[0])
         } else {
             formdata.append('profile_image', '')
         }
         try {
             const response = await fetch(`${BACK_BASE_URL}/${API_USERS}/sign-up/`, {
-                enctype: "multipart/form-data",
+                headers: {},
                 method: 'POST',
                 body: formdata
             })
