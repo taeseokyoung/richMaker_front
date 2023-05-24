@@ -1,11 +1,13 @@
-const backend_base_url = "http://127.0.0.1:8000"
-const frontend_base_url = "http://127.0.0.1:5500"
+/* conf.js로부터 base URL 불러오기 */
+//import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
+const BACK_BASE_URL = "http://127.0.0.1:8000"
+const FRONT_BASE_URL = "http://127.0.0.1:5500"
 
 window.onload = async function Consume() {
     buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
 
     // 소비경향
-    const response_style = await fetch(`${backend_base_url}/api/post/style/`, {
+    const response_style = await fetch(`${BACK_BASE_URL}/api/post/style/`, {
         method: 'GET'
     });
 
@@ -156,15 +158,7 @@ async function handlePost() {
         styles.push(parseInt(el.value))
     })
 
-    //const formdata = new FormData();
-
-    //formdata.append("minus_money", Cost)
-    //formdata.append("placename", placeName)
-    //formdata.append("placewhere", placeWhere)
-    //formdata.append("amount", Amount)
-    //formdata.append("consumer_style", styles)
-
-    const request_post = await fetch(`${backend_base_url}/api/post/minus/`, {
+    const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/`, {
         method: 'POST',
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -181,7 +175,7 @@ async function handlePost() {
 
     if (request_post.status == 200) {
         alert("작성 완료!")
-        window.location.replace(`${frontend_base_url}/index.html`);
+        window.location.replace(`${FRONT_BASE_URL}/index.html`);
     } else {
         alert(request_post.status)
     }
