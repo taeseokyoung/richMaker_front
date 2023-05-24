@@ -4,11 +4,6 @@ import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 /* 페이지 로딩 */
 window.onload = () => {
   handleListLoad();
-  document
-    .querySelector(".menu_btn")
-    .addEventListener("click", async function () {
-      handleBtn();
-    });
 };
 
 function handleBtn() {

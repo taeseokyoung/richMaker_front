@@ -1,15 +1,22 @@
+
 async function injectNavbar() {
   fetch("./nav.html")
     .then((response) => {
       return response.text();
     })
     .then((data) => {
-      document.querySelector(".nav-container").innerHTML = data;
+      document.querySelector("nav").innerHTML = data;
     });
 
   const navbarHtml = await fetch("./nav.html");
   let data = await navbarHtml.text();
-  document.querySelector(".nav-container").innerHTML = data;
+  document.querySelector("nav").innerHTML = data;
+}
+
+
+function handleBtn() {
+  document.querySelector(".nav-drop-menu").classList.toggle("on");
+  document.querySelector(".menu_btn").classList.toggle("on");
 }
 
 injectNavbar();
@@ -29,3 +36,4 @@ async function injectFooter() {
 }
 
 injectFooter();
+
