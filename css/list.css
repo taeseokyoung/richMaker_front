@@ -1,0 +1,28 @@
+.pagination-div {
+  height: 100px;
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+ul {
+  display: block;
+  text-align: center;
+}
+
+ul > li {
+  display: inline-block;
+  font-size: 2.2rem;
+  float: left;
+  margin-right: 10px;
+}
+
+ul > li > a {
+  float: none;
+}
