@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/index2.css" />
+    <link rel="stylesheet" href="./css/list.css" />
+    <title>LIST | 리치메이커 : 소비챌린지</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./css/reset.css" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/index2.css" />
-  <link rel="stylesheet" href="./css/list.css" />
-  <title>LIST | 리치메이커 : 소비챌린지</title>
-
-</head>
-
-<body>
-  <div class="Wrap">
-    <header>
-      <div class="container">
-        <div class="nav-container">
-          <!-- navbar 삽입 -->
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="">나의 가계부</a></li>
-          <li><a href="">리치메이커 챌린지</a></li>
-          <li><a href="">마이페이지</a></li>
-        </ul>
-      </nav>
-    </header>
-    <section class="Main">
-      <div class="main-container">
-        <div class="main-report">
-          <div class="main-nav">
-            <span>상위 챌린지 목록</span>
-            <div class="button-cover">
-              <a href="">영수증 인증하기</a>
-              <a href="">이번달 소비 목록 확인</a>
-              <a href="">이번달 수입 기록</a>
-            </div>
+  <body>
+    <div class="Wrap">
+      <header>
+        <div class="container">
+          <div class="nav-container">
+            <!-- navbar 삽입 -->
           </div>
-          <hr class="bar" />
-          <div class="top-challenge">
-            <div>
-              <div class="top-card-container">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="">나의 가계부</a></li>
+            <li><a href="">리치메이커 챌린지</a></li>
+            <li><a href="">마이페이지</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="Main">
+        <div class="main-container">
+          <div class="main-report">
+            <div class="main-nav">
+              <span>상위 챌린지 목록</span>
+              <div class="button-cover">
+                <a href="">영수증 인증하기</a>
+                <a href="">이번달 소비 목록 확인</a>
+                <a href="">이번달 수입 기록</a>
               </div>
             </div>
-          </div>
-          <div class="pagination-div">
-            <ul class="pagination">
-              <li class="page-item" id="page-previous">
-                <a class="page-link">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item" id="page-next">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
+            <hr class="bar" />
+            <div class="top-challenge">
+              <div>
+                <div class="top-card-container"></div>
+              </div>
+            </div>
+            <div class="pagination-div">
+              <ul class="pagination">
+                <li class="page-item" id="page-previous">
+                  <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item" id="page-next">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <footer>
-      <!-- footer 삽입 -->
-    </footer>
-  </div>
+      </section>
+      <footer>
+        <!-- footer 삽입 -->
+      </footer>
+    </div>
 
-  <!-- script -->
-  <script src="js/nav.js" type="module"></script>
-  <script src="js/list.js" type="module"></script>
-  <!-- script end -->
-</body>
-
+    <!-- script -->
+    <script src="js/nav.js" type="module"></script>
+    <script src="js/list.js" type="module"></script>
+    <!-- script end -->
+  </body>
 </html>
