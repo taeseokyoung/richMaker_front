@@ -1,3 +1,18 @@
+/* 에스코어드림체(기록 버튼 글씨체 */
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 둘기마요 글씨체 (달력 글씨체로 쓰임) */
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .main {
     width:900px;
     height: 1250px;
@@ -49,6 +64,14 @@
     padding-left: 30px;
     height: 300px;
 }
+.mybank {
+    padding-top:700px;
+    position:absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+    height: 300px;
+}
 .smallfont {
     font-size: 20px;
     padding-top: 10px;
@@ -67,7 +90,106 @@
     width: 1200px;
     margin: 0 auto;
 }
+.mybank {
+    font-family: 'S-CoreDream-3Light';
+    padding-top: 400px;
+    padding-left: 600px;
+}
+.incomebutton{
+    font-size:20px;
+    background-color: rgba(175, 34, 231, 0.781);
+    color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+.consumebutton{
+    font-size: 20px;
+    color: rgba(175, 34, 231, 0.781);
+    background-color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+.banksavebutton{
+    font-size: 20px;
+    background-color: rgba(175, 34, 231, 0.781);
+    color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+/* 마이페이지 수입,지출,저축 기록하기 금액 글씨 */
+.money {
+    font-family: 'S-CoreDream-3Light';
+    text-decoration:  rgba(175, 34, 231, 0.781)  ;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
 
+/* section calendar 지수*/
 
+td {
+    width: 30px;
+    height: 30px;
+}
 
+.Calendar {
+    margin-top: 50px;
+    text-align: center;
+}
 
+.calendar-section {
+    background-color: white;
+    margin-bottom: 10px;
+    width: 500px;
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0px 35px 20px -30px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.Calendar>thead>tr:first-child>td {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.Calendar>thead>tr:last-child>td {
+    font-family: 'Dovemayo_gothic';
+    background-color: rgba(175, 34, 231, 0.781);
+    color: white;
+    
+}
+
+.pastDay {
+    background-color: rgba(243, 252, 124, 0.822);
+    cursor: pointer;
+    font-family: 'Dovemayo_gothic';
+}
+
+.today {
+    font-family: 'Dovemayo_gothic';
+    background-color: #ff96dfda;
+    cursor: pointer;
+}
+
+.futureDay {
+    font-family: 'Dovemayo_gothic';
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.pastDay.choiceDay,
+.futureDay.choiceDay,
+.today.choiceDay {
+    font-family: 'Dovemayo_gothic';
+    background-color: #3E85EF;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* section calendar 끝 */
