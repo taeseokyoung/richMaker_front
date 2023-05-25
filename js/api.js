@@ -41,7 +41,6 @@ export async function signupAPI() {
 export async function EmailAuthenticationAPI() {
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
-    console.log(email, auth_code)
     const response = await fetch(`${BACK_BASE_URL}/api/users/sign-up/`, {
         headers: {
             'content-type': 'application/json',
@@ -68,16 +67,8 @@ export async function LoginAPI() {
             "password": password,
         })
     })
+    console.log(response)
     return response
-}
-
-//  로그아웃
-export function logoutAPI() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("payload")
-    location.reload();
-
 }
 
 //  로그인한 사용자의 비밀번호 재 설정 API
@@ -136,6 +127,29 @@ export async function passwordResetAPI() {
             "email": email,
             "auth_code": auth_code,
             "password": password
+        })
+    })
+    return response
+}
+
+// 휴면 계정으로 전환
+export async function switchAccountAPI() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const access_token = localStorage.getItem("access")
+    const user_id = payload_parse.user_id
+    const email = document.getElementById("email").value
+    const auth_code = document.getElementById("auth_code").value
+
+    const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`
+        },
+        method: 'DELETE',
+        body: JSON.stringify({
+            "email": email,
+            "password": auth_code
         })
     })
     return response
