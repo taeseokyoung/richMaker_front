@@ -161,25 +161,49 @@
             <li class="list-group-item">
               <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
                 기록하기</button>
-              <div id="income-box"></div>
+              <div style="display:inline-flex">
+                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
+                  <button style="font-size:20px;">오늘의 수입</button>
+                  <div id="income-box" style="display:inline-block;"></div>
+                  <div id="total-income"></div>
+                </div>
+                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
+                  <button style="font-size:20px;">선택한 날짜의 수입</button>
+                  <span id="income-box-choice"></span>
+                  <div id="total-income-choice"></div>
+                </div>
+              </div>
             </li>
             <li class="list-group-item">
               <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
-              <div class="card" id="minus-today" style="width:570px; border-radius:10px; margin-top:-30px;">
-                <button style="font-size:20px;">오늘의 지출액</button>
-                <div id="minus-box" style="display:inline-block;"></div>
-                <div id="total-minus"></div>
-              </div>
-              <div class="card" id="minus-choice" style="width:570px; border-radius:10px;">
-                <button style="font-size:20px;">선택한 날짜의 지출액</button>
-                <span id="minus-box-choice"></span>
-                <div id="total-minus-choice"></div>
+              <div style="display:inline-flex">
+                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
+                  <button style="font-size:20px;">오늘의 지출액</button>
+                  <div id="minus-box" style="display:inline-block;"></div>
+                  <div id="total-minus"></div>
+                </div>
+                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
+                  <button style="font-size:20px;">선택한 날짜의 지출액</button>
+                  <span id="minus-box-choice"></span>
+                  <div id="total-minus-choice"></div>
+                </div>
               </div>
             </li>
             <li class="list-group-item">
               <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
                 하러가기</button>
-              <div id="plus-box"></div>
+              <div style="display:inline-flex">
+                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
+                  <button style="font-size:20px;">오늘의 저축</button>
+                  <div id="plus-box" style="display:inline-block;"></div>
+                  <div id="total-plus"></div>
+                </div>
+                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
+                  <button style="font-size:20px;">선택한 날짜의 저축</button>
+                  <span id="plus-box-choice"></span>
+                  <div id="total-plus-choice"></div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
