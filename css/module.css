@@ -37,7 +37,7 @@ h1 img {
 .nav-drop-menu {
   position: absolute;
   display: none;
-  top: 50vh;
+  top: 30vh;
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
