@@ -1,0 +1,46 @@
+.receipt-cover {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+}
+
+.title {
+  margin-top: 7%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.inner_box {
+  margin-top: 1%;
+  width: 40%;
+}
+
+
+.mb-3 {
+  margin-left: 20%;
+  margin-right: 5%;
+  text-align: right;
+
+}
+
+
+.imgbox {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.resized-img {
+  width: 150px;
+  height: 150px;
+}
+
+.custom-button {
+  margin-top: 1%;
+  width: 100%;
+}
+
+.button_group {
+  margin-top: 20%;
+
+}
