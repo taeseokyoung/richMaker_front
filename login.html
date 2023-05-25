@@ -15,79 +15,84 @@
 
   <!-- css -->
   <link rel="stylesheet" href="/css/login.css" />
-
-  <!-- <link rel="stylesheet" href="./css/reset.css" />
+  >
+  <!-- 모듈 css 불러오기 -->
+  <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <script src="./js/index.js"></script> -->
+  <link rel="stylesheet" href="css/module.css">
+  <script src="js/nav.js"></script>
+  <link rel="stylesheet" href="js/index.js">
+
+
+
   <title>리치메이커 : 로그인 페이지</title>
 </head>
 
 <body>
-  <!-- <div class="Wrap">
-    <header>
-      <div class="container">
-        <div class="nav-container"></div>
-      </div>
-    </header>
-    <section class="Main"></section>
-    <footer>
-      <div class="container">
-        <img src="./img/richmaker-logo.png" alt="" />
-        <div class="content">
-          <p>
-            소비를 현명하게! 소비를 도와주는 가계부와 챌린지를 만드는
-            리치메이커 입니다.
-          </p>
-        </div>
-      </div>
-    </footer> -->
-  </div>
-  <div class="title">
-    <div>
-      <h1>WELCOME</h1>
-    </div>
-    <div style="margin-left: 1%;">
-      <div>회원이 아니신가요?</div>
-      <a href="/signup.html" style="text-decoration: none;">
-        <div>회원가입 하러 가기</div>
-      </a>
-    </div>
-  </div>
+  <header>
+    <nav class="nav container">
+      <!-- navbar 삽입 -->
+    </nav>
+  </header>
 
-  <div class="container">
-    <div class="inner_box">
-      <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Email:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="email" placeholder="이메일을 입력해 주세요.">
-        </div>
+  <section>
+    <!-- 네비바의 우상단 버튼을 누르면 나오는 메뉴는 전체 높이의 50% 위치에 오도록 설계되어 있습니다. 그래서 처음에 보시기 편하도록 module.css에 height:100vh를 강제로 먹여두었습니다. 이부분을 삭제하고 작업해주시면 됩니다. :) -->
+
+
+    <div class="title">
+      <div id="mainText">
+        <h1>WELCOME</h1>
       </div>
-      <div class="mb-3 row">
-        <label for="password" class="col-sm-2 col-form-label">Password:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
-        </div>
-      </div>
-      <div class="button_box">
-        <button type="button" class="btn btn-outline-light" style="color: black;" id="login_button">로그인
-          하기</button>
+      <div>
+        <div class="subText">회원이 아니신가요?</div>
+        <a href="/signup.html" style="text-decoration: none;">
+          <div class="subText link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            회원가입 하러 가기</div>
+        </a>
       </div>
     </div>
+    <div class="container">
+      <div class="inner_box">
+        <div>
+          <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control custom_box" id="email" placeholder="이메일을 입력해 주세요.">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password:</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control custom_box" id="password" placeholder="비밀번호를 입력해 주세요.">
+            </div>
+          </div>
+        </div>
+        <div id="button_group">
+          <div id="inner_btnBox">
+            <div class="button_box" id="login_button">
+              <a href="#" id="login_button"
+                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">로그인하기</a>
+            </div>
+            <div class="button_box">
+              <a href="/updateUserInfo.html">비밀번호 찾기</a>
+            </div>
+            <div class="button_box">
+              <a href="/updateUserInfo.html">휴면 계정 활성화 신청</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  </div>
+    </div>
+  </section>
+  <footer>
+    <!-- footer 삽입 -->
+  </footer>
   <script type="module" src="/js/api.js"></script>
   <script type="module" src="/js/login.js"></script>
   <!-- script -->
-  <!-- <script
-    type="module"
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-    nomodule
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script> -->
-  <!-- <script src="js/nav.js" type="module"></script> -->
+  <script src="js/nav.js" type="module"></script>
+  <!-- script end -->
 </body>
 
 </html>
