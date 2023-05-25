@@ -1,30 +1,35 @@
-.container {
+.container_box {
+    display: flex;
+    justify-content: center;
     width: 40%;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 
 .custom_button {
     width: 100%;
     margin-top: 3%;
+    font-size: 1.8rem;
 }
 
 
 #containerBox_one {
+    margin-top: 3%;
     display: none;
+    width: 40%;
+    font-size: 1.8rem;
 }
 
 #containerBox_two {
-
-    font-size: 3.5vw;
+    margin-top: 5%;
+    font-size: 2.5vw;
+    width: 28%;
     height: 30rem;
     position: relative;
-
 }
-
 
 span {
     display: inline-block;
-    line-height: 250px;
+    line-height: 150px;
     vertical-align: middle;
 }
 
@@ -34,7 +39,6 @@ span {
     background-color: black;
     color: aliceblue;
     border-radius: 15%;
-
     text-align: center;
 }
 
@@ -42,4 +46,8 @@ span {
     border: 1px solid black;
     background-color: white;
     color: black;
+}
+
+.custom_input {
+    font-size: 1.8rem;
 }

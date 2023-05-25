@@ -2,31 +2,43 @@
     display: flex;
     justify-content: center;
     height: 500px;
+    font-size: 1.8rem;
 }
 
 .title {
-    margin-top: 7%;
+    margin-top: 2%;
+    font-weight: bold;
     display: flex;
     justify-content: center;
+    font-size: 5rem;
+
 }
 
+.custom_label {
+    font-size: 1.5rem;
+}
+
+.custom_input {
+    font-size: 1.5rem;
+}
 
 .inner_box {
     margin-top: 1%;
-    width: 40%;
+    margin-left: 10%;
+    width: 25%;
 }
 
-
-.mb-3 {
-    margin-left: 20%;
-    margin-right: 5%;
-    text-align: right;
-
+.custom_label {
+    margin-top: 2.5%;
 }
 
+.custom_input {
+    width: 100%;
+    margin-top: 2.5%;
+}
 
 .imgbox {
-    margin-top: 10%;
+    margin-top: 20%;
     text-align: center;
 }
 
@@ -36,11 +48,32 @@
 }
 
 .custom-button {
-    margin-top: 1%;
+    margin-top: 2%;
     width: 100%;
 }
 
 .button_group {
     margin-top: 20%;
+}
 
+.input-group {
+    margin-top: 10%;
+}
+
+.inner_box_items {
+    width: 100%;
+}
+
+.right_box {
+    font-size: 3rem;
+    margin-left: 1.5%;
+    width: 15%;
+}
+
+#image {
+    font-size: 1.5rem;
+}
+
+.custom-button {
+    font-size: 1.5rem;
 }

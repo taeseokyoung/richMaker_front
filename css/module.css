@@ -1,5 +1,5 @@
-body{
-    position: relative;
+body {
+  position: relative;
 }
 
 .container {
@@ -51,7 +51,7 @@ h1 img {
   text-align: center;
 }
 
-.nav-drop-menu ul li{
+.nav-drop-menu ul li {
   line-height: 100px;
   font-size: 25px;
   text-align: center;
@@ -94,9 +94,9 @@ header .menu_btn.on i:nth-child(2) {
 
 /* 23.05.23. header 서경 */
 
-/* section {
+section {
   min-height: calc(100vh - 300px);
-} */
+}
 
 /* 23.05.23. footer 서경 */
 footer {
@@ -118,5 +118,5 @@ footer .content {
   color: #ddd;
   margin: 30px 0 0 0;
 }
-/* 23.05.23. footer 서경 */
 
+/* 23.05.23. footer 서경 */

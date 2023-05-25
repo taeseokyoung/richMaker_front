@@ -9,12 +9,16 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <!-- css -->
-  <link rel="stylesheet" href="/css/signup.css" />
+  <link rel="stylesheet" href="css/signup.css">
 
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
+  <link rel="stylesheet" href="css/module.css">
+  <script src="js/nav.js"></script>
+  <link rel="stylesheet" href="js/index.js">
   <title>리치메이커 : 회원가입 페이지</title>
 
   <script>
@@ -23,85 +27,78 @@
 </head>
 
 <body>
-  <div class="nav-container">
-    <!-- navbar 삽입 -->
-  </div>
+  <header>
+    <nav class="nav container">
 
-  <div class="title">
-    <h1 style="font-weight: bold;">WELCOME</h1>
-  </div>
-  <div class="container_box">
-    <div class="inner_box">
-      <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Email:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="email" placeholder="이메일을 입력해 주세요.">
+    </nav>
+  </header>
+  <section>
+
+
+    <div class="title">
+      <h1>WELCOME</h1>
+    </div>
+    <div class="container_box">
+      <div class="inner_box">
+        <div>
+          <label for=" email" class="custom_label">Email:</label>
+          <input type="text" class="form-control custom_input" id="email" placeholder="이메일을 입력해 주세요.">
+        </div>
+        <div>
+          <label for="password" class="custom_label">Password1:</label>
+          <input type="password" class="form-control custom_input" id="password" placeholder="비밀번호를 입력해 주세요.">
+        </div>
+        <div>
+          <label for="password2" class="custom_label">Password2:</label>
+          <input type="password" class="form-control custom_input" id="password2" placeholder="다시 한번 비밀번호를 입력해 주세요.">
+        </div>
+        <div>
+          <label for="username" class="custom_label">Username:</label>
+          <input type="text" class="form-control custom_input" id="username" placeholder="닉네임을 입력해 주세요.">
+        </div>
+        <div>
+          <label for="bio" class="custom_label">Bio:</label>
+          <input type="text" class="form-control custom_input" id="bio" placeholder="소개글을 입력해 주세요."
+            style="height: 8rem;">
+        </div>
+        <div>
+          <label for="auth_code" class="custom_label">AuthCode:</label>
+          <input type="text" class="form-control custom_input" id="auth_code" placeholder="인증코드를 입력해 주세요.">
         </div>
       </div>
-      <div class="mb-3 row">
-        <label for="password" class="col-sm-2 col-form-label">Password1:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
+
+      <div class="right_box">
+        <div class="imgbox">
+          <img id="preview" class="resized-img"
+            src="https://png.pngtree.com/png-vector/20191115/ourmid/pngtree-beautiful-profile-line-vector-icon-png-image_1990469.jpg" />
+          <div><span class="profileText">profile image</span></div>
         </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="password2" class="col-sm-2 col-form-label">Password2:</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="password2" placeholder="다시 한번 비밀번호를 입력해 주세요.">
+        <div class="input-group">
+          <input type="file" id="image" class="form-control">
         </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="username" class="col-sm-2 col-form-label">Username:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="username" placeholder="닉네임을 입력해 주세요.">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="bio" class="col-sm-2 col-form-label">Bio:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="bio" placeholder="소개글을 입력해 주세요." style="height: 120px;">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="auth_code" class="col-sm-2 col-form-label">AuthCode:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="auth_code" placeholder="인증코드를 입력해 주세요.">
+        <div class="button_group">
+          <div class="button_box">
+            <button type="button" class="btn btn-outline-secondary custom-button" id="signUpButton">인증
+              코드
+              발급 받기</button>
+          </div>
+          <div class="button_box">
+            <button type="button" class="btn btn-outline-secondary custom-button" id="get_auth_code"
+              style="display: none;">인증 코드 재 요청</button>
+          </div>
+          <div class="button_box">
+            <button type="button" class="btn btn-outline-secondary custom-button" id="auth_button">가입</button>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="right_box">
-      <div class="imgbox">
-        <img id="preview" class="resized-img"
-          src="https://png.pngtree.com/png-vector/20191115/ourmid/pngtree-beautiful-profile-line-vector-icon-png-image_1990469.jpg" />
-        <div><span style="text-align: center;">profile image</span></div>
-      </div>
-
-
-      <div class="input-group">
-        <input type="file" id="image" class="form-control">
-      </div>
-      <div class="button_group">
-        <div class="button_box">
-          <button type="button" class="btn btn-outline-secondary custom-button" id="signUpButton">인증
-            코드
-            발급 받기</button>
-        </div>
-        <div class="button_box">
-          <button type="button" class="btn btn-outline-secondary custom-button" id="get_auth_code"
-            style="display: none;">인증 코드 재 요청</button>
-        </div>
-        <div class="button_box">
-          <button type="button" class="btn btn-outline-secondary custom-button" id="auth_button">가입</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </section>
   <footer>
-    <!-- footer 삽입 -->
+
   </footer>
   <script type="module" src="/js/conf.js"></script>
   <script type="module" src="/js/signup.js"></script>
+  <script src="js/nav.js" type="module"></script>
 </body>
+
 </html>
