@@ -165,17 +165,13 @@ h3 {
   overflow: hidden;
 }
 
-.top-card-image-container::after {
-}
-
 .top-card-content-container {
   width: 80%;
   float: left;
   position: relative;
 }
 
-.top-card-content-container::after {
-}
+
 
 .top-card-content-container > h2 {
   margin: 15px;
