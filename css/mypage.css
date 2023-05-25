@@ -1,48 +1,73 @@
-/* 에스코어드림체(기록 버튼 글씨체 */
 @font-face {
-    font-family: 'S-CoreDream-3Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
-/* 둘기마요 글씨체 (달력 글씨체로 쓰임) */
+/* 마포꽃섬 글씨체 (달력 글씨체로 쓰임) */
 @font-face {
-    font-family: 'Dovemayo_gothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+
+.numbers {
+    font-family: 'MapoFlowerIsland';
 }
 
 .main {
     width: 900px;
-    height: 1250px;
+    height: 1800px;
+}
+
+p {
+    font-family: 'OTWelcomeRA';
 }
 
 /* 프로필 카드 */
 .profile-card {
-    margin: 20px 20px 20px 20px;
+    margin: 100px 20px 20px 40px;
     width: 400px;
+    height: 400px;
     text-align: center;
     border-radius: 8px;
     border: 2px solid black;
     overflow: hidden;
-    padding-bottom: 20px;
 }
 
-/* 프로필 카드 헤더  */
-.card-header {
-    background: transparent;
-    padding: 60px 40px 40px 40px;
-    height: 200px;
-}
-
-.card-group {
-    padding-top: 20px;
+.update {
     font-size: 20px;
-    text-align: center;
+    background-color: rgba(109, 86, 68, 0.822);
+    color: white;
+    font-family: 'MapoFlowerIsland';
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 30px;
 }
 
+/*프로필 기본 사진*/
+.bigbox {
+    padding-left: 120px;
+    padding-bottom: 30px;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border-radius: 70%;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 내 챌린지 관리 카드 비율 */
 .consumecontainer {
     position: absolute;
     top: 180px;
@@ -50,18 +75,40 @@
     text-align: left;
     font-size: 30px;
 
+
 }
 
+.myProfile {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'MapoFlowerIsland';
+}
+
+.item {
+    font-family: 'MapoFlowerIsland';
+    padding-bottom: 10px;
+
+}
+
+.card-footer {
+    padding-top: 20px;
+    background-color: transparent;
+    font-family: 'MapoFlowerIsland';
+    font-size: 20px;
+}
+
+/* 관심있는 챌린지 카드 비율 */
 .myinterestingchallenge {
     position: absolute;
     text-align: left;
     font-size: 30px;
     padding-left: 30px;
-    padding-top: 40px;
+    padding-top: 170px;
+
 }
 
 .myconsumestatus {
-    padding-top: 300px;
+    padding-top: 700px;
     position: absolute;
     text-align: left;
     font-size: 30px;
@@ -70,7 +117,7 @@
 }
 
 .mybank {
-    padding-top: 700px;
+    margin-top: 300px;
     position: absolute;
     text-align: left;
     font-size: 30px;
@@ -85,14 +132,17 @@
 
 .line {
     margin-top: 10px;
-    border: 1px solid gray;
+    margin-bottom: 30px;
+    border: 1px solid #efff5eec;
     width: 100%;
+
 }
 
 .line2 {
     margin-top: 10px;
-    border: 1px solid gray;
-    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #efff5eec;
+    width: 1400px;
 }
 
 .container {
@@ -101,16 +151,16 @@
 }
 
 .mybank {
-    font-family: 'S-CoreDream-3Light';
-    padding-top: 400px;
+    font-family: 'MapoFlowerIsland';
+    padding-top: 500px;
     padding-left: 600px;
 }
 
 .incomebutton {
     font-size: 20px;
-    background-color: rgba(175, 34, 231, 0.781);
+    background-color: rgba(109, 86, 68, 0.822);
     color: white;
-    font-family: 'S-CoreDream-3Light';
+    font-family: 'MapoFlowerIsland';
     margin-left: 600px;
     border-radius: 10px;
     height: 40px;
@@ -118,9 +168,9 @@
 
 .consumebutton {
     font-size: 20px;
-    color: rgba(175, 34, 231, 0.781);
-    background-color: white;
-    font-family: 'S-CoreDream-3Light';
+    background-color: rgba(109, 86, 68, 0.822);
+    color: white;
+    font-family: 'MapoFlowerIsland';
     margin-left: 600px;
     border-radius: 10px;
     height: 40px;
@@ -128,19 +178,34 @@
 
 .banksavebutton {
     font-size: 20px;
-    background-color: rgba(175, 34, 231, 0.781);
+    background-color: rgba(109, 86, 68, 0.822);
     color: white;
-    font-family: 'S-CoreDream-3Light';
+    font-family: 'MapoFlowerIsland';
     margin-left: 600px;
     border-radius: 10px;
     height: 40px;
 }
 
+.imagebox {
+    padding: 20px 0px 20px 75px;
+}
+
+.imagebox2 {
+    padding: 20px 0px 20px 160px;
+}
+
+.card-title {
+    font-family: 'MapoFlowerIsland';
+}
+
+.card-text {
+    font-family: 'MapoFlowerIsland';
+}
+
 /* 마이페이지 수입,지출,저축 기록하기 금액 글씨 */
 .money {
-    font-family: 'S-CoreDream-3Light';
-    text-decoration: rgba(175, 34, 231, 0.781);
-    padding-bottom: 10px;
+    font-family: 'MapoFlowerIsland';
+    >>>>>>>64c04572f5f1ad85943f6d29d5817f7529767650 padding-bottom: 10px;
     padding-left: 20px;
 }
 
@@ -167,16 +232,17 @@ td {
 }
 
 .Calendar>thead>tr:first-child>td {
+    font-family: 'MapoFlowerIsland';
     font-size: 1.1em;
     font-weight: bold;
     padding-bottom: 10px;
+    color: rgba(109, 86, 68, 0.822);
 }
 
 .Calendar>thead>tr:last-child>td {
-    font-family: 'Dovemayo_gothic';
-    background-color: rgba(175, 34, 231, 0.781);
-    color: white;
-
+    font-family: 'MapoFlowerIsland';
+    background-color: rgba(231, 57, 34, 0.322);
+    color: rgba(109, 86, 68, 0.822);
 }
 
 .Day {
@@ -185,6 +251,7 @@ td {
 
 .Day.choiceDay {
     background-color: #3E85EF;
+    font-family: 'MapoFlowerIsland';
     color: #fff;
     cursor: pointer;
 }
