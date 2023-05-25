@@ -1,3 +1,18 @@
+/* 에스코어드림체(기록 버튼 글씨체 */
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 둘기마요 글씨체 (달력 글씨체로 쓰임) */
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .main {
     width:900px;
     height: 1250px;
@@ -13,7 +28,7 @@
     overflow: hidden;
     padding-bottom: 20px;
   }
-  
+
   /* 프로필 카드 헤더  */
 .card-header {
     background: transparent;
@@ -32,13 +47,14 @@
     left: 500px; 
     text-align:left;
     font-size: 30px;
-    
+
 }
 .myinterestingchallenge {
     position: absolute;  
     text-align:left;
     font-size: 30px;
     padding-left: 30px;
+    padding-top: 40px;
 }
 .myconsumestatus {
     padding-top:300px;
@@ -48,8 +64,17 @@
     padding-left: 30px;
     height: 300px;
 }
+.mybank {
+    padding-top:700px;
+    position:absolute;  
+    text-align:left;
+    font-size: 30px;
+    padding-left: 30px;
+    height: 300px;
+}
 .smallfont {
     font-size: 20px;
+    padding-top: 10px;
 }
 .line {
     margin-top: 10px;
@@ -65,103 +90,106 @@
     width: 1200px;
     margin: 0 auto;
 }
-
-
-
-header {
-    line-height: 150px;
+.mybank {
+    font-family: 'S-CoreDream-3Light';
+    padding-top: 400px;
+    padding-left: 600px;
+}
+.incomebutton{
+    font-size:20px;
+    background-color: rgba(175, 34, 231, 0.781);
+    color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+.consumebutton{
+    font-size: 20px;
+    color: rgba(175, 34, 231, 0.781);
+    background-color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+.banksavebutton{
+    font-size: 20px;
+    background-color: rgba(175, 34, 231, 0.781);
+    color:white;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 600px;
+    border-radius: 10px;
+    height:40px;
+}
+/* 마이페이지 수입,지출,저축 기록하기 금액 글씨 */
+.money {
+    font-family: 'S-CoreDream-3Light';
+    text-decoration:  rgba(175, 34, 231, 0.781)  ;
+    padding-bottom: 10px;
+    padding-left: 20px;
 }
 
-header .container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} 
+/* section calendar 지수*/
 
-h1 {
+td {
+    width: 30px;
+    height: 30px;
+}
+
+.Calendar {
+    margin-top: 50px;
     text-align: center;
 }
 
-h1 img {
-    width: 150px;
-    height: auto;
+.calendar-section {
+    background-color: white;
+    margin-bottom: 10px;
+    width: 500px;
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0px 35px 20px -30px rgba(0, 0, 0, 0.3);
+    padding: 20px;
 }
 
-nav {
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    border: 2px solid #000;
-    /* display: none; */
+.Calendar>thead>tr:first-child>td {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 
-nav ul li {
-    line-height: 100px;
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.5);
+.Calendar>thead>tr:last-child>td {
+    font-family: 'Dovemayo_gothic';
+    background-color: rgba(175, 34, 231, 0.781);
+    color: white;
+    
 }
 
-nav ul li:last-child{
-    border-bottom: inherit;
+.pastDay {
+    background-color: rgba(243, 252, 124, 0.822);
+    cursor: pointer;
+    font-family: 'Dovemayo_gothic';
 }
 
-nav.on {
-    display: block;
+.today {
+    font-family: 'Dovemayo_gothic';
+    background-color: #ff96dfda;
+    cursor: pointer;
 }
 
-header .header_btn {
-    width: 300px;
-    font-size: 17px;
+.futureDay {
+    font-family: 'Dovemayo_gothic';
+    background-color: #FFFFFF;
+    cursor: pointer;
 }
 
-header .header_btn a {
-    margin: 0 30px 0 0;
+.pastDay.choiceDay,
+.futureDay.choiceDay,
+.today.choiceDay {
+    font-family: 'Dovemayo_gothic';
+    background-color: #3E85EF;
+    color: #fff;
+    cursor: pointer;
 }
 
-header .menu_btn {
-   width: 300px;
-   text-align: right;
-   font-size: 24px;
-}
-
-.menu_btn.on i:nth-child(1), .menu_btn i:nth-child(2) {
-    display: none;
-}
-
-header .menu_btn.on i:nth-child(2) {
-    display: block;
-    padding-bottom: 4px;
-}
-
-/* 23.05.23. header 서경 */
-
-section {
-    height: 100vh;
-}
-
-/* 23.05.23. footer 서경 */
-footer {
-    background-color: #000;
-    padding: 50px 0 100px 0
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-}
-
-footer img {
-    width: 130px;
-    height: auto;
-}
-
-footer .content {
-    color: #ddd;
-    margin: 30px 0 0 0;
-}
-/* 23.05.23. footer 서경 */
+/* section calendar 끝 */

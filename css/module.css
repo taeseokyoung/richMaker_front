@@ -1,0 +1,122 @@
+body{
+    position: relative;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  /* background: rgba(0, 0, 0, 0.3); */
+  /* box-shadow: 0px 7px 4px -4px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42); */
+}
+
+
+header {
+  /* 23.05.23 line-height from 150 to 85 철민
+  저희 로고가 쪼꼼 뚱뚱하네요 ㅎㅎ 보통 프론트에서 디폴트로 100을 많이 줘서 100으로 변경해보겠습니다..!
+  */
+  line-height: 100px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1 img {
+  width: 100px;
+  height: auto;
+}
+
+.nav-drop-menu {
+  position: absolute;
+  display: none;
+  top: 50vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: #fff;
+  /* display: none; */
+}
+
+.nav-drop-menu ul {
+  text-align: center;
+}
+
+.nav-drop-menu ul li{
+  line-height: 100px;
+  font-size: 25px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.nav-drop-menu ul li:last-child {
+  border-bottom: inherit;
+}
+
+.nav-drop-menu.on {
+  display: block;
+  z-index: 999;
+}
+
+header .header_btn {
+  width: 300px;
+  font-size: 17px;
+}
+
+header .header_btn a {
+  margin: 0 30px 0 0;
+}
+
+header .menu_btn {
+  width: 300px;
+  text-align: right;
+  font-size: 24px;
+}
+
+.menu_btn.on i:nth-child(1),
+.menu_btn i:nth-child(2) {
+  display: none;
+}
+
+header .menu_btn.on i:nth-child(2) {
+  display: block;
+  padding-bottom: 4px;
+}
+
+/* 23.05.23. header 서경 */
+
+/* section {
+  min-height: calc(100vh - 300px);
+} */
+
+/* 23.05.23. footer 서경 */
+footer {
+  background-color: #000;
+  padding: 50px 0 100px 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer img {
+  width: 130px;
+  height: auto;
+}
+
+footer .content {
+  color: #ddd;
+  margin: 30px 0 0 0;
+}
+/* 23.05.23. footer 서경 */
+

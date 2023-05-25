@@ -12,123 +12,6 @@
   /* background-color: aquamarine; */
 }
 
-.container {
-  width: 1200px;
-  margin: 0 auto;
-  /* background: rgba(0, 0, 0, 0.3); */
-  /* box-shadow: 0px 7px 4px -4px rgba(0, 0, 0, 0.42);
-  -webkit-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42);
-  -moz-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42); */
-}
-
-/* 23.05.23 철민 */
-.nav-container {
-  width: 1200px;
-  margin: 0 auto;
-}
-
-/* 23.05.23. header 서경 */
-
-header {
-  /* 23.05.23 line-height from 150 to 85 철민 */
-  line-height: 85px;
-}
-
-header .container .nav-container {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1 {
-  text-align: center;
-}
-
-h1 img {
-  width: 100px;
-  height: auto;
-}
-
-nav {
-  position: absolute;
-  display: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  border: 2px solid #000;
-  /* display: none; */
-}
-
-nav ul li {
-  line-height: 100px;
-  font-size: 25px;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-nav ul li:last-child {
-  border-bottom: inherit;
-}
-
-nav.on {
-  display: block;
-}
-
-header .header_btn {
-  width: 300px;
-  font-size: 17px;
-}
-
-header .header_btn a {
-  margin: 0 30px 0 0;
-}
-
-header .menu_btn {
-  width: 300px;
-  text-align: right;
-  font-size: 24px;
-}
-
-.menu_btn.on i:nth-child(1),
-.menu_btn i:nth-child(2) {
-  display: none;
-}
-
-header .menu_btn.on i:nth-child(2) {
-  display: block;
-  padding-bottom: 4px;
-}
-
-/* 23.05.23. header 서경 */
-
-section {
-  /* height: 100vh; */
-}
-
-/* 23.05.23. footer 서경 */
-footer {
-  background-color: #000;
-  padding: 50px 0 100px 0;
-}
-
-footer .container {
-  display: flex;
-  justify-content: space-between;
-}
-
-footer img {
-  width: 130px;
-  height: auto;
-}
-
-footer .content {
-  color: #ddd;
-  margin: 30px 0 0 0;
-}
-/* 23.05.23. footer 서경 */
-
 /* main content */
 img {
   object-fit: cover;
@@ -136,7 +19,20 @@ img {
 
 .main-container {
   width: 1200px;
-  margin: 100px auto;
+  margin: 50px auto 0 auto;
+}
+
+.nav-drop-menu {
+  position: absolute;
+  display: none;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: #fff;
+  /* display: none; */
 }
 
 span {

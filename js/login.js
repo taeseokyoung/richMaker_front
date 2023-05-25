@@ -1,7 +1,5 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 import { LoginAPI } from "./api.js";
-
-
 document.getElementById("login_button").addEventListener("click", handleLogin);
 
 window.onload = async () => {
@@ -35,5 +33,8 @@ export async function handleLogin() {
     } else {
         document.getElementById("password").value = ""
         alert("회원정보가 일치하지 않습니다.")
+    console.log(payload_parse)
+}
+
     }
 }
