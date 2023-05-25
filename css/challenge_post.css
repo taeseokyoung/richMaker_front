@@ -1,0 +1,89 @@
+section {
+    background-color: #ddd;
+}
+
+input {
+    font-size: 15px;}
+
+/* 알 수 없는 clearfix 오류 수정 */
+.container::before {
+    display: none;
+}
+
+.container::after {
+    display: none;
+}
+
+.challenge-post {
+    position: relative;
+}
+
+.challenge-post .container {
+    width: 1000px;
+    height: 80%;
+    padding: 30px;
+    background-color: #fff;
+}
+
+h2 {
+    text-align: center;
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+.challenge-form label {
+    margin-bottom: 15px;
+}
+.challenge-form img {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.challenge-form img:hover {
+
+}
+
+
+.form-control {
+margin-bottom: 20px;
+}
+
+#summernote {
+    height: 300px;
+}
+
+.challenge-goal {
+    display: flex;
+}
+
+.challenge-goal div {
+      flex: 1;
+}
+
+.challenge-goal input {
+    width: 100%;
+}
+
+.challenge-goal div:nth-child(2){
+    margin-left: 30px;
+}
+
+.summernote {
+    margin-bottom: 30px;
+}
+
+.challenge-btn {
+  text-align: right;
+}
+
+.btn-secondary {
+    margin-right: 10px;
+}
+
+.note-editable p {
+    height: 400px;
+}
