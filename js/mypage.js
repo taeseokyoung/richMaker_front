@@ -60,7 +60,7 @@ function buildCalendar() {
       document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
     }
     nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
-    Consumelist();
+    Choicelist();
   }
 
   // 이전달 버튼 클릭
@@ -84,14 +84,15 @@ function buildCalendar() {
   }
 }
 
-// 선택한 날짜에 대한 지출 기록 불러오기
-async function Consumelist() {
+// 선택한 날짜에 대한 정보 불러오기
+async function Choicelist() {
   const year = document.getElementById("calYear").innerText
   const month = document.getElementById("calMonth").innerText
   const date = document.getElementsByClassName("choiceDay")[0].innerText
   const day = year + '-' + month + '-' + date
 
-  const response = await fetch(`${BACK_BASE_URL}/api/post/minus/${day}/`, {
+  // 선택한 날짜에 대한 지출 기록 불러오기
+  const response_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${day}/`, {
     headers: {
       'content-type': 'application/json',
       "Authorization": "Bearer " + localStorage.getItem("access")
@@ -99,15 +100,15 @@ async function Consumelist() {
     method: 'GET',
   })
 
-  response_json = await response.json()
-  console.log(response_json)
+  response_minus_json = await response_minus.json()
+  console.log(response_minus_json)
 
   const newbox = document.getElementById('minus-box-choice')
   newbox.setAttribute("style", "margin-top:10px;")
 
-  if (response_json != "") {
+  if (response_minus_json != "") {
     newbox.innerText = "당신의 소비는?"
-    response_json.forEach(e => {
+    response_minus_json.forEach(e => {
       const newdiv = document.createElement("div")
       newdiv.setAttribute("class", "minusinfo")
       const newP1 = document.createElement("span")
@@ -124,22 +125,14 @@ async function Consumelist() {
   }
   // 총 지출 금액
   all_minus = 0
-  response_json.forEach(e => {
+  response_minus_json.forEach(e => {
     all_minus = all_minus + e["totalminus"]
   })
   const totalminussum = document.getElementById('total-minus-choice')
   totalminussum.innerText = "총 지출 금액:  " + all_minus
-}
 
-
-// 현재 날짜에 대한 지출 기록 불러오기
-async function getminus() {
-  const nowyear = today.getFullYear()
-  const nowmonth = today.getMonth() + 1
-  const nowdate = today.getDate()
-  const nowday = nowyear + '-0' + nowmonth + '-' + nowdate
-
-  const response = await fetch(`${BACK_BASE_URL}/api/post/minus/${nowday}/`, {
+  // 선택한 날짜에 대한 저축 기록 불러오기
+  const response_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${day}/`, {
     headers: {
       'content-type': 'application/json',
       "Authorization": "Bearer " + localStorage.getItem("access")
@@ -147,7 +140,91 @@ async function getminus() {
     method: 'GET',
   })
 
-  minuslist = await response.json()
+  response_plus_json = await response_plus.json()
+  console.log(response_plus_json)
+
+  const newbox2 = document.getElementById('plus-box-choice')
+  newbox2.setAttribute("style", "margin-top:10px;")
+
+  if (response_plus_json != "") {
+    newbox2.innerText = "당신의 저축은?"
+    response_plus_json.forEach(e => {
+      const newdiv = document.createElement("div")
+      newdiv.setAttribute("class", "plusinfo")
+      const newP1 = document.createElement("span")
+      newP1.setAttribute("style", "margin-right:20px;")
+      newP1.innerText = "저축액:  " + e["plus_money"]
+      newdiv.appendChild(newP1)
+      newbox2.appendChild(newdiv)
+    })
+  } else {
+    newbox2.innerText = "저축 좀 하고 삽시다!!!"
+  }
+  // 총 저축 금액
+  all_plus = 0
+  response_plus_json.forEach(e => {
+    all_plus = all_plus + e["plus_money"]
+  })
+  const totalplussum = document.getElementById('total-plus-choice')
+  totalplussum.innerText = "총 저축액:  " + all_plus
+
+  // 선택한 날짜에 대한 수입 기록 불러오기
+  const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${day}/`, {
+    headers: {
+      'content-type': 'application/json',
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    method: 'GET',
+  })
+
+  response_income_json = await response_income.json()
+  console.log(response_income_json)
+
+  const newbox3 = document.getElementById('income-box-choice')
+  newbox3.setAttribute("style", "margin-top:10px;")
+
+  if (response_income_json != "") {
+    newbox3.innerText = "당신의 수입은?"
+    response_income_json.forEach(e => {
+      const newdiv = document.createElement("div")
+      newdiv.setAttribute("class", "incomeinfo")
+      const newP1 = document.createElement("span")
+      newP1.setAttribute("style", "margin-right:20px;")
+      newP1.innerText = "수입:  " + e["income_money"]
+      newdiv.appendChild(newP1)
+      newbox3.appendChild(newdiv)
+    })
+  } else {
+    newbox3.innerText = "마음이 아프니 아무 말도 하지 않겠어요..."
+  }
+  // 총 수입 금액
+  all_income = 0
+  response_income_json.forEach(e => {
+    all_income = all_income + e["income_money"]
+  })
+  const totalincomesum = document.getElementById('total-income-choice')
+  totalincomesum.innerText = "총 수입:  " + all_income
+
+}
+
+
+// 현재 날짜에 대한 기록 불러오기
+async function gettoday() {
+  const nowyear = today.getFullYear()
+  const nowmonth = today.getMonth() + 1
+  const nowdate = today.getDate()
+  const nowday = nowyear + '-0' + nowmonth + '-' + nowdate
+
+  // 현재 날짜에 대한 지출 기록 불러오기
+  const response_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${nowday}/`, {
+    headers: {
+      'content-type': 'application/json',
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    method: 'GET',
+  })
+
+  minuslist = await response_minus.json()
   const newbox = document.getElementById('minus-box')
 
   minuslist.forEach(e => {
@@ -163,7 +240,7 @@ async function getminus() {
     newbox.appendChild(newdiv)
   })
 
-  // 현재 수입에 대한 총 지출 금액
+  // 현재 날짜에 대한 총 지출 금액
   all_minus = 0
   minuslist.forEach(e => {
     all_minus = all_minus + e["totalminus"]
@@ -171,6 +248,70 @@ async function getminus() {
 
   const totalminussum = document.getElementById('total-minus')
   totalminussum.innerText = "총 지출 금액:  " + all_minus
+
+  // 현재 날짜에 대한 저축 기록 불러오기
+  const response_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${nowday}/`, {
+    headers: {
+      'content-type': 'application/json',
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    method: 'GET',
+  })
+
+  pluslist = await response_plus.json()
+  console.log(pluslist)
+  const newbox2 = document.getElementById('plus-box')
+
+  pluslist.forEach(e => {
+    const newdiv = document.createElement("div")
+    newdiv.setAttribute("class", "plusinfo")
+    const newP1 = document.createElement("span")
+    newP1.setAttribute("style", "margin-right:20px;")
+    newP1.innerText = "저축액:   " + e["plus_money"]
+    newdiv.appendChild(newP1)
+    newbox2.appendChild(newdiv)
+  })
+
+  // 현재 저축에 대한 총금액
+  all_plus = 0
+  pluslist.forEach(e => {
+    all_plus = all_plus + e["plus_money"]
+  })
+
+  const totalplussum = document.getElementById('total-plus')
+  totalplussum.innerText = "총 저축액:  " + all_plus
+
+  // 현재 날짜에 대한 수입 기록 불러오기
+  const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${nowday}/`, {
+    headers: {
+      'content-type': 'application/json',
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    method: 'GET',
+  })
+
+  incomelist = await response_income.json()
+  console.log(incomelist)
+  const newbox3 = document.getElementById('income-box')
+
+  incomelist.forEach(e => {
+    const newdiv = document.createElement("div")
+    newdiv.setAttribute("class", "incomeinfo")
+    const newP1 = document.createElement("span")
+    newP1.setAttribute("style", "margin-right:20px;")
+    newP1.innerText = "수입:   " + e["income_money"]
+    newdiv.appendChild(newP1)
+    newbox3.appendChild(newdiv)
+  })
+
+  // 현재 날짜에 대한 수입 총금액
+  all_income = 0
+  incomelist.forEach(e => {
+    all_income = all_plus + e["income_money"]
+  })
+
+  const totalincomesum = document.getElementById('total-income')
+  totalincomesum.innerText = "총 수입:  " + all_income
 
 }
 
@@ -202,47 +343,6 @@ async function handleIncome() {
   }
 }
 
-// 이번 달에 대한 수입 불러오기
-async function getplus() {
-  const nowyear = today.getFullYear()
-  const nowmonth = today.getMonth() + 1
-  const nowdate = today.getDate()
-  const nowday = nowyear + '-0' + nowmonth + '-' + nowdate
-
-  const response = await fetch(`${BACK_BASE_URL}/api/post/minus/${nowday}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
-
-  minuslist = await response.json()
-  const newbox = document.getElementById('minus-box')
-
-  minuslist.forEach(e => {
-    const newdiv = document.createElement("div")
-    newdiv.setAttribute("class", "minusinfo")
-    const newP1 = document.createElement("span")
-    newP1.setAttribute("style", "margin-right:20px;")
-    newP1.innerText = "지출내역:  " + e["placename"]
-    const newP2 = document.createElement("span")
-    newP2.innerText = "지출금액:  " + e["totalminus"]
-    newdiv.appendChild(newP1)
-    newdiv.appendChild(newP2)
-    newbox.appendChild(newdiv)
-  })
-
-  // 현재 수입에 대한 총 지출 금액
-  all_minus = 0
-  minuslist.forEach(e => {
-    all_minus = all_minus + e["totalminus"]
-  })
-
-  const totalminussum = document.getElementById('total-minus')
-  totalminussum.innerText = "총 지출 금액:  " + all_minus
-
-}
 
 //저축 기록하기
 async function handleSaving() {
@@ -280,10 +380,9 @@ async function handleSaving() {
   }
 }
 
-
 window.onload = async function () {
   buildCalendar();
-  getminus();
+  gettoday();
 
   let token = localStorage.getItem("access")
 
@@ -297,7 +396,7 @@ window.onload = async function () {
 
 
   response_challenge_json = await response_challenge.json()
-  console.log(response_challenge_json)
+  //console.log(response_challenge_json)
 
   const challenges = document.getElementById("challenge-sort")
 
