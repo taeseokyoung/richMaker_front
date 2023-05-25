@@ -17,9 +17,11 @@ async function handleListLoad() {
   const newChallenge = responseJson.new_challenge;
   const newChallengeCountData = newChallenge.count;
   const newChallengeListData = newChallenge.list;
-  console.log(newChallengeListData);
 
   const newChallengeList = document.querySelector(".slider");
+  const newChallengeCount = document.querySelector(".new-challenge-count");
+
+  newChallengeCount.innerHTML = newChallengeCountData;
 
   newChallengeListData.forEach((element) => {
     newChallengeList.innerHTML += `<div class="card">
@@ -28,7 +30,7 @@ async function handleListLoad() {
                                     </div>
                                     <div class="card-content-container">
                                       <h2>${element.challenge_title}</h2>
-                                      <h3>목표: ${element.challenge_content}만원</h3>
+                                      <h3>목표: ${element.amount}만원</h3>
                                       <h3>${element.period}개월</h3>
                                       <div class="card-tags">
                                         <a href="">장기</a>
@@ -39,10 +41,6 @@ async function handleListLoad() {
   });
 }
 
-function handleBtn() {
-  document.querySelector("nav").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
-}
 
 /* Slider */
 const next = document.querySelectorAll(".next");
