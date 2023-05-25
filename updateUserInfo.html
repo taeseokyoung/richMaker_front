@@ -9,21 +9,13 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
 
+    <!-- css load -->
+    <link rel="stylesheet" href="/css/updateUserInfo.css" />
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 정보 수정</title>
-    <style>
-        .container {
-            width: 40%;
-            margin-top: 10%;
-        }
-
-        .custom_button {
-            width: 100%;
-            margin-top: 3%;
-        }
-    </style>
 </head>
 
 <body>
@@ -31,7 +23,7 @@
         <!-- navbar 삽입 -->
     </div>
 
-    <div class="container">
+    <div class="container" id="containerBox_one">
         <div class="mb-3">
             <label for="email" class="form-label" id="email_label">Email</label>
             <input type="email" class="form-control" id="email" placeholder="이메일을 입력해 주세요.">
@@ -40,13 +32,15 @@
             <label for="auth_code" class="form-label" id="auth_code_label">인증 코드</label>
             <input type="text" class="form-control" id="auth_code" placeholder="인증 코드를 입력해 주세요.">
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label" id="password_label">비밀번호</label>
-            <input type="password" class="form-control" id="password" placeholder="새로운 비밀번호를 입력해 주세요.">
-        </div>
-        <div class="mb-3">
-            <label for="password2" class="form-label" id="password2_label">비밀번호2</label>
-            <input type="password" class="form-control" id="password2" placeholder="새로운 비밀번호를 한번 더 입력해 주세요.">
+        <div id="newPassword">
+            <div class="mb-3 bottom_button_event">
+                <label for="password" class="form-label" id="password_label">비밀번호</label>
+                <input type="password" class="form-control" id="password" placeholder="새로운 비밀번호를 입력해 주세요.">
+            </div>
+            <div class="mb-3 bottom_button_event">
+                <label for="password2" class="form-label" id="password2_label">비밀번호2</label>
+                <input type="password" class="form-control" id="password2" placeholder="새로운 비밀번호를 한번 더 입력해 주세요.">
+            </div>
         </div>
         <div>
             <button type="button" class="btn btn-outline-secondary custom_button" id="get_auth_code_button">인증 코드 발급
@@ -56,6 +50,18 @@
             <button type="button" class="btn btn-outline-secondary custom_button" id="update_user_info_button">회원 정보
                 수정</button>
         </div>
+    </div>
+    <div class="container" id="containerBox_two">
+        <a href="#">
+            <div id="item-top" class="container-itmes">
+                <span>비밀 번호 수정</span>
+            </div>
+        </a>
+        <a href="#">
+            <div id="item-bottom" class="container-itmes">
+                <span>휴면 계정으로 전환</span>
+            </div>
+        </a>
     </div>
 
     <footer>

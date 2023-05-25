@@ -41,7 +41,6 @@ export async function signupAPI() {
 export async function EmailAuthenticationAPI() {
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
-    console.log(email, auth_code)
     const response = await fetch(`${BACK_BASE_URL}/api/users/sign-up/`, {
         headers: {
             'content-type': 'application/json',
@@ -132,6 +131,28 @@ export async function passwordResetAPI() {
             'content-type': 'application/json',
         },
         method: 'PATCH',
+        body: JSON.stringify({
+            "email": email,
+            "auth_code": auth_code,
+            "password": password
+        })
+    })
+    return response
+}
+
+export async function switchAccountAPI() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const access_token = localStorage.getItem("access")
+    const user_id = payload_parse.user_id
+    const email = document.getElementById("email").value
+
+    const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`
+        },
+        method: 'DELETE',
         body: JSON.stringify({
             "email": email,
             "auth_code": auth_code,
