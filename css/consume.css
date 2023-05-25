@@ -133,6 +133,7 @@ td {
     color: white;
 }
 
+/*
 .pastDay {
     background-color: lightgray;
     cursor: pointer;
@@ -151,6 +152,17 @@ td {
 .pastDay.choiceDay,
 .futureDay.choiceDay,
 .today.choiceDay {
+    background-color: #3E85EF;
+    color: #fff;
+    cursor: pointer;
+}
+*/
+
+.Day {
+    cursor: pointer;
+}
+
+.Day.choiceDay {
     background-color: #3E85EF;
     color: #fff;
     cursor: pointer;
