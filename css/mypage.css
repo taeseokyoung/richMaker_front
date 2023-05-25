@@ -5,6 +5,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 /* 둘기마요 글씨체 (달력 글씨체로 쓰임) */
 @font-face {
     font-family: 'Dovemayo_gothic';
@@ -14,118 +15,131 @@
 }
 
 .main {
-    width:900px;
+    width: 900px;
     height: 1250px;
 }
 
 /* 프로필 카드 */
 .profile-card {
-    margin:20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
     width: 400px;
     text-align: center;
     border-radius: 8px;
     border: 2px solid black;
     overflow: hidden;
     padding-bottom: 20px;
-  }
+}
 
-  /* 프로필 카드 헤더  */
+/* 프로필 카드 헤더  */
 .card-header {
     background: transparent;
     padding: 60px 40px 40px 40px;
     height: 200px;
-  }
+}
 
 .card-group {
     padding-top: 20px;
     font-size: 20px;
     text-align: center;
 }
+
 .consumecontainer {
-    position: absolute; 
-    top:180px;
-    left: 500px; 
-    text-align:left;
+    position: absolute;
+    top: 180px;
+    left: 500px;
+    text-align: left;
     font-size: 30px;
 
 }
+
 .myinterestingchallenge {
-    position: absolute;  
-    text-align:left;
+    position: absolute;
+    text-align: left;
     font-size: 30px;
     padding-left: 30px;
     padding-top: 40px;
 }
+
 .myconsumestatus {
-    padding-top:300px;
-    position:absolute;  
-    text-align:left;
+    padding-top: 300px;
+    position: absolute;
+    text-align: left;
     font-size: 30px;
     padding-left: 30px;
     height: 300px;
 }
+
 .mybank {
-    padding-top:700px;
-    position:absolute;  
-    text-align:left;
+    padding-top: 700px;
+    position: absolute;
+    text-align: left;
     font-size: 30px;
     padding-left: 30px;
     height: 300px;
 }
+
 .smallfont {
     font-size: 20px;
     padding-top: 10px;
 }
+
 .line {
     margin-top: 10px;
     border: 1px solid gray;
-    width:100%;
+    width: 100%;
 }
+
 .line2 {
     margin-top: 10px;
     border: 1px solid gray;
-    width:100%;
+    width: 100%;
 }
-.container{
+
+.container {
     width: 1200px;
     margin: 0 auto;
 }
+
 .mybank {
     font-family: 'S-CoreDream-3Light';
     padding-top: 400px;
     padding-left: 600px;
 }
-.incomebutton{
-    font-size:20px;
+
+.incomebutton {
+    font-size: 20px;
     background-color: rgba(175, 34, 231, 0.781);
-    color:white;
+    color: white;
     font-family: 'S-CoreDream-3Light';
     margin-left: 600px;
     border-radius: 10px;
-    height:40px;
+    height: 40px;
 }
-.consumebutton{
+
+.consumebutton {
     font-size: 20px;
     color: rgba(175, 34, 231, 0.781);
-    background-color:white;
+    background-color: white;
     font-family: 'S-CoreDream-3Light';
     margin-left: 600px;
     border-radius: 10px;
-    height:40px;
+    height: 40px;
 }
-.banksavebutton{
+
+.banksavebutton {
     font-size: 20px;
     background-color: rgba(175, 34, 231, 0.781);
-    color:white;
+    color: white;
     font-family: 'S-CoreDream-3Light';
     margin-left: 600px;
     border-radius: 10px;
-    height:40px;
+    height: 40px;
 }
+
 /* 마이페이지 수입,지출,저축 기록하기 금액 글씨 */
 .money {
     font-family: 'S-CoreDream-3Light';
-    text-decoration:  rgba(175, 34, 231, 0.781)  ;
+    text-decoration: rgba(175, 34, 231, 0.781);
     padding-bottom: 10px;
     padding-left: 20px;
 }
@@ -162,31 +176,14 @@ td {
     font-family: 'Dovemayo_gothic';
     background-color: rgba(175, 34, 231, 0.781);
     color: white;
-    
+
 }
 
-.pastDay {
-    background-color: rgba(243, 252, 124, 0.822);
-    cursor: pointer;
-    font-family: 'Dovemayo_gothic';
-}
-
-.today {
-    font-family: 'Dovemayo_gothic';
-    background-color: #ff96dfda;
+.Day {
     cursor: pointer;
 }
 
-.futureDay {
-    font-family: 'Dovemayo_gothic';
-    background-color: #FFFFFF;
-    cursor: pointer;
-}
-
-.pastDay.choiceDay,
-.futureDay.choiceDay,
-.today.choiceDay {
-    font-family: 'Dovemayo_gothic';
+.Day.choiceDay {
     background-color: #3E85EF;
     color: #fff;
     cursor: pointer;

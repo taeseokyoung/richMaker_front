@@ -92,18 +92,21 @@ function buildCalendar() {
         }
 
 
-        if (nowDay < today) {                       // 지난날인 경우
-            nowColumn.className = "pastDay";
-            nowColumn.onclick = function () { choiceDate(this); }
-        }
-        else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
-            nowColumn.className = "today";
-            nowColumn.onclick = function () { choiceDate(this); }
-        }
-        else {                                      // 미래인 경우
-            nowColumn.className = "futureDay";
-            nowColumn.onclick = function () { choiceDate(this); }
-        }
+        //if (nowDay < today) {                       // 지난날인 경우
+        //    nowColumn.className = "pastDay";
+        //    nowColumn.onclick = function () { choiceDate(this); }
+        //}
+        //else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우           
+        //    nowColumn.className = "today";
+        //    nowColumn.onclick = function () { choiceDate(this); }
+        //}
+        //else {                                      // 미래인 경우
+        //    nowColumn.className = "futureDay";
+        //    nowColumn.onclick = function () { choiceDate(this); }
+        //}
+
+        nowColumn.className = "Day";
+        nowColumn.onclick = function () { choiceDate(this); }
     }
 }
 
@@ -112,7 +115,7 @@ function choiceDate(nowColumn) {
     if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
         document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
     }
-    nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
+    nowColumn.classList.add("choiceDay");  // 선택된 날짜에 "choiceDay" class 추가
 }
 
 // 이전달 버튼 클릭
@@ -135,17 +138,17 @@ function leftPad(value) {
     return value;
 }
 
-// 카테고리
-function hadnleBtn() {
-    document.querySelector('nav').classList.toggle('on')
-    document.querySelector('.menu_btn').classList.toggle('on')
-}
 
 // 소비기록하기
 async function handlePost() {
     let token = localStorage.getItem("access")
 
-    // date 가져오는 거는.. 좀 더 고민해보자
+    const year = document.getElementById("calYear").innerText
+    const month = document.getElementById("calMonth").innerText
+    const date = document.getElementsByClassName("choiceDay")[0].innerText
+    const day = year + '-' + month + '-' + date
+
+
     const placeName = await document.getElementById('placename2').value
     const placeWhere = await document.getElementById('placewhere2').value
     const Amount = await document.getElementById('amount2').value
@@ -165,6 +168,7 @@ async function handlePost() {
             'content-type': 'application/json'
         },
         body: JSON.stringify({
+            "date": day,
             "minus_money": Cost,
             "placename": placeName,
             "placewhere": placeWhere,
@@ -175,7 +179,7 @@ async function handlePost() {
 
     if (request_post.status == 200) {
         alert("작성 완료!")
-        window.location.replace(`${FRONT_BASE_URL}/index.html`);
+        window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
     } else {
         alert(request_post.status)
     }
