@@ -1,7 +1,7 @@
-/* conf.js로부터 base URL 불러오기 */
 //import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-const BACK_BASE_URL = "http://127.0.0.1:8000"
-const FRONT_BASE_URL = "http://127.0.0.1:5500"
+const BACK_BASE_URL = "http://127.0.0.1:8000";
+const FRONT_BASE_URL = "http://127.0.0.1:5500";
+
 
 window.onload = async function Consume() {
     buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
