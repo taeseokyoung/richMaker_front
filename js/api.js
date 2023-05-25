@@ -1,6 +1,7 @@
 const BACK_BASE_URL = "http://127.0.0.1:8000";
 const FRONT_BASE_URL = "http://127.0.0.1:5500";
 
+//  회원 가입 API
 export async function signupAPI() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
@@ -36,7 +37,7 @@ export async function signupAPI() {
     }
 }
 
-
+// 계정 활성화를 위한 이메일 인증 API
 export async function EmailAuthenticationAPI() {
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
@@ -53,11 +54,11 @@ export async function EmailAuthenticationAPI() {
     })
     return response
 }
+//  로그인 API
 export async function LoginAPI() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
     const response = await fetch(`${BACK_BASE_URL}/api/users/login/`, {
-        // fetch post 통신이 완료될때까지 기다리고, api에서는 세션의 토큰을 반환한다.
         headers: {
             'content-type': 'application/json',
         },
@@ -76,4 +77,66 @@ export function logoutAPI() {
     localStorage.removeItem("refresh")
     localStorage.removeItem("payload")
     location.reload();
+
+}
+
+//  로그인한 사용자의 비밀번호 재 설정 API
+export async function updatePassWordAPI() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const access_token = localStorage.getItem("access")
+    const user_id = payload_parse.user_id
+
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+    const auth_code = document.getElementById("auth_code").value
+
+    const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`
+        },
+        method: 'PUT',
+        body: JSON.stringify({
+            "email": email,
+            "auth_code": auth_code,
+            "password": password
+        })
+    })
+    return response
+}
+
+//  인증 코드 발급 API
+export async function getAuthCodeAPI() {
+    const email = document.getElementById("email").value
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-auth-token/`, {
+        headers: {
+            'content-type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "email": email,
+        })
+    })
+    return response
+}
+
+// 비밀번호 재 설정 API(로그인 안한 유저가, 자신의 비밀번호를 재 설정 하고자 할 때)
+export async function passwordResetAPI() {
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+    const auth_code = document.getElementById("auth_code").value
+
+    const response = await fetch(`${BACK_BASE_URL}/api/users/sign-up/`, {
+        headers: {
+            'content-type': 'application/json',
+        },
+        method: 'PATCH',
+        body: JSON.stringify({
+            "email": email,
+            "auth_code": auth_code,
+            "password": password
+        })
+    })
+    return response
 }
