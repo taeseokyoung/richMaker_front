@@ -117,7 +117,9 @@ export async function switchAccount() {
     const response_json = await response.json()
     if (response.status == 200) {
         alert(response_json.message)
-
+        localStorage.removeItem("access")
+        localStorage.removeItem("refresh")
+        localStorage.removeItem("payload")
         window.location.replace(`${FRONT_BASE_URL}/index.html`)
     } else if (response.status == 400) {
         alert(response_json.message)
