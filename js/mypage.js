@@ -101,7 +101,7 @@ async function Choicelist() {
   })
 
   response_minus_json = await response_minus.json()
-  console.log(response_minus_json)
+  //console.log(response_minus_json)
 
   const newbox = document.getElementById('minus-box-choice')
   newbox.setAttribute("style", "margin-top:10px;")
@@ -182,7 +182,7 @@ async function Choicelist() {
   })
 
   response_income_json = await response_income.json()
-  console.log(response_income_json)
+  //console.log(response_income_json)
 
   const newbox3 = document.getElementById('income-box-choice')
   newbox3.setAttribute("style", "margin-top:10px;")
@@ -263,7 +263,7 @@ async function gettoday() {
   })
 
   pluslist = await response_plus.json()
-  console.log(pluslist)
+  //console.log(pluslist)
   const newbox2 = document.getElementById('plus-box')
 
   pluslist.forEach(e => {
@@ -299,7 +299,7 @@ async function gettoday() {
   })
 
   incomelist = await response_income.json()
-  console.log(incomelist)
+  //console.log(incomelist)
   const newbox3 = document.getElementById('income-box')
 
   incomelist.forEach(e => {
@@ -351,6 +351,149 @@ async function handleIncome() {
   }
 }
 
+// 수입 수정하기
+async function handleIncomeUpdate() {
+  let token = localStorage.getItem("access")
+
+  // date, income_money를 받는다.
+  const date = await document.getElementById('date-income2').value
+  const income_money = await document.getElementById('income_money2').value
+
+
+  const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
+    method: 'PUT',
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      "date": date,
+      "income_money": income_money
+    })
+  })
+
+  if (request_income.status == 200) {
+    alert("수정 완료!")
+    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+  } else {
+    alert(request_income.status)
+  }
+}
+
+// 수입 삭제하기
+async function handleIncomeDelete() {
+  let token = localStorage.getItem("access")
+
+  // date, income_money를 받는다.
+  const date = await document.getElementById('date-income3').value
+
+
+  const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
+    method: 'DELETE',
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  })
+
+  if (request_income.status == 204) {
+    alert("삭제 완료!")
+    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+  } else {
+    alert(request_income.status)
+  }
+}
+
+
+//저축 기록하기
+async function handleSaving() {
+  let token = localStorage.getItem("access")
+
+  // date, plus_money, challenge를 받는다.
+  const date = document.getElementById('date-plus').value
+  const plus_money = document.getElementById('plus_money').value
+  const query = 'input[name="challenge"]:checked';
+  const selectedEls = document.querySelectorAll(query)
+  let challenge = 0
+
+  selectedEls.forEach((el) => {
+    challenge = parseInt(el.value)
+  })
+
+  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
+    method: 'POST',
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      "date": date,
+      "plus_money": plus_money,
+      "challenge": challenge
+    })
+  })
+
+  if (request_saving.status == 200) {
+    alert("작성 완료!")
+    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+  } else {
+    alert(request_saving.status)
+  }
+}
+
+//저축 수정하기
+async function handleSavingUpdate() {
+  let token = localStorage.getItem("access")
+
+  // date, plus_money, challenge를 받는다.
+  const date = document.getElementById('date-plus2').value
+  const plus_money = document.getElementById('plus_money2').value
+  const challenge = document.getElementById('challenge').value
+  console.log(challenge)
+
+  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
+    method: 'PUT',
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      "date": date,
+      "plus_money": plus_money,
+      "challenge": challenge
+    })
+  })
+
+  if (request_saving.status == 200) {
+    alert("수정 완료!")
+    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+  } else {
+    alert(request_saving.status)
+  }
+}
+
+
+//저축 삭제하기
+async function handleSavingDelete() {
+  let token = localStorage.getItem("access")
+
+  // date, plus_money, challenge를 받는다.
+  const date = document.getElementById('date-plus3').value
+  const challenge = document.getElementById('challenge').value
+
+  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
+    method: 'DELETE',
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  })
+
+  if (request_saving.status == 204) {
+    alert("삭제 완료!")
+    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+  } else {
+    alert(request_saving.status)
+  }
+}
 
 // onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
 window.onload = async () => {
@@ -400,6 +543,7 @@ window.onload = async () => {
         console.log(response_json.profile_image)
 
         buildCalendar();
+
   gettoday();
 
   let token = localStorage.getItem("access")
@@ -408,25 +552,51 @@ window.onload = async () => {
     method: 'GET',
     headers: {
       "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
     },
   });
 
+  // 모달창 속 챌린지 checkbox 관련코드
   response_challenge_json = await response_challenge.json()
-  console.log(response_challenge_json)
+  //console.log(response_challenge_json)
 
   const challenges = document.getElementById("challenge-sort")
+  const challenges2 = document.getElementById("challenge-sort2")
+  const challenges3 = document.getElementById("challenge-sort3")
 
   response_challenge_json.forEach(challenge => {
     const newInput = document.createElement('input')
-    newInput.setAttribute("type", "checkbox")
+    newInput.setAttribute("style", "margin-right:15px;")
+    newInput.setAttribute("type", "radio")
     newInput.setAttribute("name", "challenge")
     newInput.setAttribute("value", challenge['id'])
     newInput.setAttribute("id", 'challenge')
+
+    const newInput2 = document.createElement('input')
+    newInput2.setAttribute("style", "margin-right:15px;")
+    newInput2.setAttribute("type", "radio")
+    newInput2.setAttribute("name", "challenge")
+    newInput2.setAttribute("value", challenge['id'])
+    newInput2.setAttribute("id", 'challenge')
+
+    const newInput3 = document.createElement('input')
+    newInput3.setAttribute("style", "margin-right:15px;")
+    newInput3.setAttribute("type", "radio")
+    newInput3.setAttribute("name", "challenge")
+    newInput3.setAttribute("value", challenge['id'])
+    newInput3.setAttribute("id", 'challenge')
+
     const newChallenge = document.createElement('label')
+    const newChallenge2 = document.createElement('label')
+    const newChallenge3 = document.createElement('label')
     newChallenge.setAttribute("class", "challenge-input")
+    newChallenge2.setAttribute("class", "challenge-input")
+    newChallenge3.setAttribute("class", "challenge-input")
     newChallenge.innerText = challenge["challenge_title"]
+    newChallenge2.innerText = challenge["challenge_title"]
+    newChallenge3.innerText = challenge["challenge_title"]
     challenges.appendChild(newChallenge).appendChild(newInput)
+    challenges2.appendChild(newChallenge2).appendChild(newInput2)
+    challenges3.appendChild(newChallenge3).appendChild(newInput3)
   })
   }
  
