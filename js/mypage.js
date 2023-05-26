@@ -1,14 +1,8 @@
 // /* conf.js로부터 base URL 불러오기 */
-import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import {getUserInfo } from "./api.js";
-
-
-
-
-function hadnleBtn() {
-  document.querySelector(".nav-drop-menu").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
-}
+// import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
+// import { getUserInfo } from "./api.js";
+const BACK_BASE_URL = "http://127.0.0.1:8000";
+const FRONT_BASE_URL = "http://127.0.0.1:5501";
 
 // 달력
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -230,6 +224,7 @@ async function gettoday() {
     method: 'GET',
   })
 
+
   minuslist = await response_minus.json()
   const newbox = document.getElementById('minus-box')
 
@@ -355,54 +350,52 @@ async function handleIncome() {
 
 
 
+////////////////////////////////////
+
 // onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
 window.onload = async () => {
-  hadnleBtn()
+  // hadnleBtn()
   const payload = localStorage.getItem("payload");
   const payload_parse = JSON.parse(payload)
 
   const urlParams = new URLSearchParams(window.location.search);
-  let searchID = urlParams.get('user_id');
-  console.log(searchID)
-  searchID = searchID == null ? payload_parse.user_id : searchID
-  const response = await getUserInfo(searchID)
+  // let searchID = urlParams.get('user_id');
+  // let searchID = 1
+  // searchID = searchID == null ? payload_parse.user_id : searchID
 
-  const response_json = await response.json()
-  console.log(response_json)
+  // const response = await getUserInfo(1)
 
-      // 성공했을때만 값을 변경함
-  if (response.status == 200) { 
-      // htmil의 id값을 가져아서 변수에 저장
-      const email = document.getElementById("user-email")
-      const username = document.getElementById("user-name") 
-      const profile_image = document.getElementById("user-image")
-      const bio = document.getElementById("user-bio")
-      const bookmark = document.getElementById("bookmark-title")
+  // const response_json = await response.json()
+  // console.log(response_json)
 
-        // 변수 안에 들어갈 텍스트를 응답값으로 변경
-      email.innerText = response_json.email
-      username.innerText = response_json.username
-      bio.innerText = response_json.bio
-      bookmark.innerText = response_json.bookmark.
-      console.log(response_json.bio)
-      console.log(response_json.username)
-      console.log(response_json.email)
-      
-      // 이미지 값 변경이 있을때만 수정
-      if (response_json.profile_image != null) {
-        profile_image.setAttribute("src", `${BACK_BASE_URL}${response_json.profile_image}`)
-      }
-        } else if (response.status == 404) {
-              console.log("찾는 계정이 없습니다 ")
-       } 
-// api.js(통신) 에서 응답값으로 데이터를 받아서  통신을 api.js로 옮겨야함 
-// fetch 로 백앤드와 통신하는 과정을 api.js로 옮기고
-// api.js 받아온 응답값을 다시  mypage.js로 가져와서
-// status코드값에 따라 데이터를 적절히 html에 넣어준다
+  // // 성공했을때만 값을 변경함
+  // if (response.status == 200) {
+  //   // htmil의 id값을 가져아서 변수에 저장
+  //   const email = document.getElementById("user-email")
+  //   const username = document.getElementById("user-name")
+  //   const profile_image = document.getElementById("user-image")
+  //   const bio = document.getElementById("user-bio")
+  //   const bookmark = document.getElementById("bookmark-title")
 
-        console.log(response_json.profile_image)
+  //   // 변수 안에 들어갈 텍스트를 응답값으로 변경
+  //   email.innerText = response_json.email
+  //   username.innerText = response_json.username
+  //   bio.innerText = response_json.bio
+  //   bookmark.innerText = response_json.bookmark
 
-        buildCalendar();
+  //   // 이미지 값 변경이 있을때만 수정
+  //   if (response_json.profile_image != null) {
+  //     profile_image.setAttribute("src", `${BACK_BASE_URL}${response_json.profile_image}`)
+  //   }
+  // } else if (response.status == 404) {
+  //   console.log("찾는 계정이 없습니다 ")
+  // }
+  // api.js(통신) 에서 응답값으로 데이터를 받아서  통신을 api.js로 옮겨야함
+  // fetch 로 백앤드와 통신하는 과정을 api.js로 옮기고
+  // api.js 받아온 응답값을 다시  mypage.js로 가져와서
+  // status코드값에 따라 데이터를 적절히 html에 넣어준다
+
+  buildCalendar();
   gettoday();
 
   let token = localStorage.getItem("access")
@@ -431,5 +424,4 @@ window.onload = async () => {
     newChallenge.innerText = challenge["challenge_title"]
     challenges.appendChild(newChallenge).appendChild(newInput)
   })
-  }
- 
+}
