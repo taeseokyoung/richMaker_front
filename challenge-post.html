@@ -35,9 +35,11 @@
                 <div class="challenge-form">
                     <div>
                         <label for="formFileLg" class="form-label">대표이미지 등록</label>
-                        <input class="form-control form-control-lg" id="main_image" type="file" name="main_image">
+                        <input class="form-control form-control-lg" id="main_image" type="file" name="main_image"
+                            onchange="readURL(this)">
                     </div>
-                    <img src="https://cdn.vectorstock.com/i/1000x1000/08/68/dollar-icon-sign-seamless-pattern-on-a-gray-vector-11350868.webp"
+                    <img id="preview_image"
+                        src="https://cdn.vectorstock.com/i/1000x1000/08/68/dollar-icon-sign-seamless-pattern-on-a-gray-vector-11350868.webp"
                         alt="">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">챌린지명</label>
@@ -78,7 +80,18 @@
     <!-- script -->
     <script>
         $(document).ready(function () {
-            $('#summernote').summernote();
+            $('#summernote').summernote({
+                placeholder: '최대 500자 작성 가능합니다.',
+                height: 300,
+                lang: 'ko-KR',
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
+                        for (var i = files.length - 1; i >= 0; i--) {
+                            sendFile(files[i], this);
+                        }
+                    }
+                }
+            });
         });
     </script>
     <script src="js/conf.js"></script>

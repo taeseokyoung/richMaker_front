@@ -1,16 +1,15 @@
+
+
+
 window.onload = async () => {
 
 }
 const payload = localStorage.getItem("payload");
 const payload_parse = JSON.parse(payload)
-const urlParams = new URLSearchParams(window.location.search);
-const challenge_id = urlParams.get("challenge_id");
-console.log(urlParams)
-
 const token = localStorage.getItem("access");
-
-
-no_image = "https://cdn.vectorstock.com/i/1000x1000/08/68/dollar-icon-sign-seamless-pattern-on-a-gray-vector-11350868.webp"
+const urlParams = new URLSearchParams(window.location.search);
+const challengeId = urlParams.get('challenge_id')
+console.log(challengeId)
 
 async function handlePost() {
     const challenge_title = document.getElementById("challenge_title").value;
@@ -26,9 +25,7 @@ async function handlePost() {
     formData.append("challenge_content", challenge_content);
     formData.append("amount", amount);
     formData.append("period", period);
-    if (main_image) {
-        formData.append("main_image", main_image);
-    }
+    formData.append("main_image", main_image);
 
     if (challenge_title && challenge_content) {
         console.log(formData);
@@ -42,7 +39,7 @@ async function handlePost() {
 
         if (response.status == 201) {
             alert("게시글 작성완료");
-            window.location.replace(`${FRONT_BASE_URL}/challenge-post.html`);
+            window.location.replace(`${FRONT_BASE_URL}/challenge-post.html?challenge_id=${challengeId}`);
         } else {
             const result = await response.json()
             console.log(result)
@@ -54,3 +51,14 @@ async function handlePost() {
     }
 }
 
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('preview_image').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        document.getElementById('preview_image').src = "";
+    }
+}
