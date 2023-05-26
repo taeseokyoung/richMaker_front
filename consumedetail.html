@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="../css/consumedetail.css">
+    <link rel="stylesheet" href="css/module.css">
+    <script src="js/nav.js"></script>
+    <link rel="stylesheet" href="js/index.js">
+    <script src="../js/consumedetail.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <title>리치메이커 : 소비챌린지</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav container">
+            <!-- navbar 삽입 -->
+        </nav>
+    </header>
+    <section class="main">
+        <div class="myconsumestatus">
+            <p style="margin-left: 150px; font-size:40px; padding-bottom:20px; ">내 지출 자세히보기</p>
+            <!-- 달력 들어가는 부분 147~172 -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="calendar-section" style="display:inline-flex">
+                        <table class="Calendar">
+                            <thead>
+                                <tr>
+                                    <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                                    <td colspan="5">
+                                        <span id="calYear"></span>년
+                                        <span id="calMonth"></span>월
+                                    </td>
+                                    <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                                </tr>
+                                <tr>
+                                    <td>일</td>
+                                    <td>월</td>
+                                    <td>화</td>
+                                    <td>수</td>
+                                    <td>목</td>
+                                    <td>금</td>
+                                    <td>토</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 소비 자세히보기 -->
+                <div class="col-md-8">
+                    <div class="card" style="width: 80rem;">
+                        <div style="width: 80rem; display:flex; flex-direction:row;">
+                            <div class="card"
+                                style="width:385px; border-radius:10px; display:flex; flex-direction:row;">
+                                <h3 style="font-size:20px;">오늘의 지출액</h3>
+                            </div>
+                            <div class="card" id="minus-today"
+                                style="width:385px; border-radius:10px; display:flex; flex-direction:row;">
+                                <h3 style="font-size:20px;">선택한 날짜의 지출액</h3>
+                            </div>
+                        </div>
+                        <div style="width: 80rem; display:flex; flex-direction:row;">
+                            <ul class="card" id="minus-today"
+                                style="width:385px; border-radius:10px; display:flex; flex-direction:row;">
+                                <li style="font-size:20px;" id="minus-box"></li>
+                            </ul>
+                            <ul class="card" id="minus-today"
+                                style="width:385px; border-radius:10px; display:flex; flex-direction:row;">
+                                <li style="font-size:20px;" id="minus-box2"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    </footer>
+    <!-- script -->
+    <script>
+        function handleBtn() {
+            document.querySelector(".nav-drop-menu").classList.toggle("on");
+            document.querySelector(".menu_btn").classList.toggle("on");
+        }
+    </script>
+    <script src="js/nav.js" type="module"></script>
+    <script type="module" src="/js/api.js"></script>
+    <!-- script end -->
+</body>
+
+</html>
