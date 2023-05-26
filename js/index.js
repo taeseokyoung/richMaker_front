@@ -14,8 +14,10 @@ async function handleListLoad() {
     method: "GET",
   });
 
+  // IndexLoadData
   const responseJson = await response.json();
 
+  // New Challenge
   const newChallenge = responseJson.new_challenge;
   const newChallengeCountData = newChallenge.count;
   const newChallengeListData = newChallenge.list;
@@ -42,6 +44,32 @@ async function handleListLoad() {
                                         </div>
                                     </a>
                                   </div>`;
+  });
+
+  // Top Challenge
+  const topChallenge = responseJson.top_challenge;
+  const topChallengeListData = topChallenge.list;
+
+  const topChallengeList = document.querySelector(".top-card-container");
+
+  topChallengeListData.forEach((element) => {
+    topChallengeList.innerHTML += `<div class="top-card">
+                                    <a href="/challenge-detail.html?query=${element.id}">
+                                      <div class="top-card-image-container">
+                                        <img src="./fake-img/startup.png">
+                                      </div>
+                                      <div class="top-card-content-container">
+                                        <h2>${element.challenge_title}</h2>
+                                        <h3>목표: ${element.amount}만원</h3>
+                                        <h3>${element.period}개월</h3>
+                                        <div class="top-card-tags">
+                                          <a href="">장기</a>
+                                          <a href="">기타</a>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                  `;                                  
   });
 }
 
