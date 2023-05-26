@@ -148,7 +148,6 @@ function leftPad(value) {
 // 소비기록하기
 async function handlePost() {
     let token = localStorage.getItem("access")
-    console.log(token)
     const year = document.getElementById("calYear").innerText
     const month = document.getElementById("calMonth").innerText
     const date = document.getElementsByClassName("choiceDay")[0].innerText

@@ -11,13 +11,23 @@ window.onload = () => {
 
 /* 메인화면 List 불러오는 함수 */
 async function handleListLoad() {
-  const response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
-    method: "GET",
-  });
+  const token = localStorage.getItem("access")
+  let response;
+  if (token === null) {
+    response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
+      method: "GET"
+    });
+  } else {
+    response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+    }
+    });
+  }
 
   // IndexLoadData
   const responseJson = await response.json();
-
   // New Challenge
   const newChallenge = responseJson.new_challenge;
   const newChallengeCountData = newChallenge.count;
@@ -73,70 +83,70 @@ async function handleListLoad() {
                                   `;                                  
   });
 
-  // CircleChart
-  const circleChartElemet = document.getElementById('circleChart');
-
-  new Chart(circleChartElemet, {
-    type: 'pie',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 3
-      }]
-    },
-    options: {
-    }
-  });
-
-  // radarChart
-  const radarChartElement = document.getElementById('radarChart');
-  const radarData = {
-    labels: [
-      'Eating',
-      'Drinking',
-      'Sleeping',
-      'Designing',
-      'Coding',
-      'Cycling',
-      'Running'
-    ],
-    datasets: [{
-      label: '일반적인 소비 성향',
-      data: [65, 59, 90, 81, 56, 55, 40],
-      fill: true,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
-      pointBackgroundColor: 'rgb(255, 99, 132)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(255, 99, 132)'
-    }, {
-      label: '당신의 소비 성향',
-      data: [28, 48, 40, 19, 96, 27, 100],
-      fill: true,
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
-      borderColor: 'rgb(54, 162, 235)',
-      pointBackgroundColor: 'rgb(54, 162, 235)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(54, 162, 235)'
-    }]
-  }
-
-
-  new Chart(radarChartElement, {
-    type: 'radar',
-    data: radarData,
-    options: {
-      line: {
-        borderWidth: 3
+  if (token === null) {
+    document.querySelector('.graph-container').innerHTML = '<h1>로그인하시면 당신의 소비 경향을 분석할 수 있습니다.</h1>';
+  } else {
+  const peopleJson = JSON.parse(responseJson.people)
+  const individualJson = JSON.parse(responseJson.individual)
+  if (individualJson === 0) {
+    document.querySelector('.graph-container').innerHTML = '<h1>아직 이번 달 소비가 없어요! 등록해 주세요</h1>';
+  } else {
+    // CircleChart
+    const circleChartElemet = document.getElementById('circleChart');
+  
+    new Chart(circleChartElemet, {
+      type: 'pie',
+      data: {
+        labels: individualJson.consumer_style__style,
+        datasets: [{
+          label: '지출 금액',
+          data: individualJson.all_amount,
+          borderWidth: 3
+        }]
+      },
+      options: {
       }
+    });
+  
+    // radarChart
+    const radarChartElement = document.getElementById('radarChart');
+    const radarData = {
+      labels: peopleJson.consumer_style__style,
+      datasets: [{
+        label: '일반적인 소비 성향',
+        data: peopleJson.ratio,
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }, {
+        label: '당신의 소비 성향',
+        data: individualJson.ratio,
+        fill: true,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgb(54, 162, 235)',
+        pointBackgroundColor: 'rgb(54, 162, 235)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(54, 162, 235)'
+      }]
     }
-  });
-
-
+  
+  
+    new Chart(radarChartElement, {
+      type: 'radar',
+      data: radarData,
+      options: {
+        line: {
+          borderWidth: 3
+        }
+      }
+    });
+    }
+  }
 }
 
 

@@ -2,6 +2,7 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 
 window.onload = () => {
+  let token = localStorage.getItem("access")
   const urlParams = new URLSearchParams(window.location.search).get("query");
   const pageParams = new URLSearchParams(window.location.search).get("page");
   ChallengeList(urlParams, pageParams);
