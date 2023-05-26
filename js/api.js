@@ -160,6 +160,11 @@ export async function getUserInfo(user_id) {
     return response
 }
 
+export async function getBookmarkInfo(challenge_id) {
+
+    const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
+    return response
+}
 
 // 유저 프로필 수정 API
 export async function updateUserProfileAPI() {
@@ -169,12 +174,13 @@ export async function updateUserProfileAPI() {
 
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
+    const access_token = localStorage.getItem("access")
     const user_id = payload_parse.user_id
+
     const formdata = new FormData();
     formdata.append('username', username)
     formdata.append('bio', bio)
 
-    const access_token = localStorage.getItem("access")
     if (profile_image) {
         formdata.append('profile_image', profile_image)
     } else {
@@ -183,9 +189,7 @@ export async function updateUserProfileAPI() {
 
     try {
         const response = await fetch(`${BACK_BASE_URL}/api/users/profile/${user_id}/`, {
-            headers: {
-                "Authorization": `Bearer ${access_token}`
-            },
+            headers: { "Authorization": `Bearer ${access_token}` },
             method: 'PATCH',
             body: formdata
         })
@@ -196,4 +200,11 @@ export async function updateUserProfileAPI() {
 }
 
 
-
+export async function showBookmarkChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
+    return response
+}
+export async function showlikeChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
+}
