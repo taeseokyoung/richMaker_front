@@ -55,7 +55,7 @@ export async function EmailAuthenticationAPI() {
 }
 //  로그인 API
 export async function LoginAPI() {
-    const email = document.getElementById("email").value
+    const email = document.getElementById("email").value 
     const password = document.getElementById("password").value
     const response = await fetch(`${BACK_BASE_URL}/api/users/login/`, {
         headers: {
@@ -67,7 +67,6 @@ export async function LoginAPI() {
             "password": password,
         })
     })
-    console.log(response)
     return response
 }
 
@@ -136,8 +135,9 @@ export async function passwordResetAPI() {
 export async function switchAccountAPI() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
-    const access_token = localStorage.getItem("access")
     const user_id = payload_parse.user_id
+
+    const access_token = localStorage.getItem("access")
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
 

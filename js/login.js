@@ -9,6 +9,10 @@ window.onload = async () => {
     if (payload_parse != null) {
         window.location.replace(`${FRONT_BASE_URL}/index.html`);
     }
+
+    var element = document.getElementById("socialaccount_google");
+    var hrefValue = element.getAttribute("href");
+    element.setAttribute("href", `${BACK_BASE_URL}/accounts/google/login/`);
 }
 
 
