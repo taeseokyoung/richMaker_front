@@ -11,13 +11,14 @@ window.onload = async function Consume() {
     });
 
     response_style_json = await response_style.json()
+    // console.log(response_style_json)
     const styles = document.getElementById("consume-style")
     response_style_json.forEach(style => {
         const newInput = document.createElement('input')
-        newInput.setAttribute("type", "checkbox")
+        newInput.setAttribute("type", "radio")
         newInput.setAttribute("name", "style")
         newInput.setAttribute("value", style['id'])
-        newInput.setAttribute("id", style["style"])
+        newInput.setAttribute("id", "style")
         const newStyle = document.createElement('label')
         newStyle.setAttribute("class", "style-input")
         newStyle.innerText = style['style']
@@ -48,7 +49,6 @@ window.onload = async function Consume() {
     newCost.setAttribute("type", "text")
     newCost.setAttribute("id", "cost2")
     Cost.appendChild(newCost)
-
 }
 
 // 달력
@@ -162,9 +162,10 @@ async function handlePost() {
 
     const query = 'input[name="style"]:checked';
     const selectedEls = document.querySelectorAll(query)
-    const styles = []
+    let Style = 0
+
     selectedEls.forEach((el) => {
-        styles.push(parseInt(el.value))
+        Style = parseInt(el.value)
     })
 
     const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/`, {
@@ -179,7 +180,7 @@ async function handlePost() {
             "placename": placeName,
             "placewhere": placeWhere,
             "amount": Amount,
-            "consumer_style": styles
+            "consumer_style": Style //1
         })
     })
 
