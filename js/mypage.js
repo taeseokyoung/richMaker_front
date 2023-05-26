@@ -2,13 +2,11 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 import {getUserInfo } from "./api.js";
 
+// function hadnleBtn() {
+//   document.querySelector(".nav-drop-menu").classList.toggle("on");
+//   document.querySelector(".menu_btn").classList.toggle("on");
+// }
 
-
-
-function hadnleBtn() {
-  document.querySelector(".nav-drop-menu").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
-}
 
 // 달력
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -354,10 +352,9 @@ async function handleIncome() {
 }
 
 
-
 // onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
 window.onload = async () => {
-  hadnleBtn()
+  // hadnleBtn()
   const payload = localStorage.getItem("payload");
   const payload_parse = JSON.parse(payload)
 
@@ -383,7 +380,7 @@ window.onload = async () => {
       email.innerText = response_json.email
       username.innerText = response_json.username
       bio.innerText = response_json.bio
-      bookmark.innerText = response_json.bookmark.
+      bookmark.innerText = response_json.bookmark
       console.log(response_json.bio)
       console.log(response_json.username)
       console.log(response_json.email)
