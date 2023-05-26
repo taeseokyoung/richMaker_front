@@ -155,8 +155,12 @@ async function Choicelist() {
       newdiv.setAttribute("class", "plusinfo")
       const newP1 = document.createElement("span")
       newP1.setAttribute("style", "margin-right:20px;")
-      newP1.innerText = "저축액:  " + e["plus_money"]
+      newP1.innerText = "챌린지명:  " + e["challenge_title"]
+      const newP2 = document.createElement("span")
+      newP2.setAttribute("style", "margin-right:20px;")
+      newP2.innerText = "저축액:  " + e["plus_money"]
       newdiv.appendChild(newP1)
+      newdiv.appendChild(newP2)
       newbox2.appendChild(newdiv)
     })
   } else {
@@ -269,8 +273,12 @@ async function gettoday() {
     newdiv.setAttribute("class", "plusinfo")
     const newP1 = document.createElement("span")
     newP1.setAttribute("style", "margin-right:20px;")
-    newP1.innerText = "저축액:   " + e["plus_money"]
+    newP1.innerText = "챌린지명:   " + e["challenge_title"]
+    const newP2 = document.createElement("span")
+    newP2.setAttribute("style", "margin-right:20px;")
+    newP2.innerText = "저축액:   " + e["plus_money"]
     newdiv.appendChild(newP1)
+    newdiv.appendChild(newP2)
     newbox2.appendChild(newdiv)
   })
 
@@ -309,7 +317,7 @@ async function gettoday() {
   // 현재 날짜에 대한 수입 총금액
   all_income = 0
   incomelist.forEach(e => {
-    all_income = all_plus + e["income_money"]
+    all_income = all_income + e["income_money"]
   })
 
   const totalincomesum = document.getElementById('total-income')
@@ -407,9 +415,8 @@ window.onload = async () => {
     },
   });
 
-
   response_challenge_json = await response_challenge.json()
-  //console.log(response_challenge_json)
+  console.log(response_challenge_json)
 
   const challenges = document.getElementById("challenge-sort")
 
@@ -418,7 +425,7 @@ window.onload = async () => {
     newInput.setAttribute("type", "checkbox")
     newInput.setAttribute("name", "challenge")
     newInput.setAttribute("value", challenge['id'])
-    newInput.setAttribute("id", challenge["challenge_title"])
+    newInput.setAttribute("id", 'challenge')
     const newChallenge = document.createElement('label')
     newChallenge.setAttribute("class", "challenge-input")
     newChallenge.innerText = challenge["challenge_title"]

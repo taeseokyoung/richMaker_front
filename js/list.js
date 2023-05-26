@@ -30,13 +30,19 @@ async function ChallengeList(query, page) {
   console.log(queryPage);
   const challengeResults = responseJson.results;
 
+  if (queryOrder === 'top') {
+    document.querySelector('#challenge-category').innerHTML = '상위 챌린지 목록';
+  } else if (queryOrder === 'new') {
+    document.querySelector('#challenge-category').innerHTML = '신규 챌린지 목록';
+  }
+
   const cardContainer = document.querySelector(".top-card-container");
 
   /* 게시글 삽입 */
   challengeResults.forEach((element) => {
     cardContainer.innerHTML += `<div class="top-card">
                                   <div class="top-card-image-container">
-                                    <img src="./fake-img/startup.png" />
+                                    <img src=${element.main_image} />
                                   </div>
                                   <div class="top-card-content-container">
                                     <h2>${element.challenge_title}</h2>
