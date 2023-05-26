@@ -86,7 +86,7 @@ h3 {
   height: 300px;
 }
 
-.report-container > li {
+.report-container > ul > li {
   display: block;
   border: 2px solid rgba(138, 138, 138, 0.5);
   border-radius: 5px;

@@ -46,17 +46,17 @@
             </div>
           </div>
           <hr class="bar">
-          <h3>나의 이번 달 적정 소비 금액 : 3만원</h3>
+          <h3>나의 이번 달 적정 소비 금액 : <span id='idealIncome'></span>만원</h3>
           <div class="consume-cover">
             <div class="graph-container">
               <canvas id="circleChart"></canvas>
               <canvas id="radarChart"></canvas>
             </div>
-            
+
             <div class="report-container">
               <h3>리포트</h3>
-              <li>지난 주에는 밥을 많이 드셨어요🍚 <span>지출금액: 12만원</span></li>
-              <li>옷을 사셨네요? 꼭.필.요.한.소.비.였.나.요?😁<span>지출금액: 32만원</span></li>
+              <ul id="report-data">
+              </ul>
               <h3 class="goal">목표금액 30만원을 향해 달려요!🏃‍♀️🏃‍♀️</h3>
             </div>
           </div>
