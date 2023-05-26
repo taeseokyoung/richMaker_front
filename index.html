@@ -46,11 +46,13 @@
             </div>
           </div>
           <hr class="bar">
+          <h3>나의 이번 달 적정 소비 금액 : 3만원</h3>
           <div class="consume-cover">
             <div class="graph-container">
-              <h3>나의 이번 달 적정 소비 금액 : 3만원</h3>
-              <img src="./fake-img/main-graph.png" alt="main-graph" style="height: 300px;">
+              <canvas id="circleChart"></canvas>
+              <canvas id="radarChart"></canvas>
             </div>
+            
             <div class="report-container">
               <h3>리포트</h3>
               <li>지난 주에는 밥을 많이 드셨어요🍚 <span>지출금액: 12만원</span></li>
@@ -108,6 +110,7 @@
     }
   </script>
   <script src="js/nav.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- script end -->
 </body>
 

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Churnobyl/richMaker_front#readme",
   "dependencies": {
+    "chart.js": "^4.3.0",
     "sass": "^1.62.1"
   }
 }
