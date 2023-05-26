@@ -30,6 +30,12 @@ async function ChallengeList(query, page) {
   console.log(queryPage);
   const challengeResults = responseJson.results;
 
+  if (queryOrder === 'top') {
+    document.querySelector('#challenge-category').innerHTML = '상위 챌린지 목록';
+  } else if (queryOrder === 'new') {
+    document.querySelector('#challenge-category').innerHTML = '신규 챌린지 목록';
+  }
+
   const cardContainer = document.querySelector(".top-card-container");
 
   /* 게시글 삽입 */

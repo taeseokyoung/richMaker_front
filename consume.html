@@ -100,13 +100,13 @@
 
                     <div class="input-group">
                         <input type="file" id="image" onchange="readURL(this);" class="form-control">
-                        <button type="button" id="aiCheck" onclick="btnCheckReceipt()">영수증 인식하기</button>
+                        <button type="button" id="aiCheck">영수증 인식하기</button>
                     </div>
                     <div class="receipt-text"></div>
                     <div class="button_group">
                         <div class="button_box">
                             <button type="button" class="btn btn-outline-secondary custom-button"
-                                onclick="EmailAuthentication()">확인</button>
+                                id="btnAiAdd">확인</button>
                         </div>
                     </div>
                 </div>

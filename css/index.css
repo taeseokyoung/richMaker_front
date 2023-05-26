@@ -173,7 +173,7 @@ h3 {
 
 
 
-.top-card-content-container > h2 {
+.top-card-content-container > a > h2 {
   margin: 15px;
   font-size: 3rem;
 }

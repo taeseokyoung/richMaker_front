@@ -94,9 +94,16 @@ header .menu_btn.on i:nth-child(2) {
 
 /* 23.05.23. header 서경 */
 
-section {
-  min-height: calc(100vh - 300px);
+/* 23.05.26. header 서경 추가 */
+#user_view {
+  display: flex;
+  white-space: nowrap;
 }
+
+
+/* section {
+  min-height: calc(100vh - 300px);
+} */
 
 /* 23.05.23. footer 서경 */
 footer {
