@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
@@ -20,8 +19,7 @@
   <link rel="stylesheet" href="./css/index2.css" />
   <link rel="stylesheet" href="css/module.css">
   <link rel="stylesheet" href="./css/mypage.css" />
-  <script src="../js/mypage.js"></script>
-
+<!-- 여기에 스크립트 선언되면 변수가 안 불러짐  -->
   <title>리치메이커 : 소비챌린지</title>
 </head>
 
@@ -48,21 +46,23 @@
         <div class="card-footer">
           <div class="bigbox">
             <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-              <img class="profile" src="/img/richmaker-logo.png">
+              <img id="user-image" class="profile" src="/img/richmaker-logo.png">
             </div>
           </div>
           <div class="numbers">
             <button type="button" class="update">이미지 편집</button>
+            <p>Email: <span id="user-email"></span></p>
 
-            <div class="item">
+            <!-- <div class="item">
               email@example.com
-            </div>
-
-            <div class="item">
+            </div> -->
+            <p>Username: <span id="user-name"></span></p>
+            
+            <!-- <div class="item">
               username
-            </div>
+            </div> -->
 
-            <div class="item">
+            <div class="item" id="user-bio">
               bio
             </div>
           </div>
@@ -284,6 +284,30 @@
     }
   </script>
   <script src="js/nav.js" type="module"></script>
+  <script type="module" src="/js/api.js"></script>
+  <script type="module" src="/js/mypage.js"></script>
+
+
+
+
+
+//     function getUserInfo() {
+//       return fetch('http://127.0.0.1:8000/api/users/1/')
+//         .then(response => response.json())
+//         .catch(error => console.error(error));
+//     }
+  
+//     function renderUserInfo(userInfo) {
+//       const email = document.querySelector('#user-email');
+//       const username = document.querySelector('#user-name');
+      
+//       email.textContent = userInfo.email;
+//       username.textContent = userInfo.username;
+//     }
+// //   
+//     getUserInfo().then(renderUserInfo);
+
+    
   <!-- script end -->
 </body>
 
