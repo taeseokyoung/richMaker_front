@@ -26,7 +26,7 @@ async function injectNavbar() {
   }
 }
 
-export async function logout() {
+async function logout() {
   localStorage.removeItem("access")
   localStorage.removeItem("refresh")
   localStorage.removeItem("payload")
