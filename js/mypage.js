@@ -369,11 +369,13 @@ window.onload = async () => {
       const username = document.getElementById("user-name") 
       const profile_image = document.getElementById("user-image")
       const bio = document.getElementById("user-bio")
-        
+      const bookmark = document.getElementById("bookmark-title")
+
         // 변수 안에 들어갈 텍스트를 응답값으로 변경
       email.innerText = response_json.email
       username.innerText = response_json.username
       bio.innerText = response_json.bio
+      bookmark.innerText = response_json.bookmark.
       console.log(response_json.bio)
       console.log(response_json.username)
       console.log(response_json.email)
