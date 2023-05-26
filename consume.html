@@ -19,6 +19,9 @@
 
     <link rel="stylesheet" href="../css/consume.css">
     <link rel="stylesheet" href="../css/receipt.css">
+    <link rel="stylesheet" href="css/module.css">
+    <script src="js/nav.js"></script>
+    <link rel="stylesheet" href="js/index.js">
     <script src="../js/consume.js"></script>
 
     <!-- JavaScript Bundle with Popper -->
@@ -29,6 +32,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
     <section>
         <div class="main-container">
@@ -92,7 +96,70 @@
                 </div>
             </div>
     </section>
+=======
+>>>>>>> d0117359647bf1546c6bb83332be87438f014683
 
+    <header>
+        <nav class="nav container">
+            <!-- navbar 삽입 -->
+        </nav>
+    </header>
+    <section>
+        <div class="main-container">
+            <h1 style="font-weight: bold; font-size: larger; text-align: center;">소비 기록하기</h1>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#aiModal"
+                style="border-radius:20px; float:right; margin:5px 15vw; padding:5px;">
+                영수증 정보 불러오기
+            </button>
+            <div class="card">
+                <h3 style="margin-bottom:20px; text-align:center; font-weight: bold;"> 날짜 선택하기 </h3>
+                <div class="calendar-section">
+                    <table class="Calendar">
+                        <thead>
+                            <tr>
+                                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                                <td colspan="5">
+                                    <span id="calYear"></span>년
+                                    <span id="calMonth"></span>월
+                                </td>
+                                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                            </tr>
+                            <tr>
+                                <td>일</td>
+                                <td>월</td>
+                                <td>화</td>
+                                <td>수</td>
+                                <td>목</td>
+                                <td>금</td>
+                                <td>토</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="consume-info">
+                    <h3 style="text-align:center">소비 분류</h3>
+                    <p id="consume-style"> </p>
+                </div>
+                <div class="consume-info">
+                    <p id="placename">매장 이름(제품) </p>
+                </div>
+                <div class="consume-info">
+                    <p id="placewhere">매장 주소 </p>
+                </div>
+                <div class="consume-info">
+                    <p id="amount">수량 </p>
+                </div>
+                <div class="consume-info">
+                    <p id="cost">지출 금액 단가 </p>
+                </div>
+                <div style="padding:20px;">
+                    <button onclick="handlePost()">저장</button>
+                    <button onclick="history.back()">뒤로가기</button>
+                </div>
+            </div>
+    </section>
     <!-- 영수증 모달 -->
     <div class="modal fade" id="aiModal" tabindex="-1" aria-labelledby="aiModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -107,22 +174,31 @@
 
                     <div class="input-group">
                         <input type="file" id="image" onchange="readURL(this);" class="form-control">
-                        <button type="button" id="aiCheck" onclick="btnCheckReceipt()">영수증 인식하기</button>
+                        <button type="button" id="aiCheck">영수증 인식하기</button>
                     </div>
                     <div class="receipt-text"></div>
                     <div class="button_group">
                         <div class="button_box">
                             <button type="button" class="btn btn-outline-secondary custom-button"
-                                onclick="EmailAuthentication()">확인</button>
+                                id="btnAiAdd">확인</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <footer>
+    </footer>
     <!-- script -->
-    <script src="js/receipt.js"></script>
-
+    <script src="js/receipt.js" type="module"></script>
+    <script>
+        function handleBtn() {
+            document.querySelector(".nav-drop-menu").classList.toggle("on");
+            document.querySelector(".menu_btn").classList.toggle("on");
+        }
+    </script>
+    <script src="js/nav.js" type="module"></script>
+    <script type="module" src="/js/api.js"></script>
     <!-- script end -->
 
     <script>

@@ -154,3 +154,10 @@ export async function switchAccountAPI() {
     })
     return response
 }
+
+export async function getUserInfo(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`)
+
+    return response
+}
+

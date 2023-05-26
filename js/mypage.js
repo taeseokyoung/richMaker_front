@@ -1,7 +1,9 @@
-/* conf.js로부터 base URL 불러오기 */
-//import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-const BACK_BASE_URL = "http://127.0.0.1:8000"
-const FRONT_BASE_URL = "http://127.0.0.1:5500"
+// /* conf.js로부터 base URL 불러오기 */
+import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
+import {getUserInfo } from "./api.js";
+
+
+
 
 function hadnleBtn() {
   document.querySelector(".nav-drop-menu").classList.toggle("on");
@@ -153,8 +155,12 @@ async function Choicelist() {
       newdiv.setAttribute("class", "plusinfo")
       const newP1 = document.createElement("span")
       newP1.setAttribute("style", "margin-right:20px;")
-      newP1.innerText = "저축액:  " + e["plus_money"]
+      newP1.innerText = "챌린지명:  " + e["challenge_title"]
+      const newP2 = document.createElement("span")
+      newP2.setAttribute("style", "margin-right:20px;")
+      newP2.innerText = "저축액:  " + e["plus_money"]
       newdiv.appendChild(newP1)
+      newdiv.appendChild(newP2)
       newbox2.appendChild(newdiv)
     })
   } else {
@@ -267,8 +273,12 @@ async function gettoday() {
     newdiv.setAttribute("class", "plusinfo")
     const newP1 = document.createElement("span")
     newP1.setAttribute("style", "margin-right:20px;")
-    newP1.innerText = "저축액:   " + e["plus_money"]
+    newP1.innerText = "챌린지명:   " + e["challenge_title"]
+    const newP2 = document.createElement("span")
+    newP2.setAttribute("style", "margin-right:20px;")
+    newP2.innerText = "저축액:   " + e["plus_money"]
     newdiv.appendChild(newP1)
+    newdiv.appendChild(newP2)
     newbox2.appendChild(newdiv)
   })
 
@@ -307,7 +317,7 @@ async function gettoday() {
   // 현재 날짜에 대한 수입 총금액
   all_income = 0
   incomelist.forEach(e => {
-    all_income = all_plus + e["income_money"]
+    all_income = all_income + e["income_money"]
   })
 
   const totalincomesum = document.getElementById('total-income')
@@ -344,44 +354,55 @@ async function handleIncome() {
 }
 
 
-//저축 기록하기
-async function handleSaving() {
-  let token = localStorage.getItem("access")
 
-  // date, plus_money, challenge를 받는다.
-  const date = document.getElementById('date-plus').value
-  const plus_money = document.getElementById('plus_money').value
+// onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
+window.onload = async () => {
+  hadnleBtn()
+  const payload = localStorage.getItem("payload");
+  const payload_parse = JSON.parse(payload)
 
-  const query = 'input[name="challenge"]:checked';
-  const selectedEls = document.querySelectorAll(query)
-  const challenges = []
-  selectedEls.forEach((el) => {
-    challenges.push(parseInt(el.value))
-  })
+  const urlParams = new URLSearchParams(window.location.search);
+  let searchID = urlParams.get('user_id');
+  console.log(searchID)
+  searchID = searchID == null ? payload_parse.user_id : searchID
+  const response = await getUserInfo(searchID)
 
-  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
-    method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      "date": date,
-      "plus_money": plus_money,
-      "challenge": challenges
-    })
-  })
+  const response_json = await response.json()
+  console.log(response_json)
 
-  if (request_saving.status == 200) {
-    alert("작성 완료!")
-    window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
-  } else {
-    alert(request_saving.status)
-  }
-}
+      // 성공했을때만 값을 변경함
+  if (response.status == 200) { 
+      // htmil의 id값을 가져아서 변수에 저장
+      const email = document.getElementById("user-email")
+      const username = document.getElementById("user-name") 
+      const profile_image = document.getElementById("user-image")
+      const bio = document.getElementById("user-bio")
+      const bookmark = document.getElementById("bookmark-title")
 
-window.onload = async function () {
-  buildCalendar();
+        // 변수 안에 들어갈 텍스트를 응답값으로 변경
+      email.innerText = response_json.email
+      username.innerText = response_json.username
+      bio.innerText = response_json.bio
+      bookmark.innerText = response_json.bookmark.
+      console.log(response_json.bio)
+      console.log(response_json.username)
+      console.log(response_json.email)
+      
+      // 이미지 값 변경이 있을때만 수정
+      if (response_json.profile_image != null) {
+        profile_image.setAttribute("src", `${BACK_BASE_URL}${response_json.profile_image}`)
+      }
+        } else if (response.status == 404) {
+              console.log("찾는 계정이 없습니다 ")
+       } 
+// api.js(통신) 에서 응답값으로 데이터를 받아서  통신을 api.js로 옮겨야함 
+// fetch 로 백앤드와 통신하는 과정을 api.js로 옮기고
+// api.js 받아온 응답값을 다시  mypage.js로 가져와서
+// status코드값에 따라 데이터를 적절히 html에 넣어준다
+
+        console.log(response_json.profile_image)
+
+        buildCalendar();
   gettoday();
 
   let token = localStorage.getItem("access")
@@ -394,9 +415,8 @@ window.onload = async function () {
     },
   });
 
-
   response_challenge_json = await response_challenge.json()
-  //console.log(response_challenge_json)
+  console.log(response_challenge_json)
 
   const challenges = document.getElementById("challenge-sort")
 
@@ -405,11 +425,11 @@ window.onload = async function () {
     newInput.setAttribute("type", "checkbox")
     newInput.setAttribute("name", "challenge")
     newInput.setAttribute("value", challenge['id'])
-    newInput.setAttribute("id", challenge["challenge_title"])
+    newInput.setAttribute("id", 'challenge')
     const newChallenge = document.createElement('label')
     newChallenge.setAttribute("class", "challenge-input")
     newChallenge.innerText = challenge["challenge_title"]
     challenges.appendChild(newChallenge).appendChild(newInput)
   })
-
-}
+  }
+ 
