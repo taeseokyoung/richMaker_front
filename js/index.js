@@ -71,6 +71,71 @@ async function handleListLoad() {
                                   </div>
                                   `;                                  
   });
+
+  // CircleChart
+  const circleChartElemet = document.getElementById('circleChart');
+
+  new Chart(circleChartElemet, {
+    type: 'pie',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 3
+      }]
+    },
+    options: {
+    }
+  });
+
+  // radarChart
+  const radarChartElement = document.getElementById('radarChart');
+  const radarData = {
+    labels: [
+      'Eating',
+      'Drinking',
+      'Sleeping',
+      'Designing',
+      'Coding',
+      'Cycling',
+      'Running'
+    ],
+    datasets: [{
+      label: '일반적인 소비 성향',
+      data: [65, 59, 90, 81, 56, 55, 40],
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      pointBackgroundColor: 'rgb(255, 99, 132)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(255, 99, 132)'
+    }, {
+      label: '당신의 소비 성향',
+      data: [28, 48, 40, 19, 96, 27, 100],
+      fill: true,
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgb(54, 162, 235)',
+      pointBackgroundColor: 'rgb(54, 162, 235)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(54, 162, 235)'
+    }]
+  }
+
+
+  new Chart(radarChartElement, {
+    type: 'radar',
+    data: radarData,
+    options: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  });
+
+
 }
 
 
