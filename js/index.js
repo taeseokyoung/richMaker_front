@@ -3,6 +3,7 @@ import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 //const BACK_BASE_URL = "http://127.0.0.1:8000";
 //const FRONT_BASE_URL = "http://127.0.0.1:5500";
 
+
 /* 페이지 로딩 */
 window.onload = () => {
   handleListLoad();
@@ -29,7 +30,7 @@ async function handleListLoad() {
 
   newChallengeListData.forEach((element) => {
     newChallengeList.innerHTML += `<div class="card">
-                                    <a href="/challenge-detail.html?query=${element.id}">
+                                    <a href="/challenge-detail.html?challenge_id=${element.id}">
                                         <div class="card-image-container">
                                           <img src="./fake-img/paris.png">
                                         </div>

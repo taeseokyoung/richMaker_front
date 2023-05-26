@@ -42,7 +42,7 @@ async function ChallengeList(query, page) {
   challengeResults.forEach((element) => {
     cardContainer.innerHTML += `<div class="top-card">
                                   <div class="top-card-image-container">
-                                    <img src="./fake-img/startup.png" />
+                                    <img src=${element.main_image} />
                                   </div>
                                   <div class="top-card-content-container">
                                     <h2>${element.challenge_title}</h2>
