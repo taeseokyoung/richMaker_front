@@ -1,22 +1,31 @@
+@font-face {
+  font-family: 'Cafe24ClassicType-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Cafe24ClassicType-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   position: relative;
+  background-color: rgb(248, 246, 240);
 }
 
 .container {
   width: 1200px;
   margin: 0 auto;
+ 
   /* background: rgba(0, 0, 0, 0.3); */
   /* box-shadow: 0px 7px 4px -4px rgba(0, 0, 0, 0.42);
   -webkit-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42);
   -moz-box-shadow: -1px 7px 4px -4px rgba(0, 0, 0, 0.42); */
 }
 
-
 header {
   /* 23.05.23 line-height from 150 to 85 철민
   저희 로고가 쪼꼼 뚱뚱하네요 ㅎㅎ 보통 프론트에서 디폴트로 100을 많이 줘서 100으로 변경해보겠습니다..!
   */
   line-height: 100px;
+  background-color: rgb(248, 246, 240);
+  
 }
 
 nav {
@@ -70,6 +79,7 @@ h1 img {
 header .header_btn {
   width: 300px;
   font-size: 17px;
+ 
 }
 
 header .header_btn a {
@@ -107,7 +117,7 @@ header .menu_btn.on i:nth-child(2) {
 
 /* 23.05.23. footer 서경 */
 footer {
-  background-color: #000;
+  background-color: rgba(134, 127, 115, 0.568);
   padding: 50px 0 100px 0;
 }
 
@@ -127,3 +137,9 @@ footer .content {
 }
 
 /* 23.05.23. footer 서경 */
+
+.logo {
+  font-family: 'Cafe24ClassicType-Regular';
+  font-size: 60px;
+  padding-left:80px;
+}

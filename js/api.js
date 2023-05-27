@@ -157,7 +157,11 @@ export async function switchAccountAPI() {
 
 export async function getUserInfo(user_id) {
     const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`)
-
     return response
 }
 
+export async function getBookmarkInfo(challenge_id) {
+   
+    const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
+    return response
+}
