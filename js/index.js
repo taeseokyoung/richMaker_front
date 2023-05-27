@@ -30,9 +30,11 @@ async function handleListLoad() {
   const responseJson = await response.json();
   // New Challenge
   const newChallenge = responseJson.new_challenge;
+  console.log(newChallenge)
   const newChallengeCountData = newChallenge.count;
+  console.log(newChallengeCountData)
   const newChallengeListData = newChallenge.list;
-
+  console.log(newChallengeListData)
   const newChallengeList = document.querySelector(".slider");
   const newChallengeCount = document.querySelector(".new-challenge-count");
 
