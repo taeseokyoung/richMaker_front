@@ -166,45 +166,358 @@ export async function getBookmarkInfo(challenge_id) {
     return response
 }
 
-// 유저 프로필 수정 API
-export async function updateUserProfileAPI() {
-    const username = document.getElementById("username").value
-    const bio = document.getElementById("bio").value
-    const profile_image = document.getElementById("image").files[0]
+// 지수 코드 //
 
-    const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload)
-    const access_token = localStorage.getItem("access")
-    const user_id = payload_parse.user_id
+// 수입 코드
+// 수입 기록
+export async function Income() {
+    console.log("연결")
+    let token = localStorage.getItem("access")
 
-    const formdata = new FormData();
-    formdata.append('username', username)
-    formdata.append('bio', bio)
+    // date, income_money를 받는다.
+    const date = await document.getElementById('date-income').value
+    //console.log(date)
+    const income_money = await document.getElementById('income_money').value
+    //console.log(income_money)
 
-    if (profile_image) {
-        formdata.append('profile_image', profile_image)
-    } else {
-        formdata.append('profile_image', '')
-    }
-
-    try {
-        const response = await fetch(`${BACK_BASE_URL}/api/users/profile/${user_id}/`, {
-            headers: { "Authorization": `Bearer ${access_token}` },
-            method: 'PATCH',
-            body: formdata
+    const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": date,
+            "income_money": income_money
         })
-        return response
-    } catch (err) {
-        console.log(err)
-    }
+    })
+
+    // console.log(request_income)
+    return request_income
 }
 
 
-export async function showBookmarkChallengesAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
-    return response
+// 날짜에 대한 수입내역
+export async function getIncome(day) {
+    const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${day}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: 'GET',
+    })
+
+    return response_income
 }
-export async function showlikeChallengesAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
-    return response
+
+// 수입업데이트
+export async function IncomeUpdate() {
+    let token = localStorage.getItem("access")
+
+    // date, income_money를 받는다.
+    const date = await document.getElementById('date-income2').value
+    const income_money = await document.getElementById('income_money2').value
+
+
+    const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": date,
+            "income_money": income_money
+        })
+    })
+
+    return request_income
+}
+
+
+// 수입삭제
+export async function IncomeDelete() {
+    let token = localStorage.getItem("access")
+
+    // date, income_money를 받는다.
+    const date = await document.getElementById('date-income3').value
+
+
+    const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        },
+    })
+
+    return request_income
+}
+
+// 지출 코드
+
+// 지출 작성하기
+export async function writeMinus() {
+    let token = localStorage.getItem("access")
+
+    const year = document.getElementById("calYear").innerText
+    const month = document.getElementById("calMonth").innerText
+    const date = document.getElementsByClassName("choiceDay")[0].innerText
+    const day = year + '-' + month + '-' + date
+
+
+    const placeName = await document.getElementById('placename2').value
+    const placeWhere = await document.getElementById('placewhere2').value
+    const Amount = await document.getElementById('amount2').value
+    const Cost = await document.getElementById('cost2').value
+
+    const query = 'input[name="style"]:checked';
+    const selectedEls = document.querySelectorAll(query)
+    let Style = 0
+
+    selectedEls.forEach((el) => {
+        Style = parseInt(el.value)
+    })
+
+    const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/`, {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": day,
+            "minus_money": Cost,
+            "placename": placeName,
+            "placewhere": placeWhere,
+            "amount": Amount,
+            "consumer_style": Style //1
+        })
+    })
+
+    return request_post
+
+}
+
+
+// 지출 자세히보기
+export async function getMinusDetail(consume_id) {
+    let token = localStorage.getItem("access")
+    const consume_response = await fetch(`${BACK_BASE_URL}/api/post/minus/${consume_id}/`, {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+    })
+
+    return consume_response
+}
+
+
+// 날짜에 대한 지출 기록내역
+export async function getMinus(day) {
+    console.log('연결!')
+    const response_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${day}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: 'GET',
+    })
+    //console.log(response_minus)
+    return response_minus
+}
+
+
+
+// 지출수정하기
+export async function Edit(minus_id) {
+    let token = localStorage.getItem("access")
+    console.log(typeof (minus_id))
+    console.log(minus_id)
+
+    const year = document.getElementById("calYear").innerText
+    const month = document.getElementById("calMonth").innerText
+    const date = document.getElementsByClassName("choiceDay")[0].innerText
+    console.log(date)
+    const day = year + '-' + month + '-' + date
+
+
+    const placeName = await document.getElementById('placename2').value
+    const placeWhere = await document.getElementById('placewhere2').value
+    const Amount = await document.getElementById('amount2').value
+    const Cost = await document.getElementById('cost2').value
+
+    const query = 'input[name="style"]:checked';
+    const selectedEls = document.querySelectorAll(query)
+    let Style = 0
+
+    selectedEls.forEach((el) => {
+        Style = parseInt(el.value)
+    })
+
+    const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/${minus_id}/`, {
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": day,
+            "minus_money": Cost,
+            "placename": placeName,
+            "placewhere": placeWhere,
+            "amount": Amount,
+            "consumer_style": Style //1
+        })
+    })
+
+    return request_post
+}
+
+// 지출 삭제하기
+export async function Delete(minusid) {
+    let token = localStorage.getItem("access")
+    console.log(minusid)
+
+    const request_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${minusid}/`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        }
+    })
+
+    return request_minus
+}
+
+
+
+// 소비경향 가져오기
+export async function getStyle() {
+    const response_style = await fetch(`${BACK_BASE_URL}/api/post/style/`, {
+        method: 'GET'
+    });
+
+    return response_style
+}
+
+
+// 저축 코드
+// 날짜에 대한 저축 기록 불러오기
+export async function getPlus(day) {
+    const response_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${day}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": "Bearer " + localStorage.getItem("access")
+        },
+        method: 'GET',
+    })
+
+    return response_plus
+}
+
+
+// 저축기록하기
+export async function Saving() {
+    let token = localStorage.getItem("access")
+
+    // date, plus_money, challenge를 받는다.
+    const date = document.getElementById('date-plus').value
+    const plus_money = document.getElementById('plus_money').value
+    const query = 'input[name="challenge"]:checked';
+    const selectedEls = document.querySelectorAll(query)
+    let challenge = 0
+
+    selectedEls.forEach((el) => {
+        challenge = parseInt(el.value)
+    })
+
+    const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": date,
+            "plus_money": plus_money,
+            "challenge": challenge
+        })
+    })
+
+    return request_saving
+}
+
+
+//저축 수정하기
+export async function SavingUpdate() {
+    let token = localStorage.getItem("access")
+
+    // date, plus_money, challenge를 받는다.
+    const date = document.getElementById('date-plus2').value
+    const plus_money = document.getElementById('plus_money2').value
+    const query = 'input[name="challenge"]:checked';
+    const selectedEls = document.querySelectorAll(query)
+    let challenge = 0
+
+    selectedEls.forEach((el) => {
+        challenge = parseInt(el.value)
+    })
+    console.log(challenge)
+
+    const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
+        method: 'PUT',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": date,
+            "plus_money": plus_money,
+            "challenge": challenge
+        })
+    })
+
+    return request_saving
+}
+
+
+
+//저축 삭제하기
+export async function SavingDelete() {
+    let token = localStorage.getItem("access")
+
+    // date, plus_money, challenge를 받는다.
+    const date = document.getElementById('date-plus3').value
+    const query = 'input[name="challenge"]:checked';
+    const selectedEls = document.querySelectorAll(query)
+    let challenge = 0
+
+    selectedEls.forEach((el) => {
+        challenge = parseInt(el.value)
+    })
+    console.log(challenge)
+
+    const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
+        method: 'DELETE',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        },
+    })
+
+    return request_saving
+}
+
+
+// 챌린지 가져오기
+export async function getChallenge() {
+    let token = localStorage.getItem("access")
+
+    const response_challenge = await fetch(`${BACK_BASE_URL}/api/challenge/`, {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${token}`,
+        },
+    });
+
+    return response_challenge
 }
