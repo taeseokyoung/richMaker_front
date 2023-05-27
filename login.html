@@ -15,7 +15,6 @@
 
   <!-- css -->
   <link rel="stylesheet" href="/css/login.css" />
-  >
   <!-- 모듈 css 불러오기 -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
@@ -35,7 +34,7 @@
     </nav>
   </header>
 
-  <section>
+  <section style="margin-bottom: 13%;">
     <!-- 네비바의 우상단 버튼을 누르면 나오는 메뉴는 전체 높이의 50% 위치에 오도록 설계되어 있습니다. 그래서 처음에 보시기 편하도록 module.css에 height:100vh를 강제로 먹여두었습니다. 이부분을 삭제하고 작업해주시면 됩니다. :) -->
 
 
@@ -63,11 +62,16 @@
           <div class="mb-3 row">
             <label for="password" class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-10">
+
               <input type="password" class="form-control custom_box" id="password" placeholder="비밀번호를 입력해 주세요.">
             </div>
           </div>
         </div>
         <div id="button_group">
+          <!-- <div>
+            <a href="#" id="socialaccount_google">구글 계정으로 로그인</a>
+          </div>
+          <div> -->
           <div id="inner_btnBox">
             <div class="button_box" id="login_button">
               <a href="#" id="login_button"
@@ -80,14 +84,20 @@
               <a href="/updateUserInfo.html">휴면 계정 활성화 신청</a>
             </div>
           </div>
+
         </div>
       </div>
-
     </div>
   </section>
   <footer>
     <!-- footer 삽입 -->
   </footer>
+  <script>
+    function handleBtn() {
+      document.querySelector(".nav-drop-menu").classList.toggle("on");
+      document.querySelector(".menu_btn").classList.toggle("on");
+    }
+  </script>
   <script type="module" src="/js/api.js"></script>
   <script type="module" src="/js/login.js"></script>
   <!-- script -->

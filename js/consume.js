@@ -103,6 +103,7 @@ document.getElementById("posting").addEventListener("click", handlePost)
 export async function handlePost() {
     const request_post = await writeMinus()
 
+
     if (request_post.status == 200) {
         alert("작성 완료!")
         window.location.replace(`${FRONT_BASE_URL}/mypage.html`);

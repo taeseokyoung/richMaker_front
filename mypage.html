@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="./css/index2.css" />
   <link rel="stylesheet" href="css/module.css">
   <link rel="stylesheet" href="./css/mypage.css" />
+
   <!-- <script src="../js/mypage.js"></script> -->
   <!-- 여기에 스크립트 선언되면 변수가 안 불러짐  -->
   <title>리치메이커 : 소비챌린지</title>
@@ -51,7 +52,7 @@
             </div>
           </div>
           <div class="numbers">
-            <button type="button" class="update">이미지 편집</button>
+            <button type="button" class="update" id="updateUserProfileButton">이미지 편집</button>
             <p>Email: <span id="user-email"></span></p>
 
             <!-- <div class="item">
@@ -75,11 +76,11 @@
         <p>내 챌린지 관리</p>
         <hr class="line">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
+          <!-- <div class="col" id="bookmark_box">
             <div class="card h-100" style="border-radius: 10px;">
               <div class="imagebox">
                 <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-                  <img class="profile" src="/img/richmaker-logo.png">
+                  <img class="profile" id = "bookmark-image" src="">
                 </div>
               </div>
               <div class="card-body">
@@ -88,14 +89,17 @@
                   lead-in to additional
                   content. This content is a little bit longer.</p>
               </div>
-              <div class="card-footer" id="bookmark-money">
-                <small class="text-body-secondary">목표 금액</small>
+              <div class="card-footer" >
+                <small class="text-body-secondary" id="bookmark-money">목표 금액</small>
               </div>
             </div>
-          </div>
+          </div> -->
+          <div class="slider">
 
+          </div>
         </div>
       </div>
+
       <!-- 좋아요 누른 첼린지 -->
       <div class="myinterestingchallenge">
         <p class="myinteresting">관심있는 챌린지</p>
@@ -161,21 +165,19 @@
         <div class="card" style="width: 80rem; ">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <div class="button-box" style="float:right;">
-                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
-                  기록하기</button>
-                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">수입
-                  수정하기</button>
-                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">수입
-                  삭제하기</button>
-              </div>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
+                기록하기</button>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
+                기록하기</button>
               <div style="display:inline-flex">
-                <div class="card" id="income-today" style="width:385px; border-radius:10px;">
+                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 수입</button>
                   <div id="income-box" style="display:inline-block;"></div>
                   <div id="total-income" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="income-choice" style="width:385px; border-radius:10px; float:right;">
+                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 수입</button>
                   <span id="income-box-choice"></span>
                   <div id="total-income-choice" style="margin-top:10px;"></div>
@@ -183,17 +185,17 @@
               </div>
             </li>
             <li class="list-group-item">
-              <div class="button-box" style="float:right;">
-                <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
-                <button class=" consumebutton" onclick="location.href='consumedetail.html'">지출 자세히보기</button>
-              </div>
+              <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
+              <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
               <div style="display:inline-flex">
-                <div class="card" id="minus-today" style="width:385px; border-radius:10px;">
+                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 지출액</button>
                   <div id="minus-box" style="display:inline-block;"></div>
                   <div id="total-minus" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="minus-choice" style="width:385px; border-radius:10px; float:right;">
+                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 지출액</button>
                   <span id="minus-box-choice"></span>
                   <div id="total-minus-choice" style="margin-top:10px;"></div>
@@ -201,21 +203,19 @@
               </div>
             </li>
             <li class="list-group-item">
-              <div class="button-box" style="float:right;">
-                <button type="button" class="banksavebutton" data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop2">저축하러가기</button>
-                <button type="button" class="banksavebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop5">저축
-                  수정하기</button>
-                <button type="button" class="banksavebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop6">저축
-                  삭제하기</button>
-              </div>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
+                하러가기</button>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
+                하러가기</button>
               <div style="display:inline-flex">
-                <div class="card" id="plus-today" style="width:385px; border-radius:10px;">
+                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 저축</button>
                   <div id="plus-box" style="display:inline-block;"></div>
                   <div id="total-plus" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="plus-choice" style="width:385px; border-radius:10px; float:right;">
+                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 저축</button>
                   <span id="plus-box-choice"></span>
                   <div id="total-plus-choice" style="margin-top:10px;"></div>
@@ -323,11 +323,13 @@
                 <input type="text" class="form-control" id="date-plus" placeholder="YYYY-MM-DD 이렇게 입력해주세요."
                   aria-label="date" aria-describedby="addon-wrapping">
               </div>
-              <p class="challenge" style="margin-top:10px;">챌린지 선택하기</p>
+              <span class="challenge">챌린지 선택하기</span>
+              <span class="challenge">챌린지 선택하기</span>
               <div class="challenge-sort" id="challenge-sort"></div>
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">저축금액</span>
-                <input type="text" class="form-control" placeholder="저축금액을 입력해주세요." aria-label="income" id="plus_money"
+                <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
+                <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
                   aria-describedby="addon-wrapping">
               </div>
             </div>

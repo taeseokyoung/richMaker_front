@@ -1,8 +1,17 @@
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 .container_box {
     display: flex;
     justify-content: center;
-    height: 500px;
+    height: 600px;
     font-size: 1.8rem;
+    margin-bottom: 1.5%;
 }
 
 .title {
@@ -10,7 +19,9 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 4rem;
+    font-family: 'Chosunilbo_myungjo';
+    color: rgb(173, 116, 116);
 
 }
 

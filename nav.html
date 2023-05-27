@@ -1,23 +1,30 @@
-<div class="header_btn" id="anonymous_view">
-  <a href="signup.html">회원가입</a>
-  <a href="login.html">로그인</a>
+<div class="top">
+  <div class="header_btn" id="anonymous_view">
+    <a href="signup.html">SignUp</a>
+    <a href="login.html">LogIn</a>
+  </div>
+  <div class="header_btn" id="user_view">
+    <a href="#" id="logout_button" onclick="logout()">LogOut</a>
+    <p id="tokneLifeTime"></p>
+  </div>
 </div>
-<div class="header_btn" id="user_view">
-  <a href="#" id="logout_button" onclick="logout()">로그아웃</a>
-  <p id="tokneLifeTime"></p>
+<div class="middle">
+  <h1>
+    <a href="/" class="logo">Rich Maker <img src="./img/richmaker-logo.png" alt="" /></a>
+  </h1>
 </div>
-<h1>
-  <a href="/"><img src="./img/richmaker-logo.png" alt="" /></a>
-</h1>
+
+
 <div class="menu_btn" onclick="handleBtn()">
   <i class="xi-bars"></i>
   <i class="xi-close"></i>
 </div>
+
 <div class="nav-drop-menu">
   <ul>
-    <li><a href="consume.html">소비 기록 하기</a></li>
-    <li><a href="list.html">리치메이커 챌린지</a></li>
-    <li><a href="mypage.html">마이페이지</a></li>
-    <li><a href="updateUserInfo.html">회원 정보 수정</a></li>
+    <li><a id="dropDownMenu_1" href="consume.html">소비 기록 하기</a></li>
+    <li><a id="dropDownMenu_2" href="list.html">리치메이커 챌린지</a></li>
+    <li><a id="dropDownMenu_3" href="mypage.html">마이페이지</a></li>
+    <li><a id="dropDownMenu_4" href="updateUserInfo.html">회원 정보 수정</a></li>
   </ul>
 </div>

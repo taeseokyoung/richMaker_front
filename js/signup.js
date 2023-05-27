@@ -7,6 +7,11 @@ document.getElementById("get_auth_code").addEventListener("click", getAuthCode);
 document.getElementById("image").addEventListener("change", function (event) { readURL(event.target); });
 
 
+
+id = ""
+document.getElementById("아이디").addEventListener("clcik", function (event) { 함수이름(event.target); });
+
+
 window.onload = async () => {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)

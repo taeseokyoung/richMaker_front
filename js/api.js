@@ -67,7 +67,6 @@ export async function LoginAPI() {
             "password": password,
         })
     })
-    console.log(response)
     return response
 }
 
@@ -136,8 +135,9 @@ export async function passwordResetAPI() {
 export async function switchAccountAPI() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
-    const access_token = localStorage.getItem("access")
     const user_id = payload_parse.user_id
+
+    const access_token = localStorage.getItem("access")
     const email = document.getElementById("email").value
     const auth_code = document.getElementById("auth_code").value
 
@@ -157,10 +157,14 @@ export async function switchAccountAPI() {
 
 export async function getUserInfo(user_id) {
     const response = await fetch(`${BACK_BASE_URL}/api/users/${user_id}/`)
-
     return response
 }
 
+export async function getBookmarkInfo(challenge_id) {
+   
+    const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
+    return response
+}
 
 // 지수 코드 //
 
@@ -518,4 +522,28 @@ export async function getChallenge() {
     return response_challenge
 }
 
+// 사용자가 챌린지 좋아요 등록 및 취소 API
+export async function challengeLikeAPI(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/users/likes/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+    })
+    return response
+}
 
+// 사용자가 북마크 등록 및 취소 API
+export async function challengeBookmarkAPI(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+    })
+    return response
+}
