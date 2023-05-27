@@ -105,7 +105,7 @@ async function Choicelist() {
       newP1.setAttribute("style", "margin-right:20px;")
       newP1.innerText = "지출내역:  " + e["placename"]
       const newP2 = document.createElement("span")
-      newP2.innerText = "지출금액:  " + e["totalminus"]
+      newP2.innerText = "지출금액:  " + e["totalminus"] + "원"
       newdiv.appendChild(newP1)
       newdiv.appendChild(newP2)
       newbox.appendChild(newdiv)
@@ -119,7 +119,7 @@ async function Choicelist() {
     all_minus = all_minus + e["totalminus"]
   })
   const totalminussum = document.getElementById('total-minus-choice')
-  totalminussum.innerText = "총 지출 금액:  " + all_minus
+  totalminussum.innerText = "총 지출 금액:  " + all_minus + "원"
 
   const response_plus = await getPlus(day)
   const response_plus_json = await response_plus.json()
@@ -138,7 +138,7 @@ async function Choicelist() {
       newP1.innerText = "챌린지명:  " + e["challenge_title"]
       const newP2 = document.createElement("span")
       newP2.setAttribute("style", "margin-right:20px;")
-      newP2.innerText = "저축액:  " + e["plus_money"]
+      newP2.innerText = "저축액:  " + e["plus_money"] + "원"
       newdiv.appendChild(newP1)
       newdiv.appendChild(newP2)
       newbox2.appendChild(newdiv)
@@ -153,7 +153,7 @@ async function Choicelist() {
     all_plus = all_plus + e["plus_money"]
   })
   const totalplussum = document.getElementById('total-plus-choice')
-  totalplussum.innerText = "총 저축액:  " + all_plus
+  totalplussum.innerText = "총 저축액:  " + all_plus + "원"
 
   const response_income = await getIncome(day)
   const response_income_json = await response_income.json()
@@ -169,7 +169,7 @@ async function Choicelist() {
       newdiv.setAttribute("class", "incomeinfo")
       const newP1 = document.createElement("span")
       newP1.setAttribute("style", "margin-right:20px;")
-      newP1.innerText = "수입:  " + e["income_money"]
+      newP1.innerText = "수입:  " + e["income_money"] + "원"
       newdiv.appendChild(newP1)
       newbox3.appendChild(newdiv)
     })
@@ -183,7 +183,7 @@ async function Choicelist() {
     all_income = all_income + e["income_money"]
   })
   const totalincomesum = document.getElementById('total-income-choice')
-  totalincomesum.innerText = "총 수입:  " + all_income
+  totalincomesum.innerText = "총 수입:  " + all_income + "원"
 
 }
 
@@ -207,7 +207,7 @@ async function gettoday() {
     newP1.setAttribute("style", "margin-right:20px;")
     newP1.innerText = "지출내역:  " + e["placename"]
     const newP2 = document.createElement("span")
-    newP2.innerText = "지출금액:  " + e["totalminus"]
+    newP2.innerText = "지출금액:  " + e["totalminus"] + "원"
     newdiv.appendChild(newP1)
     newdiv.appendChild(newP2)
     newbox.appendChild(newdiv)
@@ -220,7 +220,7 @@ async function gettoday() {
   })
 
   const totalminussum = document.getElementById('total-minus')
-  totalminussum.innerText = "총 지출 금액:  " + all_minus
+  totalminussum.innerText = "총 지출 금액:  " + all_minus + "원"
 
   const response_plus = await getPlus(nowday)
   const pluslist = await response_plus.json()
@@ -236,7 +236,7 @@ async function gettoday() {
     newP1.innerText = "챌린지명:   " + e["challenge_title"]
     const newP2 = document.createElement("span")
     newP2.setAttribute("style", "margin-right:20px;")
-    newP2.innerText = "저축액:   " + e["plus_money"]
+    newP2.innerText = "저축액:   " + e["plus_money"] + "원"
     newdiv.appendChild(newP1)
     newdiv.appendChild(newP2)
     newbox2.appendChild(newdiv)
@@ -249,7 +249,7 @@ async function gettoday() {
   })
 
   const totalplussum = document.getElementById('total-plus')
-  totalplussum.innerText = "총 저축액:  " + all_plus
+  totalplussum.innerText = "총 저축액:  " + all_plus + "원"
 
   const response_income = await getIncome(nowday)
   const incomelist = await response_income.json()
@@ -261,7 +261,7 @@ async function gettoday() {
     newdiv.setAttribute("class", "incomeinfo")
     const newP1 = document.createElement("span")
     newP1.setAttribute("style", "margin-right:20px;")
-    newP1.innerText = "수입:   " + e["income_money"]
+    newP1.innerText = "수입:   " + e["income_money"] + "원"
     newdiv.appendChild(newP1)
     newbox3.appendChild(newdiv)
   })
@@ -273,7 +273,7 @@ async function gettoday() {
   })
 
   const totalincomesum = document.getElementById('total-income')
-  totalincomesum.innerText = "총 수입:  " + all_income
+  totalincomesum.innerText = "총 수입:  " + all_income + "원"
 
 }
 
