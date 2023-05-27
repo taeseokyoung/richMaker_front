@@ -70,13 +70,17 @@ p {
 /* 내 챌린지 관리 카드 비율 */
 .consumecontainer {
     position: absolute;
-    top: 180px;
+    top: 300px;
     left: 500px;
     text-align: left;
     font-size: 30px;
 
 }
-
+.row-cols-md-3>* {
+    flex: 0 0 auto;
+    width: 340px;
+    height: 400px;
+}
 .myProfile {
     padding-top: 10px;
     padding-bottom: 10px;

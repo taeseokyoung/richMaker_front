@@ -80,7 +80,7 @@
             <div class="card h-100" style="border-radius: 10px;">
               <div class="imagebox">
                 <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-                  <img class="profile" src="/img/richmaker-logo.png">
+                  <img class="profile" id = "bookmark-image" src="">
                 </div>
               </div>
               <div class="card-body">
@@ -89,8 +89,8 @@
                   lead-in to additional
                   content. This content is a little bit longer.</p>
               </div>
-              <div class="card-footer" id="bookmark-money">
-                <small class="text-body-secondary">목표 금액</small>
+              <div class="card-footer" >
+                <small class="text-body-secondary" id="bookmark-money">목표 금액</small>
               </div>
             </div>
           </div> -->
@@ -167,12 +167,16 @@
             <li class="list-group-item">
               <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
                 기록하기</button>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
+                기록하기</button>
               <div style="display:inline-flex">
+                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
                 <div class="card" id="income-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 수입</button>
                   <div id="income-box" style="display:inline-block;"></div>
                   <div id="total-income" style="margin-top:10px;"></div>
                 </div>
+                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
                 <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 수입</button>
                   <span id="income-box-choice"></span>
@@ -182,12 +186,15 @@
             </li>
             <li class="list-group-item">
               <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
+              <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
               <div style="display:inline-flex">
+                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
                 <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 지출액</button>
                   <div id="minus-box" style="display:inline-block;"></div>
                   <div id="total-minus" style="margin-top:10px;"></div>
                 </div>
+                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
                 <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 지출액</button>
                   <span id="minus-box-choice"></span>
@@ -198,12 +205,16 @@
             <li class="list-group-item">
               <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
                 하러가기</button>
+              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
+                하러가기</button>
               <div style="display:inline-flex">
+                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
                 <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 저축</button>
                   <div id="plus-box" style="display:inline-block;"></div>
                   <div id="total-plus" style="margin-top:10px;"></div>
                 </div>
+                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
                 <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 저축</button>
                   <span id="plus-box-choice"></span>
@@ -313,9 +324,11 @@
                   aria-label="date" aria-describedby="addon-wrapping">
               </div>
               <span class="challenge">챌린지 선택하기</span>
+              <span class="challenge">챌린지 선택하기</span>
               <div class="challenge-sort" id="challenge-sort"></div>
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">저축금액</span>
+                <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
                 <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
                   aria-describedby="addon-wrapping">
               </div>
