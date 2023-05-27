@@ -97,9 +97,9 @@ export async function showBookmarkChallenges(user_id) {
                                           </div>
                                       </a>
                                     </div>`;
-
     })
 }
+
 
 
 export async function showlikeChallenges(user_id) {
@@ -115,7 +115,7 @@ export async function showlikeChallenges(user_id) {
     console.log(newChallengeListData)
 
     const newChallengeList = document.querySelector(".slider2");
-    const newChallengeCount = document.querySelector(".new-challenge-count");
+    const newChallengeCount = document.querySelector(".new-challenge-count2");
 
     // if (response_json.main_image == null) {
     //     document.getElementById('preview').src = "./fake-img/paris.png";

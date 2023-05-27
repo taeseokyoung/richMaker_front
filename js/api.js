@@ -521,3 +521,29 @@ export async function getChallenge() {
 
     return response_challenge
 }
+
+// 사용자가 챌린지 좋아요 등록 및 취소 API
+export async function challengeLikeAPI(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/users/likes/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+    })
+    return response
+}
+
+// 사용자가 북마크 등록 및 취소 API
+export async function challengeBookmarkAPI(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+    })
+    return response
+}
