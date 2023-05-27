@@ -63,11 +63,16 @@
           <div class="mb-3 row">
             <label for="password" class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-10">
+
               <input type="password" class="form-control custom_box" id="password" placeholder="비밀번호를 입력해 주세요.">
             </div>
           </div>
         </div>
         <div id="button_group">
+          <!-- <div>
+            <a href="#" id="socialaccount_google">구글 계정으로 로그인</a>
+          </div>
+          <div> -->
           <div id="inner_btnBox">
             <div class="button_box" id="login_button">
               <a href="#" id="login_button"
@@ -80,14 +85,22 @@
               <a href="/updateUserInfo.html">휴면 계정 활성화 신청</a>
             </div>
           </div>
+
         </div>
       </div>
+    </div>
 
     </div>
   </section>
   <footer>
     <!-- footer 삽입 -->
   </footer>
+  <script>
+    function handleBtn() {
+      document.querySelector(".nav-drop-menu").classList.toggle("on");
+      document.querySelector(".menu_btn").classList.toggle("on");
+    }
+  </script>
   <script type="module" src="/js/api.js"></script>
   <script type="module" src="/js/login.js"></script>
   <!-- script -->

@@ -91,7 +91,7 @@ function getTime() {
     const lifeTime = (exp - now) / 60
 
     // 토큰 유효기간이 지났다면 토큰 정보 삭제
-    if (parseInt(lifeTime < 0)) {
+    if (lifeTime < 0) {
 
       localStorage.removeItem("access")
       localStorage.removeItem("refresh")

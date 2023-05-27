@@ -44,18 +44,11 @@
                     </div>
                 </div>
                 <div class="numbers">
-                    <button type="button" class="update" id="updateUserProfileButton">이미지 편집</button>
+                    <a href="/updatemypage.html">
+                        <button type="button" class="update" id="ProfileButton">프로필 수정</button>
+                    </a>
                     <p>Email: <span id="user-email"></span></p>
-
-                    <!-- <div class="item">
-              email@example.com
-            </div> -->
                     <p>Username: <span id="user-name"></span></p>
-
-                    <!-- <div class="item">
-              username
-            </div> -->
-
                     <div class="item" id="user-bio">
                         bio
                     </div>
@@ -63,54 +56,77 @@
 
             </div>
         </div>
+        <div class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- 진행중인 챌린지 -->
         <div class="consumecontainer">
             <p>내 챌린지 관리</p>
             <hr class="line">
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100" style="border-radius: 10px;">
-                        <div class="imagebox">
-                            <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-                                <img class="profile" src="/img/richmaker-logo.png">
+                <div class="col" id="bookmark_box">
+                    <div class="new-challenge">
+                        <div class="main-nav">
+                            <span class="new-challenge-count"></span>
+                            <div class="button-cover">
+                                <a href="/list.html?query=new">+</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title" id="bookmark-title">Card title</h5>
-                            <p class="card-text" id="bookmark-content">This is a wider card with supporting text
-                                below as a natural
-                                lead-in to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer" id="bookmark-money">
-                            <small class="text-body-secondary">목표 금액</small>
-                        </div>
+                        <hr class="bar">
+                        <section>
+                            <div class="new-card-container">
+                                <div class="slider">
+
+                                </div>
+                                <div class="prev"><i class="fa-solid fa-angle-right prev-arrow"></i></div>
+                                <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
             </div>
         </div>
+
+        <!-- const newChallengeList = document.querySelector(".slider2"); -->
+        <!-- const newChallengeCount = document.querySelector(".new-challenge-count2"); -->
         <!-- 좋아요 누른 첼린지 -->
         <div class="myinterestingchallenge">
             <p class="myinteresting">관심있는 챌린지</p>
             <hr class="line2">
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100" style="border-radius: 10px;">
-                        <div class="imagebox2">
-                            <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-                                <img class="profile" src="/img/richmaker-logo.png">
+                <div class="col" id="bookmark_box2">
+                    <div class="new-challenge">
+                        <div class="main-nav">
+                            <span class="new-challenge-count2"></span>
+                            <div class="button-cover">
+                                <a href="/list.html?query=new">+</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">목표 금액</small>
-                        </div>
+                        <hr class="bar">
+                        <section>
+                            <div class="new-card-container">
+                                <div class="slider2">
+
+                                </div>
+                                <div class="prev"><i class="fa-solid fa-angle-right prev-arrow"></i></div>
+                                <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
@@ -132,7 +148,6 @@
     <script src="js/nav.js" type="module"></script>
     <script type="module" src="/js/api.js"></script>
     <script type="module" src="/js/test.js"></script>
-
     <!-- script end -->
 </body>
 
