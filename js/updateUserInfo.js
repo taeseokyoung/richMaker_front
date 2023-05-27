@@ -132,12 +132,3 @@ export async function switchAccount() {
 
 
 
-//  테스트 용도
-export function logoutAPI() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("payload")
-    location.reload();
-}
-
-// logoutAPI()

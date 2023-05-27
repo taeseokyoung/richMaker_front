@@ -1,8 +1,10 @@
 // /* conf.js로부터 base URL 불러오기 */
+
 //const BACK_BASE_URL = "http://127.0.0.1:8000";
 //const FRONT_BASE_URL = "http://127.0.0.1:5500";
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 import { Income, getIncome, getMinus, getPlus, IncomeUpdate, IncomeDelete, Saving, SavingUpdate, SavingDelete, getChallenge } from "./api.js";
+
 
 // 달력
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -197,7 +199,6 @@ async function gettoday() {
 
   const response_minus = await getMinus(nowday)
   const minuslist = await response_minus.json()
-
   const newbox = document.getElementById('minus-box')
 
   minuslist.forEach(e => {
@@ -361,8 +362,12 @@ export async function handleSavingDelete() {
   }
 }
 
+////////////////////////////////////
+
 // onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
+
 window.onload = async function () {
+
   buildCalendar();
   gettoday();
 
@@ -410,3 +415,4 @@ window.onload = async function () {
   })
 
 }
+
