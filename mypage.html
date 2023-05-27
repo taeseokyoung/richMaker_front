@@ -19,7 +19,8 @@
   <link rel="stylesheet" href="./css/index2.css" />
   <link rel="stylesheet" href="css/module.css">
   <link rel="stylesheet" href="./css/mypage.css" />
-<!-- 여기에 스크립트 선언되면 변수가 안 불러짐  -->
+  <!-- <script src="../js/mypage.js"></script> -->
+  <!-- 여기에 스크립트 선언되면 변수가 안 불러짐  -->
   <title>리치메이커 : 소비챌린지</title>
 </head>
 
@@ -57,7 +58,7 @@
               email@example.com
             </div> -->
             <p>Username: <span id="user-name"></span></p>
-            
+
             <!-- <div class="item">
               username
             </div> -->
@@ -83,7 +84,8 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title" id="bookmark-title">Card title</h5>
-                <p class="card-text" id= "bookmark-content">This is a wider card with supporting text below as a natural lead-in to additional
+                <p class="card-text" id="bookmark-content">This is a wider card with supporting text below as a natural
+                  lead-in to additional
                   content. This content is a little bit longer.</p>
               </div>
               <div class="card-footer" id="bookmark-money">
@@ -171,12 +173,12 @@
                 <div class="card" id="income-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 수입</button>
                   <div id="income-box" style="display:inline-block;"></div>
-                  <div id="total-income"></div>
+                  <div id="total-income" style="margin-top:10px;"></div>
                 </div>
                 <div class="card" id="income-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 수입</button>
                   <span id="income-box-choice"></span>
-                  <div id="total-income-choice"></div>
+                  <div id="total-income-choice" style="margin-top:10px;"></div>
                 </div>
               </div>
             </li>
@@ -189,12 +191,12 @@
                 <div class="card" id="minus-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 지출액</button>
                   <div id="minus-box" style="display:inline-block;"></div>
-                  <div id="total-minus"></div>
+                  <div id="total-minus" style="margin-top:10px;"></div>
                 </div>
                 <div class="card" id="minus-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 지출액</button>
                   <span id="minus-box-choice"></span>
-                  <div id="total-minus-choice"></div>
+                  <div id="total-minus-choice" style="margin-top:10px;"></div>
                 </div>
               </div>
             </li>
@@ -211,12 +213,12 @@
                 <div class="card" id="plus-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 저축</button>
                   <div id="plus-box" style="display:inline-block;"></div>
-                  <div id="total-plus"></div>
+                  <div id="total-plus" style="margin-top:10px;"></div>
                 </div>
                 <div class="card" id="plus-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 저축</button>
                   <span id="plus-box-choice"></span>
-                  <div id="total-plus-choice"></div>
+                  <div id="total-plus-choice" style="margin-top:10px;"></div>
                 </div>
               </div>
             </li>
@@ -246,7 +248,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleIncome()">작성</button>
+              <button type="button" id="income_write" class="btn btn-primary">작성</button>
             </div>
           </div>
         </div>
@@ -275,7 +277,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleIncomeUpdate()">수정</button>
+              <button type="button" id="income_update" class="btn btn-primary">수정</button>
             </div>
           </div>
         </div>
@@ -300,7 +302,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleIncomeDelete()">삭제</button>
+              <button type="button" id="income_delete" class="btn btn-primary">삭제</button>
             </div>
           </div>
         </div>
@@ -331,7 +333,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleSaving()">작성</button>
+              <button type="button" class="btn btn-primary" id="plus_write">작성</button>
             </div>
           </div>
         </div>
@@ -362,7 +364,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleSavingUpdate()">수정</button>
+              <button type="button" id="plus_update" class="btn btn-primary">수정</button>
             </div>
           </div>
         </div>
@@ -389,7 +391,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="handleSavingDelete()">삭제</button>
+              <button type="button" id="plus_delete" class="btn btn-primary">삭제</button>
             </div>
           </div>
         </div>
@@ -409,6 +411,7 @@
     }
   </script>
   <script src="js/nav.js" type="module"></script>
+  <script type="module" src="/js/conf.js"></script>
   <script type="module" src="/js/api.js"></script>
   <script type="module" src="/js/mypage.js"></script>
 

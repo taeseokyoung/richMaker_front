@@ -1,14 +1,8 @@
 // /* conf.js로부터 base URL 불러오기 */
+//const BACK_BASE_URL = "http://127.0.0.1:8000";
+//const FRONT_BASE_URL = "http://127.0.0.1:5500";
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import {getUserInfo } from "./api.js";
-
-
-
-
-function hadnleBtn() {
-  document.querySelector(".nav-drop-menu").classList.toggle("on");
-  document.querySelector(".menu_btn").classList.toggle("on");
-}
+import { Income, getIncome, getMinus, getPlus, IncomeUpdate, IncomeDelete, Saving, SavingUpdate, SavingDelete, getChallenge } from "./api.js";
 
 // 달력
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -93,16 +87,10 @@ async function Choicelist() {
   const date = document.getElementsByClassName("choiceDay")[0].innerText
   const day = year + '-' + month + '-' + date
 
-  // 선택한 날짜에 대한 지출 기록 불러오기
-  const response_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${day}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
+  const response_minus = await getMinus(day)
+  //console.log(response_minus)
 
-  response_minus_json = await response_minus.json()
+  const response_minus_json = await response_minus.json()
   //console.log(response_minus_json)
 
   const newbox = document.getElementById('minus-box-choice')
@@ -126,23 +114,15 @@ async function Choicelist() {
     newbox.innerText = "당신은 절약의 왕~!! 지출이 없습니다."
   }
   // 총 지출 금액
-  all_minus = 0
+  let all_minus = 0
   response_minus_json.forEach(e => {
     all_minus = all_minus + e["totalminus"]
   })
   const totalminussum = document.getElementById('total-minus-choice')
   totalminussum.innerText = "총 지출 금액:  " + all_minus
 
-  // 선택한 날짜에 대한 저축 기록 불러오기
-  const response_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${day}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
-
-  response_plus_json = await response_plus.json()
+  const response_plus = await getPlus(day)
+  const response_plus_json = await response_plus.json()
   console.log(response_plus_json)
 
   const newbox2 = document.getElementById('plus-box-choice')
@@ -166,24 +146,17 @@ async function Choicelist() {
   } else {
     newbox2.innerText = "저축 좀 하고 삽시다!!!"
   }
+
   // 총 저축 금액
-  all_plus = 0
+  let all_plus = 0
   response_plus_json.forEach(e => {
     all_plus = all_plus + e["plus_money"]
   })
   const totalplussum = document.getElementById('total-plus-choice')
   totalplussum.innerText = "총 저축액:  " + all_plus
 
-  // 선택한 날짜에 대한 수입 기록 불러오기
-  const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${day}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
-
-  response_income_json = await response_income.json()
+  const response_income = await getIncome(day)
+  const response_income_json = await response_income.json()
   //console.log(response_income_json)
 
   const newbox3 = document.getElementById('income-box-choice')
@@ -203,8 +176,9 @@ async function Choicelist() {
   } else {
     newbox3.innerText = "마음이 아프니 아무 말도 하지 않겠어요..."
   }
+
   // 총 수입 금액
-  all_income = 0
+  let all_income = 0
   response_income_json.forEach(e => {
     all_income = all_income + e["income_money"]
   })
@@ -221,16 +195,9 @@ async function gettoday() {
   const nowdate = today.getDate()
   const nowday = nowyear + '-0' + nowmonth + '-' + nowdate
 
-  // 현재 날짜에 대한 지출 기록 불러오기
-  const response_minus = await fetch(`${BACK_BASE_URL}/api/post/minus/${nowday}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
+  const response_minus = await getMinus(nowday)
+  const minuslist = await response_minus.json()
 
-  minuslist = await response_minus.json()
   const newbox = document.getElementById('minus-box')
 
   minuslist.forEach(e => {
@@ -247,7 +214,7 @@ async function gettoday() {
   })
 
   // 현재 날짜에 대한 총 지출 금액
-  all_minus = 0
+  let all_minus = 0
   minuslist.forEach(e => {
     all_minus = all_minus + e["totalminus"]
   })
@@ -255,17 +222,10 @@ async function gettoday() {
   const totalminussum = document.getElementById('total-minus')
   totalminussum.innerText = "총 지출 금액:  " + all_minus
 
-  // 현재 날짜에 대한 저축 기록 불러오기
-  const response_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${nowday}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
+  const response_plus = await getPlus(nowday)
+  const pluslist = await response_plus.json()
+  console.log(pluslist)
 
-  pluslist = await response_plus.json()
-  //console.log(pluslist)
   const newbox2 = document.getElementById('plus-box')
 
   pluslist.forEach(e => {
@@ -283,7 +243,7 @@ async function gettoday() {
   })
 
   // 현재 저축에 대한 총금액
-  all_plus = 0
+  let all_plus = 0
   pluslist.forEach(e => {
     all_plus = all_plus + e["plus_money"]
   })
@@ -291,16 +251,8 @@ async function gettoday() {
   const totalplussum = document.getElementById('total-plus')
   totalplussum.innerText = "총 저축액:  " + all_plus
 
-  // 현재 날짜에 대한 수입 기록 불러오기
-  const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${nowday}/`, {
-    headers: {
-      'content-type': 'application/json',
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    method: 'GET',
-  })
-
-  incomelist = await response_income.json()
+  const response_income = await getIncome(nowday)
+  const incomelist = await response_income.json()
   //console.log(incomelist)
   const newbox3 = document.getElementById('income-box')
 
@@ -315,7 +267,7 @@ async function gettoday() {
   })
 
   // 현재 날짜에 대한 수입 총금액
-  all_income = 0
+  let all_income = 0
   incomelist.forEach(e => {
     all_income = all_income + e["income_money"]
   })
@@ -326,24 +278,10 @@ async function gettoday() {
 }
 
 // 수입 기록하기
-async function handleIncome() {
-  let token = localStorage.getItem("access")
+document.getElementById("income_write").addEventListener("click", handleIncome);
 
-  // date, income_money를 받는다.
-  const date = await document.getElementById('date-income').value
-  const income_money = await document.getElementById('income_money').value
-
-  const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
-    method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      "date": date,
-      "income_money": income_money
-    })
-  })
+export async function handleIncome() {
+  const request_income = await Income()
 
   if (request_income.status == 200) {
     alert("작성 완료!")
@@ -353,27 +291,12 @@ async function handleIncome() {
   }
 }
 
+
 // 수입 수정하기
-async function handleIncomeUpdate() {
-  let token = localStorage.getItem("access")
+document.getElementById("income_update").addEventListener("click", handleIncomeUpdate);
 
-  // date, income_money를 받는다.
-  const date = await document.getElementById('date-income2').value
-  const income_money = await document.getElementById('income_money2').value
-
-
-  const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
-    method: 'PUT',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      "date": date,
-      "income_money": income_money
-    })
-  })
-
+export async function handleIncomeUpdate() {
+  const request_income = await IncomeUpdate()
   if (request_income.status == 200) {
     alert("수정 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
@@ -382,20 +305,12 @@ async function handleIncomeUpdate() {
   }
 }
 
+
 // 수입 삭제하기
-async function handleIncomeDelete() {
-  let token = localStorage.getItem("access")
+document.getElementById("income_delete").addEventListener("click", handleIncomeDelete);
 
-  // date, income_money를 받는다.
-  const date = await document.getElementById('date-income3').value
-
-
-  const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
-    method: 'DELETE',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-    },
-  })
+export async function handleIncomeDelete() {
+  const request_income = await IncomeDelete()
 
   if (request_income.status == 204) {
     alert("삭제 완료!")
@@ -405,34 +320,11 @@ async function handleIncomeDelete() {
   }
 }
 
-
 //저축 기록하기
-async function handleSaving() {
-  let token = localStorage.getItem("access")
+document.getElementById("plus_write").addEventListener("click", handleSaving);
 
-  // date, plus_money, challenge를 받는다.
-  const date = document.getElementById('date-plus').value
-  const plus_money = document.getElementById('plus_money').value
-  const query = 'input[name="challenge"]:checked';
-  const selectedEls = document.querySelectorAll(query)
-  let challenge = 0
-
-  selectedEls.forEach((el) => {
-    challenge = parseInt(el.value)
-  })
-
-  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
-    method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      "date": date,
-      "plus_money": plus_money,
-      "challenge": challenge
-    })
-  })
+export async function handleSaving() {
+  const request_saving = await Saving()
 
   if (request_saving.status == 200) {
     alert("작성 완료!")
@@ -443,27 +335,10 @@ async function handleSaving() {
 }
 
 //저축 수정하기
+document.getElementById("plus_update").addEventListener("click", handleSavingUpdate);
+
 async function handleSavingUpdate() {
-  let token = localStorage.getItem("access")
-
-  // date, plus_money, challenge를 받는다.
-  const date = document.getElementById('date-plus2').value
-  const plus_money = document.getElementById('plus_money2').value
-  const challenge = document.getElementById('challenge').value
-  console.log(challenge)
-
-  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
-    method: 'PUT',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      "date": date,
-      "plus_money": plus_money,
-      "challenge": challenge
-    })
-  })
+  const request_saving = await SavingUpdate()
 
   if (request_saving.status == 200) {
     alert("수정 완료!")
@@ -473,21 +348,10 @@ async function handleSavingUpdate() {
   }
 }
 
-
 //저축 삭제하기
-async function handleSavingDelete() {
-  let token = localStorage.getItem("access")
-
-  // date, plus_money, challenge를 받는다.
-  const date = document.getElementById('date-plus3').value
-  const challenge = document.getElementById('challenge').value
-
-  const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
-    method: 'DELETE',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-    },
-  })
+document.getElementById("plus_delete").addEventListener("click", handleSavingDelete);
+export async function handleSavingDelete() {
+  const request_saving = await SavingDelete()
 
   if (request_saving.status == 204) {
     alert("삭제 완료!")
@@ -498,67 +362,12 @@ async function handleSavingDelete() {
 }
 
 // onlaod -> 순서를 마지막으로 보내줌 (* import가 있는 경우 중복 검증 때문에 하나만 있는게 좋음)
-window.onload = async () => {
-  const payload = localStorage.getItem("payload");
-  const payload_parse = JSON.parse(payload)
-
-  const urlParams = new URLSearchParams(window.location.search);
-  let searchID = urlParams.get('user_id');
-  console.log(searchID)
-  searchID = searchID == null ? payload_parse.user_id : searchID
-  const response = await getUserInfo(searchID)
-
-  const response_json = await response.json()
-  console.log(response_json)
-
-      // 성공했을때만 값을 변경함
-  if (response.status == 200) { 
-      // htmil의 id값을 가져아서 변수에 저장
-      const email = document.getElementById("user-email")
-      const username = document.getElementById("user-name") 
-      const profile_image = document.getElementById("user-image")
-      const bio = document.getElementById("user-bio")
-      const bookmark = document.getElementById("bookmark-title")
-
-        // 변수 안에 들어갈 텍스트를 응답값으로 변경
-      email.innerText = response_json.email
-      username.innerText = response_json.username
-      bio.innerText = response_json.bio
-      bookmark.innerText = response_json.bookmark.
-      console.log(response_json.bio)
-      console.log(response_json.username)
-      console.log(response_json.email)
-      
-      // 이미지 값 변경이 있을때만 수정
-      if (response_json.profile_image != null) {
-        profile_image.setAttribute("src", `${BACK_BASE_URL}${response_json.profile_image}`)
-      }
-        } else if (response.status == 404) {
-              console.log("찾는 계정이 없습니다 ")
-       } 
-// api.js(통신) 에서 응답값으로 데이터를 받아서  통신을 api.js로 옮겨야함 
-// fetch 로 백앤드와 통신하는 과정을 api.js로 옮기고
-// api.js 받아온 응답값을 다시  mypage.js로 가져와서
-// status코드값에 따라 데이터를 적절히 html에 넣어준다
-
-        console.log(response_json.profile_image)
-
-        buildCalendar();
-
+window.onload = async function () {
+  buildCalendar();
   gettoday();
 
-  let token = localStorage.getItem("access")
-
-  const response_challenge = await fetch(`${BACK_BASE_URL}/api/challenge/`, {
-    method: 'GET',
-    headers: {
-      "Authorization": `Bearer ${token}`,
-    },
-  });
-
-  // 모달창 속 챌린지 checkbox 관련코드
-  response_challenge_json = await response_challenge.json()
-  //console.log(response_challenge_json)
+  const response_challenge = await getChallenge()
+  const response_challenge_json = await response_challenge.json()
 
   const challenges = document.getElementById("challenge-sort")
   const challenges2 = document.getElementById("challenge-sort2")
@@ -599,5 +408,5 @@ window.onload = async () => {
     challenges2.appendChild(newChallenge2).appendChild(newInput2)
     challenges3.appendChild(newChallenge3).appendChild(newInput3)
   })
-  }
- 
+
+}
