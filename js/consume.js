@@ -1,55 +1,7 @@
-//import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-const BACK_BASE_URL = "http://127.0.0.1:8000";
-const FRONT_BASE_URL = "http://127.0.0.1:5500";
-
-window.onload = async function Consume() {
-    buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
-
-    // 소비경향
-    const response_style = await fetch(`${BACK_BASE_URL}/api/post/style/`, {
-        method: 'GET'
-    });
-
-    response_style_json = await response_style.json()
-    // console.log(response_style_json)
-    const styles = document.getElementById("consume-style")
-    response_style_json.forEach(style => {
-        const newInput = document.createElement('input')
-        newInput.setAttribute("type", "radio")
-        newInput.setAttribute("name", "style")
-        newInput.setAttribute("value", style['id'])
-        newInput.setAttribute("id", "style")
-        const newStyle = document.createElement('label')
-        newStyle.setAttribute("class", "style-input")
-        newStyle.innerText = style['style']
-        styles.appendChild(newStyle).appendChild(newInput)
-    })
-
-    // 소비내역
-    const placeName = document.getElementById("placename")
-    const newName = document.createElement('input')
-    newName.setAttribute("type", "text")
-    newName.setAttribute("id", "placename2")
-    placeName.appendChild(newName)
-
-    const placeWhere = document.getElementById("placewhere")
-    const newPlace = document.createElement('input')
-    newPlace.setAttribute("type", "text")
-    newPlace.setAttribute("id", "placewhere2")
-    placeWhere.appendChild(newPlace)
-
-    const Amount = document.getElementById("amount")
-    const newAmount = document.createElement('input')
-    newAmount.setAttribute("type", "text")
-    newAmount.setAttribute("id", "amount2")
-    Amount.appendChild(newAmount)
-
-    const Cost = document.getElementById("cost")
-    const newCost = document.createElement('input')
-    newCost.setAttribute("type", "text")
-    newCost.setAttribute("id", "cost2")
-    Cost.appendChild(newCost)
-}
+import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
+import { getStyle, writeMinus } from "./api.js";
+// const BACK_BASE_URL = "http://127.0.0.1:8000";
+// const FRONT_BASE_URL = "http://127.0.0.1:5500";
 
 // 달력
 let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
@@ -57,7 +9,7 @@ let today = new Date();     // 페이지를 로드한 날짜를 저장
 today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
 
 // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
-function buildCalendar(diffDate=null) {
+function buildCalendar(diffDate = null) {
     // 매개변수가 있으면 nowMonth를 diffDate로 바꿔줌
     if (diffDate !== null) {
         nowMonth = diffDate;
@@ -145,44 +97,12 @@ function leftPad(value) {
 }
 
 
+document.getElementById("posting").addEventListener("click", handlePost)
+
 // 소비기록하기
-async function handlePost() {
-    let token = localStorage.getItem("access")
+export async function handlePost() {
+    const request_post = await writeMinus()
 
-    const year = document.getElementById("calYear").innerText
-    const month = document.getElementById("calMonth").innerText
-    const date = document.getElementsByClassName("choiceDay")[0].innerText
-    const day = year + '-' + month + '-' + date
-
-
-    const placeName = await document.getElementById('placename2').value
-    const placeWhere = await document.getElementById('placewhere2').value
-    const Amount = await document.getElementById('amount2').value
-    const Cost = await document.getElementById('cost2').value
-
-    const query = 'input[name="style"]:checked';
-    const selectedEls = document.querySelectorAll(query)
-    let Style = 0
-
-    selectedEls.forEach((el) => {
-        Style = parseInt(el.value)
-    })
-
-    const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/`, {
-        method: 'POST',
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            "date": day,
-            "minus_money": Cost,
-            "placename": placeName,
-            "placewhere": placeWhere,
-            "amount": Amount,
-            "consumer_style": Style //1
-        })
-    })
 
     if (request_post.status == 200) {
         alert("작성 완료!")
@@ -190,4 +110,51 @@ async function handlePost() {
     } else {
         alert(request_post.status)
     }
+}
+
+window.onload = async function Consume() {
+    buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
+
+    // 소비경향
+    const response_style = await getStyle()
+    const response_style_json = await response_style.json()
+    // console.log(response_style_json)
+
+    const styles = document.getElementById("consume-style")
+    response_style_json.forEach(style => {
+        const newInput = document.createElement('input')
+        newInput.setAttribute("type", "radio")
+        newInput.setAttribute("name", "style")
+        newInput.setAttribute("value", style['id'])
+        newInput.setAttribute("id", "style")
+        const newStyle = document.createElement('label')
+        newStyle.setAttribute("class", "style-input")
+        newStyle.innerText = style['style']
+        styles.appendChild(newStyle).appendChild(newInput)
+    })
+
+    // 소비내역
+    const placeName = document.getElementById("placename")
+    const newName = document.createElement('input')
+    newName.setAttribute("type", "text")
+    newName.setAttribute("id", "placename2")
+    placeName.appendChild(newName)
+
+    const placeWhere = document.getElementById("placewhere")
+    const newPlace = document.createElement('input')
+    newPlace.setAttribute("type", "text")
+    newPlace.setAttribute("id", "placewhere2")
+    placeWhere.appendChild(newPlace)
+
+    const Amount = document.getElementById("amount")
+    const newAmount = document.createElement('input')
+    newAmount.setAttribute("type", "text")
+    newAmount.setAttribute("id", "amount2")
+    Amount.appendChild(newAmount)
+
+    const Cost = document.getElementById("cost")
+    const newCost = document.createElement('input')
+    newCost.setAttribute("type", "text")
+    newCost.setAttribute("id", "cost2")
+    Cost.appendChild(newCost)
 }

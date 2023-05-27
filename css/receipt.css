@@ -41,6 +41,10 @@
 }
 
 .button_group {
-  margin-top: 20%;
+  margin-top: 1%;
 
+}
+
+.receipt-text > p {
+  margin: 10px 2px;
 }
