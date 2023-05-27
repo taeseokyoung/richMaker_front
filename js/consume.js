@@ -148,7 +148,6 @@ function leftPad(value) {
 // 소비기록하기
 async function handlePost() {
     let token = localStorage.getItem("access")
-
     const year = document.getElementById("calYear").innerText
     const month = document.getElementById("calMonth").innerText
     const date = document.getElementsByClassName("choiceDay")[0].innerText
@@ -167,7 +166,6 @@ async function handlePost() {
     selectedEls.forEach((el) => {
         Style = parseInt(el.value)
     })
-
     const request_post = await fetch(`${BACK_BASE_URL}/api/post/minus/`, {
         method: 'POST',
         headers: {
