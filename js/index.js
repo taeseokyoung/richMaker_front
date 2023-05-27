@@ -20,11 +20,8 @@ async function handleListLoad() {
 
   // New Challenge
   const newChallenge = responseJson.new_challenge;
-  console.log(newChallenge)
   const newChallengeCountData = newChallenge.count;
-  console.log(newChallengeCountData)
   const newChallengeListData = newChallenge.list;
-  console.log(newChallengeListData)
   const newChallengeList = document.querySelector(".slider");
   const newChallengeCount = document.querySelector(".new-challenge-count");
 
@@ -56,8 +53,9 @@ async function handleListLoad() {
   const topChallengeList = document.querySelector(".top-card-container");
 
   topChallengeListData.forEach((element) => {
+    console.log(element.id, typeof (element.id))
     topChallengeList.innerHTML += `<div class="top-card">
-                                    <a href="/challenge-detail.html?query=${element.id}">
+                                    <a href="/challenge-detail.html?challenge_id=${element.id}">
                                       <div class="top-card-image-container">
                                         <img src="./fake-img/startup.png">
                                       </div>
