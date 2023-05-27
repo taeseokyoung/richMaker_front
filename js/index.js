@@ -39,22 +39,22 @@ async function handleListLoad() {
   newChallengeCount.innerHTML = newChallengeCountData;
 
   newChallengeListData.forEach((element) => {
-    newChallengeList.innerHTML += `<div class="card">
-                                    <a href="/challenge-detail.html?challenge_id=${element.id}">
+    newChallengeList.innerHTML += `<a class="challenge-check" href="/challenge-detail.html?challenge_id=${element.id}">
+                                      <div class="card">
                                         <div class="card-image-container">
-                                          <img src="./fake-img/paris.png">
+                                          <img src=${BACK_BASE_URL}/${element.main_image}>
                                         </div>
                                         <div class="card-content-container">
                                           <h2>${element.challenge_title}</h2>
                                           <h3>목표: ${element.amount}만원</h3>
                                           <h3>${element.period}개월</h3>
                                           <div class="card-tags">
-                                            <a href="">장기</a>
-                                            <a href="">여행</a>
+                                            <span>장기</span>
+                                            <span>여행</span>
                                           </div>
                                         </div>
-                                    </a>
-                                  </div>`;
+                                      </div>
+                                    </a>`;
   });
 
   // Top Challenge
@@ -64,32 +64,33 @@ async function handleListLoad() {
   const topChallengeList = document.querySelector(".top-card-container");
 
   topChallengeListData.forEach((element) => {
-    topChallengeList.innerHTML += `<div class="top-card">
-                                    <a href="/challenge-detail.html?query=${element.id}">
+    topChallengeList.innerHTML += `<a class="challenge-check" href="/challenge-detail.html?query=${element.id}">
+                                    <div class="top-card">
                                       <div class="top-card-image-container">
-                                        <img src="./fake-img/startup.png">
+                                        <img src=${BACK_BASE_URL}/${element.main_image}>
                                       </div>
                                       <div class="top-card-content-container">
                                         <h2>${element.challenge_title}</h2>
                                         <h3>목표: ${element.amount}만원</h3>
                                         <h3>${element.period}개월</h3>
                                         <div class="top-card-tags">
-                                          <a href="">장기</a>
-                                          <a href="">기타</a>
+                                          <span>장기</span>
+                                          <span>기타</span>
                                         </div>
                                       </div>
-                                    </a>
-                                  </div>
+                                    </div>
+                                  </a>
                                   `;                                  
   });
-  console.log(responseJson)
   document.querySelector('#idealIncome').textContent = Number(responseJson.ideal_expanse) / 10000
-
+  document.querySelector('#remainingAmount').textContent = Number(responseJson.ideal_expanse) / 10000 - Number(responseJson.total_expanse) / 10000
 
   // Graph
   if (token === null) {
+    document.querySelector('#report-title').innerHTML = '';
     document.querySelector('.graph-container').innerHTML = '<h1>로그인하시면 당신의 소비 경향을 분석할 수 있습니다.</h1>';
   } else {
+    document.querySelector('#report-title').innerHTML = `리포트 <span>${responseJson.date}</span>`;
   const peopleJson = JSON.parse(responseJson.people)
   const individualJson = JSON.parse(responseJson.individual)
   if (individualJson === 0) {
@@ -152,13 +153,13 @@ async function handleListLoad() {
   }
 
   const announcement = {
-    "사치품": "사치품? 돈이 많으신가 봐요?",
-    "음식": "지난 주에는 밥을 많이 드셨어요🍚",
-    "취미": "건강한 취미 찾기!🤾‍♂️",
-    "쇼핑": "쇼핑을 하셨네요? 꼭.필.요.한.소.비.였.나.요?😁",
-    "게임": "오..게임할 시간이 있다?",
-    "여행": "무리한 여행이 되지 않았기를",
-    "운동": "건전한 취미예요!"
+    "사치품": "사치품: 돈 많으신가 봐요 👀",
+    "음식": "음식: 지난 주에는 밥을 많이 드셨어요🍚",
+    "취미": "취미: 건강한 취미 찾기!🤾‍♂️",
+    "쇼핑": "쇼핑: 쇼핑을 하셨네요? 꼭.필.요.한.소.비.였.나.요?😁",
+    "게임": "게임: 오..게임할 시간이 있다? ",
+    "여행": "여행: 무리한 여행이 되지 않았기를",
+    "운동": "운동: 건전한 취미예요!"
   }
 
 
@@ -167,7 +168,6 @@ async function handleListLoad() {
     document.querySelector('#report-data').innerHTML = `<h1>저번 주 소비가 없어요</h1>`
   } else {
     const reportParse = JSON.parse(responseJson.report)
-    console.log(reportParse)
     reportParse.consumer_style__style.forEach((e, i)=> {
       document.querySelector('#report-data').insertAdjacentHTML('beforeend', `<li>${announcement[e]} <span>지출금액: ${Math.ceil(Number(reportParse.all_amount[i]) / 10000) }만원</span></li>`)
     })

@@ -142,6 +142,10 @@ h3 {
   overflow: hidden;
   position: relative;
   border: solid 3px gray;
+} 
+
+.challenge-check:hover {
+  background-color: #f7f7f7;
 }
 
 .top-card-container {
@@ -174,7 +178,7 @@ h3 {
 
 
 
-.top-card-content-container > a > h2 {
+.top-card-content-container > h2 {
   margin: 15px;
   font-size: 3rem;
 }
@@ -197,6 +201,26 @@ h3 {
 
 .graph-container > h1 {
   font-size: 3rem;
+}
+
+.top-card-tags > a {
+  z-index: 999;
+  border: solid 1px rgba(138, 138, 138, 0.5);
+  padding: 4px;
+  background-color: rgba(138, 138, 138, 0.5);
+  border-radius: 5px;
+}
+
+.card-tags > a {
+  z-index: 999;
+  border: solid 1px rgba(138, 138, 138, 0.5);
+  padding: 4px;
+  background-color: rgba(138, 138, 138, 0.5);
+  border-radius: 5px;
+}
+
+#remainingAmount {
+  color:#ec3434;
 }
 
 /* main content end */

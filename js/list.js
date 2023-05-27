@@ -41,20 +41,22 @@ async function ChallengeList(query, page) {
 
   /* 게시글 삽입 */
   challengeResults.forEach((element) => {
-    cardContainer.innerHTML += `<div class="top-card">
-                                  <div class="top-card-image-container">
-                                    <img src=${element.main_image} />
-                                  </div>
-                                  <div class="top-card-content-container">
-                                    <h2>${element.challenge_title}</h2>
-                                    <h3>목표: ${element.amount}만원</h3>
-                                    <h3>${element.period}개월</h3>
-                                    <div class="top-card-tags">
-                                      <a href="">장기</a>
-                                      <a href="">기타</a>
-                                    </div>
-                                  </div>
-                                </div>`;
+    cardContainer.innerHTML += `<a class="challenge-check" href="/challenge-detail.html?query=${element.id}">
+    <div class="top-card">
+      <div class="top-card-image-container">
+        <img src=${BACK_BASE_URL}/${element.main_image}>
+      </div>
+      <div class="top-card-content-container">
+        <h2>${element.challenge_title}</h2>
+        <h3>목표: ${element.amount}만원</h3>
+        <h3>${element.period}개월</h3>
+        <div class="top-card-tags">
+          <span>장기</span>
+          <span>기타</span>
+        </div>
+      </div>
+    </div>
+  </a>`;
   });
 
   const pageCount = responseJson.count;

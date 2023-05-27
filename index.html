@@ -40,13 +40,11 @@
           <div class="main-nav">
             <span>나의 소비 통계</span>
             <div class="button-cover">
-              <a href="">영수증 인증하기</a>
-              <a href="">이번달 소비 목록 확인</a>
-              <a href="">이번달 수입 기록</a>
+              <a href="/consume.html">영수증 AI인식</a>
             </div>
           </div>
           <hr class="bar">
-          <h3>나의 이번 달 적정 소비 금액 : <span id='idealIncome'></span>만원</h3>
+          <h3>나의 이번 달 적정 소비 금액 : <span id='idealIncome'></span>만원 / 소비 가능 잔액 : <span id='remainingAmount'></span>만원</h3>
           <div class="consume-cover">
             <div class="graph-container">
               <canvas id="circleChart"></canvas>
@@ -54,10 +52,9 @@
             </div>
 
             <div class="report-container">
-              <h3>리포트</h3>
+              <h3 id="report-title"></h3>
               <ul id="report-data">
               </ul>
-              <h3 class="goal">목표금액 30만원을 향해 달려요!🏃‍♀️🏃‍♀️</h3>
             </div>
           </div>
         </div>
