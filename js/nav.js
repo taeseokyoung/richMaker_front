@@ -18,25 +18,19 @@ async function injectNavbar() {
   const anonymous_view = document.getElementById("anonymous_view")
   const user_view = document.getElementById("user_view")
   document.getElementById("logout_button").addEventListener("click", logout);
-  
+
   if (payload_parse == null) {
     user_view.style.display = "none"
   } else {
     anonymous_view.style.display = "none"
   }
-  if (payload_parse == null){
-    console.log("로그인 안함")
+  if (payload_parse == null) {
     document.getElementById("dropDownMenu_1").style.display = "none"
     document.getElementById("dropDownMenu_3").style.display = "none"
     document.getElementById("dropDownMenu_4").innerText = "비밀 번호 찾기"
 
     // 로그아웃
-    document.getElementById("drop-menu-login").style.display = "none"
-  } else {
-    console.log("로그인 함")
 
-    // 로그인 / 회원가입
-    document.getElementById("drop-menu").style.display = "none"
   }
 }
 
