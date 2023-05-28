@@ -1,5 +1,5 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
+import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
 
 
 // user_id - 서경
@@ -384,10 +384,10 @@ export async function showCommentList() {
                     const comment_id = element.id;
                     deleteComment(comment_id);
                 });
-                sumbitCommentButton.addEventListener("click", function () {
-                    const comment_id = element.id;
-                    sumbitComment(comment_id);
-                });
+                // sumbitCommentButton.addEventListener("click", function () {
+                //     const comment_id = element.id;
+                //     sumbitComment(comment_id);
+                // });
             }
 
         } else {
