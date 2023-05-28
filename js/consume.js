@@ -81,6 +81,7 @@ function prevCalendar() {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
     buildCalendar();    // 달력 다시 생성
 }
+
 // 다음달 버튼 클릭
 function nextCalendar() {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
@@ -114,6 +115,9 @@ export async function handlePost() {
 
 window.onload = async function Consume() {
     buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
+
+    document.getElementById("prevCalendar").addEventListener("click", prevCalendar)
+    document.getElementById("nextCalendar").addEventListener("click", nextCalendar)
 
     // 소비경향
     const response_style = await getStyle()

@@ -1,3 +1,6 @@
+const BACK_BASE_URL = "http://127.0.0.1:8000";
+const FRONT_BASE_URL = "http://127.0.0.1:5500";
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -10,7 +13,7 @@ function readURL(input) {
     document.getElementById("preview").src = "";
   }
 
-  
+
 }
 
 const btnAiCheck = document.querySelector('#aiCheck');
@@ -27,7 +30,7 @@ btnAiCheck.addEventListener('click', async function (event) {
       base64String: checkPreview.src
     })
   })
-  
+
   responseJson = await response.json();
   responseJson = await JSON.parse(responseJson);
   console.log(responseJson);
@@ -66,7 +69,7 @@ document.querySelector('#btnAiAdd').addEventListener('click', function (e) {
 
 function aiChoiceDate(aiDay) {
   if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
-      document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
   }
   document.querySelector(`#day${Number(aiDay)}`).classList.add("choiceDay");  // 선택된 날짜에 "choiceDay" class 추가
 }
