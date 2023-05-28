@@ -37,14 +37,9 @@ nav {
     font-family: 'OTWelcomeRA';
 }
 
-.main {
-    margin: 0 auto;
-    width: 1200px;
-
 .numbers p {
     margin-bottom: 15px;
 }
-  
 p,
 h3 {
     font-family: 'OTWelcomeRA';
@@ -87,12 +82,6 @@ h3 {
     position: relative;
 }
 
-.my-challenge-cover {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-}
-
 .profile {
     width: 100%;
     height: 100%;
@@ -101,6 +90,8 @@ h3 {
 
 /* 내 챌린지 관리 카드 비율 */
 .consumecontainer {
+    top: 300px;
+    left: 500px;
     text-align: left;
     font-size: 30px;
 
