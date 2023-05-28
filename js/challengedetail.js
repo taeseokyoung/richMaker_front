@@ -1,6 +1,7 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
 
+
 export async function getPayloadParse() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
@@ -8,12 +9,13 @@ export async function getPayloadParse() {
 }
 
 
+
+// 챌린지 id 불러오기
 export async function getChallengeId() {
     const urlParams = new URLSearchParams(window.location.search);
     const challengeId = urlParams.get('challenge_id')
     return challengeId
 }
-
 
 // 챌린지 북마크 등록, 취소하기
 document.getElementById("challengeBookmarkButton").addEventListener("click", challengeBookmark)
@@ -46,19 +48,20 @@ async function getChallenge() {
 getChallenge()
 
 
+//  챌린지 관심 등록한 유저 리스트 뽑아오기
+export async function showLikingListAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/likes/${user_id}/`)
+    return response
 
-
-
-
-
-async function getBookmark() {
-    const response = await fetch(`${BACK_BASE_URL}/api/challenge/bookmark/`)
-    console.log(response)
 }
-let bookmark = getBookmark()
+//  챌린지 북마크 등록한 유저 리스트 뽑아오기
+export async function showBookmarkingListAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${user_id}/`)
+    return response
 
-console.log(bookmark)
-// id user_id challenge_id
+}
+
+
 
 export async function showBookmarkingList() {
     const challengeId = await getChallengeId()
@@ -70,57 +73,19 @@ export async function showBookmarkingList() {
         console.log(response_json)
     }
 }
+export async function showLikingList() {
+    const challengeId = await getChallengeId()
+    const response = await showLikingListAPI(challengeId)
+    const response_json = await response.json()
+    if (response.status == 200) {
+        console.log(response_json)
+    } else {
+        console.log(response_json)
+    }
+
+}
 
 document.getElementsById('btn-secondry').addEventListener('click',)
-
-
-
-// document.getElementById('edit-btn').addEventListener('click', async function () {
-//     if (data.id == challengeId) {
-//         document.querySelector("input").removeAttribute('disabled readonly')
-//     }
-
-//     const challenge_title = document.getElementById("challenge_title").value;
-//     const challenge_content = document.getElementById("exampleFormControlTextarea1").value;
-//     const amount = document.getElementById("amount").value;
-//     const period = document.getElementById("period").value;
-//     const main_image = document.getElementById("main_image").files[0];
-//     const formData = new FormData();
-
-//     formData.append("challenge_title", challenge_title);
-//     formData.append("challenge_content", challenge_content);
-//     formData.append("amount", amount);
-//     formData.append("period", period);
-//     if (main_image) {
-//         formData.append("main_image", main_image);
-//     }
-
-//     if (challenge_title && challenge_content) {
-//         console.log(formData);
-//         const response = await fetch(`${BACK_BASE_URL}/api/challenge/`, {
-//             method: "POST",
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//             },
-//             body: formData,
-//         });
-
-//         if (response.status == 201) {
-//             alert("게시글 작성완료");
-//             window.location.replace(`${FRONT_BASE_URL}/challenge-post.html`);
-//         } else {
-//             const result = await response.json()
-//             console.log(result)
-//             alert("작성이 취소되었습니다");
-//         }
-//     } else {
-//         console.log(response.json())
-//         alert("빈칸을 작성하세요");
-//     }
-// })
-
-
-
 
 // 이미지 미리보기
 document.getElementById('main_image').addEventListener('change', function () {
@@ -139,26 +104,6 @@ function readURL(input) {
     }
 }
 
-
-
-
-// // 챌린지 북마크 등록, 취소하기
-// document.getElementById("challengeBookmarkButton").addEventListener("click", challengeBookmark)
-
-
-// 해당 챌린지에 관심등록(좋아요 누른) 유저 리스트 뽑아오기DCR5FV6
-
-// document.getElementById("showLikingList").addEventListener("click", showLikingList);
-
-// // // 챌린지 좋아요(관심) 등록, 취소하기
-// document.getElementById("challengeLikeButton").addEventListener("click", challengeLike)
-
-
-
-// async function Challenge() {
-//     const response = await getChallenge(challengeId)
-//     console.log(response)
-// }
 
 
 
@@ -231,22 +176,27 @@ export async function challengeBookmark() {
 
 
 
+// 댓글 리스트 조회
+export async function showCommentList() {
+    const ChallengeId = await getChallengeId()
+    const response = await showCommentListAPI(ChallengeId)
+    const response_json = await response.json()
 
 
-//  챌린지 관심 등록한 유저 리스트 뽑아오기
-export async function showLikingListAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/likes/${user_id}/`)
-    return response
+// 댓글 작성
+export async function Comment() {
 
+    const challenge_id = await getChallengeId()
+    const comment = await writeComment(challenge_id)
+    if (comment.status == 201) {
+        alert("작성 완료!")
+        location.reload();
+    } else {
+        alert("작성 실패!")
+    }
 }
-//  챌린지 북마크 등록한 유저 리스트 뽑아오기
-export async function showBookmarkingListAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${user_id}/`)
-    return response
-}
 
-
-
+ 
 export async function showBookmarkingList() {
     const challengeId = await getChallengeId()
     const response = await showBookmarkingListAPI(challengeId)
@@ -257,18 +207,22 @@ export async function showBookmarkingList() {
         console.log(response_json)
     }
 }
+  
+  
 export async function showLikingList() {
     const challengeId = await getChallengeId()
     const response = await showLikingListAPI(challengeId)
     const response_json = await response.json()
     if (response.status == 200) {
         console.log(response_json)
+
     } else {
-        console.log(response_json)
+        comment_box.style.display = "none"
+        updateCommentForm.style.display = "block"
+        comment_button_group.style.display = "none"
     }
-
+    // response = await updateCommentAPI(comment_id)
 }
-
 
 
 // 댓글 리스트 조회
@@ -341,26 +295,6 @@ export async function showCommentList() {
 }
 
 
-
-
-
-
-
-// 댓글 작성
-export async function Comment() {
-
-    const challenge_id = await getChallengeId()
-    const comment = await writeComment(challenge_id)
-    if (comment.status == 201) {
-        alert("작성 완료!")
-        location.reload();
-    } else {
-        alert("작성 실패!")
-    }
-}
-
-
-
 // 댓글 수정
 export async function updateComment(comment_id) {
     const comment_box = document.getElementById(`comment_box_${comment_id}`)
@@ -378,7 +312,7 @@ export async function updateComment(comment_id) {
     // response = await updateCommentAPI(comment_id)
 }
 
-
+  
 export async function sumbitComment(comment_id) {
     const newCommentData = document.getElementById(`newCommentData_${comment_id}`).value
     const commentArr = [
@@ -413,8 +347,8 @@ export async function sumbitComment(comment_id) {
         location.reload();
     }
 }
-
-// 댓글 삭제
+  
+  // 댓글 삭제
 export async function deleteComment(comment_id) {
     const response = await deleteCommentAPI(comment_id)
     try {
@@ -440,6 +374,7 @@ export async function deleteComment(comment_id) {
     }
 
 }
+  
 
 export async function checkUserInfo() {
     const PayloadParse = await getPayloadParse()
@@ -460,9 +395,9 @@ export async function checkUserInfo() {
 }
 
 
-
 window.onload = async function () {
     showCommentList()
     checkUserInfo()
     document.getElementById("commentbutton").addEventListener("click", Comment)
 }
+

@@ -84,7 +84,7 @@ function leftPad(value) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const consume_id = urlParams.get('id');
-console.log(consume_id)
+//console.log(consume_id)
 
 
 // 소비수정하기(Edit)
@@ -103,7 +103,7 @@ export async function handleEdit() {
 
 window.onload = async function () {
     buildCalendar(); // 웹 페이지가 로드되면 buildCalendar 실행
-    console.log(consume_id)
+    //console.log(consume_id)
 
     // 소비경향(getStyle)
     const response_style = await getStyle()
