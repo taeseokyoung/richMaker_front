@@ -122,14 +122,18 @@ async function gettoday() {
             newP6.innerText = "소비스타일:  " + e["stylename"]
             const newButton = document.createElement("button")
             newButton.innerHTML = "수정"
-            newButton.setAttribute("id", "hidden")
+            newButton.setAttribute("id", `update_${minusid}`)
             newButton.setAttribute("value", `${minusid}`)
-            newButton.addEventListener("click", Minusupdate)
+            newButton.addEventListener("click", function () {
+                Minusupdate(minusid);
+            })
             const newButton2 = document.createElement("button")
-            newButton2.setAttribute("id", "hidden2")
+            newButton2.setAttribute("id", `delete_${minusid}`)
             newButton2.setAttribute("value", `${minusid}`)
             newButton2.innerHTML = "삭제"
-            newButton2.addEventListener("click", Minusdelete)
+            newButton2.addEventListener("click", function () {
+                Minusdelete(minusid);
+            })
             newli.appendChild(newP1)
             newli.appendChild(newP2)
             newli.appendChild(newP3)
@@ -166,7 +170,8 @@ async function handleDetailget() {
     if (minuslist != "") {
         newbox.innerText = "   당신의 소비는? 지출 상세내역입니다."
         minuslist.forEach(e => {
-            const minusid = e["id"]
+            const minusid = e.id
+            console.log(minusid)
             const newdiv = document.createElement("div")
             newdiv.setAttribute("class", "card")
             newdiv.setAttribute("style", "width:365px; border-radius:10px;")
@@ -191,14 +196,18 @@ async function handleDetailget() {
             newP6.innerText = "소비스타일:  " + e["stylename"]
             const newButton = document.createElement("button")
             newButton.innerHTML = "수정"
-            newButton.setAttribute("id", "hidden")
+            newButton.setAttribute("id", `update_${minusid}`)
             newButton.setAttribute("value", `${minusid}`)
-            newButton.addEventListener("click", Minusupdate)
+            newButton.addEventListener("click", function () {
+                Minusupdate(minusid);
+            })
             const newButton2 = document.createElement("button")
-            newButton2.setAttribute("id", "hidden")
+            newButton2.setAttribute("id", `delete_${minusid}`)
             newButton2.setAttribute("value", `${minusid}`)
             newButton2.innerHTML = "삭제"
-            newButton2.addEventListener("click", Minusdelete)
+            newButton2.addEventListener("click", function () {
+                Minusdelete(minusid);
+            })
             newli.appendChild(newP1)
             newli.appendChild(newP2)
             newli.appendChild(newP3)
@@ -217,16 +226,13 @@ async function handleDetailget() {
 }
 
 // 수정하기
-export async function Minusupdate() {
-    const minusid = document.getElementById("hidden").value
-
+export async function Minusupdate(minusid) {
     window.location.href = `${FRONT_BASE_URL}/consumeedit.html?id=${minusid}`
 }
 
 
 // 삭제하기
-export async function Minusdelete() {
-    const minusid = document.getElementById("hidden2").value
+export async function Minusdelete(minusid) {
     const request_minus = await Delete(minusid)
 
     if (request_minus.status == 204) {
@@ -236,6 +242,7 @@ export async function Minusdelete() {
         alert(request_minus.status)
     }
 }
+
 
 // 마이페이지로 가기
 document.getElementById("mypage").addEventListener("click", Mypage)

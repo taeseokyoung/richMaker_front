@@ -25,18 +25,10 @@ async function injectNavbar() {
     anonymous_view.style.display = "none"
   }
   if (payload_parse == null) {
-    console.log("로그인 안함")
     document.getElementById("dropDownMenu_1").style.display = "none"
     document.getElementById("dropDownMenu_3").style.display = "none"
     document.getElementById("dropDownMenu_4").innerText = "비밀 번호 찾기"
 
-    // 로그아웃
-    // document.getElementById("drop-menu-login").style.display = "none"
-  } else {
-    console.log("로그인 함")
-
-    // 로그인 / 회원가입
-    // document.getElementById("drop-menu").style.display = "none"
   }
 }
 
