@@ -162,6 +162,7 @@ export async function getUserInfo(user_id) {
 
 export async function getBookmarkInfo(challenge_id) {
 
+
     const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
     return response
 }
@@ -171,7 +172,7 @@ export async function getBookmarkInfo(challenge_id) {
 // 수입 코드
 // 수입 기록
 export async function Income() {
-    console.log("연결")
+    //console.log("연결")
     let token = localStorage.getItem("access")
 
     // date, income_money를 받는다.
@@ -180,20 +181,36 @@ export async function Income() {
     const income_money = await document.getElementById('income_money').value
     //console.log(income_money)
 
-    const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
-        method: 'POST',
+    const request_already_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
         headers: {
-            "Authorization": `Bearer ${token}`,
-            'content-type': 'application/json'
+            "Authorization": "Bearer " + localStorage.getItem("access")
         },
-        body: JSON.stringify({
-            "date": date,
-            "income_money": income_money
-        })
+        method: 'GET',
     })
 
-    // console.log(request_income)
-    return request_income
+    const request_already_income_json = await request_already_income.json()
+    //console.log(request_already_income_json)
+
+    if (request_already_income_json == "") {
+        const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                "date": date,
+                "income_money": income_money
+            })
+        })
+        // console.log(request_income)
+        return request_income.status
+    } else {
+        const request_status = 400
+        return request_status
+    }
+
+
 }
 
 
@@ -201,7 +218,6 @@ export async function Income() {
 export async function getIncome(day) {
     const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${day}/`, {
         headers: {
-            'content-type': 'application/json',
             "Authorization": "Bearer " + localStorage.getItem("access")
         },
         method: 'GET',
@@ -431,20 +447,37 @@ export async function Saving() {
         challenge = parseInt(el.value)
     })
 
-    const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
-        method: 'POST',
+    const request_already_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
         headers: {
-            "Authorization": `Bearer ${token}`,
-            'content-type': 'application/json'
+            "Authorization": "Bearer " + localStorage.getItem("access")
         },
-        body: JSON.stringify({
-            "date": date,
-            "plus_money": plus_money,
-            "challenge": challenge
-        })
+        method: 'GET',
     })
 
-    return request_saving
+    const request_already_plus_json = await request_already_plus.json()
+    //console.log(request_already_plus_json)
+
+    if (request_already_plus_json == "") {
+        const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                "date": date,
+                "plus_money": plus_money,
+                "challenge": challenge
+            })
+        })
+
+        return request_saving.status
+    } else {
+        const request_status = 400
+        return request_status
+    }
+
+
 }
 
 
@@ -501,6 +534,7 @@ export async function SavingDelete() {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${token}`,
+            showLikingList
         },
     })
 
@@ -577,14 +611,9 @@ export async function checkChallengeLikeAPI(challenge_id) {
 
 
 
-
-export async function showBookmarkChallengesAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
-    return response
-}
-
-export async function showlikeChallengesAPI(user_id) {
-    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+//  댓글 가져오기
+export async function showCommentListAPI(ChallengeId) {
+    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
     return response
 }
 
@@ -620,13 +649,6 @@ export async function deleteCommentAPI(comment_id) {
     })
     return response
 }
-
-//  댓글 가져오기
-export async function showCommentListAPI(ChallengeId) {
-    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
-    return response
-}
-
 // 챌린지별 댓글 작성
 export async function writeComment(challenge_id) {
     const access_token = localStorage.getItem("access")
@@ -643,4 +665,47 @@ export async function writeComment(challenge_id) {
         })
     })
     return response_comment
+}
+// 유저 프로필 수정
+export async function updateUserProfileAPI() {
+    const username = document.getElementById("username").value
+    const bio = document.getElementById("bio").value
+    const profile_image = document.getElementById("image").files[0]
+
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const user_id = payload_parse.user_id
+    const formdata = new FormData();
+    formdata.append('username', username)
+    formdata.append('bio', bio)
+
+    const access_token = localStorage.getItem("access")
+    if (profile_image) {
+        formdata.append('profile_image', profile_image)
+    } else {
+        formdata.append('profile_image', '')
+    }
+
+    try {
+        const response = await fetch(`${BACK_BASE_URL}/api/users/profile/${user_id}/`, {
+            headers: {
+                "Authorization": `Bearer ${access_token}`
+            },
+            method: 'PATCH',
+            body: formdata
+        })
+        return response
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export async function showBookmarkChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
+    return response
+}
+
+export async function showlikeChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
 }

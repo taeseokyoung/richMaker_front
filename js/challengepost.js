@@ -1,16 +1,28 @@
-const BACK_BASE_URL = "http://127.0.0.1:8000";
-const FRONT_BASE_URL = "http://127.0.0.1:5500";
+import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 
-window.onload = async () => { }
 
-const payload = localStorage.getItem("payload");
-const payload_parse = JSON.parse(payload)
-const token = localStorage.getItem("access");
-const urlParams = new URLSearchParams(window.location.search);
-const challengeId = urlParams.get('challenge_id')
-console.log(challengeId)
+
+
+
+//user_id
+export async function getPayloadParse() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    return payload_parse
+}
+
+// 챌린지 id 불러오기
+export async function getChallengeId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const challengeId = urlParams.get('challenge_id')
+    return challengeId
+}
+
 
 document.getElementById('press-btn').addEventListener('click', async function () {
+    const token = localStorage.getItem("access");
+    console.log(token)
+    console.log("클릭")
     const challenge_title = document.getElementById("challenge_title").value;
     const challenge_content = document.getElementById("exampleFormControlTextarea1").value;
     const amount = document.getElementById("amount").value;
@@ -27,7 +39,7 @@ document.getElementById('press-btn').addEventListener('click', async function ()
 
     if (challenge_title && challenge_content) {
         console.log(formData);
-        const response = await fetch(`${BACK_BASE_URL}/api/challenge/`, {
+        const response = await fetch('http://127.0.0.1:8000/api/challenge/', {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,

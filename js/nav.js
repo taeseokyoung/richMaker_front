@@ -29,8 +29,6 @@ async function injectNavbar() {
     document.getElementById("dropDownMenu_3").style.display = "none"
     document.getElementById("dropDownMenu_4").innerText = "비밀 번호 찾기"
 
-    // 로그아웃
-
   }
 }
 
