@@ -3,7 +3,8 @@ section {
 }
 
 input {
-    font-size: 15px;}
+    font-size: 15px;
+}
 
 /* 알 수 없는 clearfix 오류 수정 */
 .container::before {
@@ -31,9 +32,11 @@ h2 {
     font-weight: 500;
     margin-bottom: 30px;
 }
+
 .challenge-form label {
     margin-bottom: 15px;
 }
+
 .challenge-form img {
     object-fit: cover;
     width: 100%;
@@ -43,13 +46,11 @@ h2 {
     margin-bottom: 30px;
 }
 
-.challenge-form img:hover {
-
-}
+.challenge-form img:hover {}
 
 
 .form-control {
-margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #summernote {
@@ -61,14 +62,14 @@ margin-bottom: 20px;
 }
 
 .challenge-goal div {
-      flex: 1;
+    flex: 1;
 }
 
 .challenge-goal input {
     width: 100%;
 }
 
-.challenge-goal div:nth-child(2){
+.challenge-goal div:nth-child(2) {
     margin-left: 30px;
 }
 
@@ -77,7 +78,7 @@ margin-bottom: 20px;
 }
 
 .challenge-btn {
-  text-align: right;
+    text-align: right;
 }
 
 .btn-secondary {
@@ -86,4 +87,20 @@ margin-bottom: 20px;
 
 .note-editable p {
     height: 400px;
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+}
+
+.comment_box {
+    margin-top: 3%;
+    margin-left: 3%;
 }
