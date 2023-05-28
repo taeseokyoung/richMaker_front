@@ -2,6 +2,11 @@
     outline: 1px solid red;
 } */
 
+
+.challenge-post {
+    background-color: inherit;
+}
+
 form {
     background-color: #fff;
     padding: 0 30px;
