@@ -644,3 +644,36 @@ export async function writeComment(challenge_id) {
     })
     return response_comment
 }
+// 유저 프로필 수정
+export async function updateUserProfileAPI() {
+    const username = document.getElementById("username").value
+    const bio = document.getElementById("bio").value
+    const profile_image = document.getElementById("image").files[0]
+
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const user_id = payload_parse.user_id
+    const formdata = new FormData();
+    formdata.append('username', username)
+    formdata.append('bio', bio)
+
+    const access_token = localStorage.getItem("access")
+    if (profile_image) {
+        formdata.append('profile_image', profile_image)
+    } else {
+        formdata.append('profile_image', '')
+    }
+
+    try {
+        const response = await fetch(`${BACK_BASE_URL}/api/users/profile/${user_id}/`, {
+            headers: {
+                "Authorization": `Bearer ${access_token}`
+            },
+            method: 'PATCH',
+            body: formdata
+        })
+        return response
+    } catch (err) {
+        console.log(err)
+    }
+}

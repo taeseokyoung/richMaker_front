@@ -285,7 +285,6 @@ export async function sumbitComment(comment_id) {
 
     try {
         const response_json = await response.json()
-        console.log(response_json)
         if (response.status == 200) {
             alert(response_json.message)
             location.reload();
@@ -343,13 +342,19 @@ export async function checkUserInfo() {
     if (PayloadParse != null) {
         const ChallengeId = await getChallengeId()
         const CheckBookmarkResponse = await checkChallengeBookmarkAPI(ChallengeId)
-        if (CheckBookmarkResponse.status ==200){
-        }else{
-            console.log("로그인을 안했거나")
+        if (CheckBookmarkResponse.status == 200) {
+            console.log("북마크 등록한 유저")
+        } else {
+            console.log("북마크 등록안한 유저")
         }
 
         const CheckLikeResponse = await checkChallengeLikeAPI(ChallengeId)
-        
+        if (CheckLikeResponse.status == 200) {
+            console.log("좋아요 등록한 유저")
+        } else {
+            console.log("좋아요 등록안한 유저")
+        }
+
     } else {
         // 로그인 안한 사용자
     }
