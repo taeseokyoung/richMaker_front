@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="../css/consume.css">
     <link rel="stylesheet" href="../css/receipt.css">
     <link rel="stylesheet" href="css/module.css">
-    <script src="js/nav.js"></script>
-    <link rel="stylesheet" href="js/index.js">
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -42,12 +40,12 @@
                     <table class="Calendar">
                         <thead>
                             <tr>
-                                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                                <td id="prevCalendar" style="cursor:pointer;">&#60;</td>
                                 <td colspan="5">
                                     <span id="calYear"></span>년
                                     <span id="calMonth"></span>월
                                 </td>
-                                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                                <td id="nextCalendar" style="cursor:pointer;">&#62;</td>
                             </tr>
                             <tr>
                                 <td>일</td>
@@ -115,29 +113,30 @@
     <footer>
     </footer>
     <!-- script -->
-    <script src="js/receipt.js"></script>
     <script>
         function handleBtn() {
             document.querySelector(".nav-drop-menu").classList.toggle("on");
             document.querySelector(".menu_btn").classList.toggle("on");
         }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("preview").src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById("preview").src = "";
+            }
+        }
     </script>
-    <script src="js/receipt.js"></script>
     <script src="js/nav.js" type="module"></script>
     <script type="module" src="/js/conf.js"></script>
     <script type="module" src="/js/api.js"></script>
     <script type="module" src="/js/consume.js"></script>
+    <!-- <script src="js/receipt.js"></script> -->
     <!-- script end -->
-
-    <script>
-        function handleBtn() {
-            document.querySelector(".nav-drop-menu").classList.toggle("on");
-            document.querySelector(".menu_btn").classList.toggle("on");
-        }
-    </script>
-    <script type="module" src="/js/conf.js"></script>
-    <script type="module" src="/js/signup.js"></script>
-    <script src="js/nav.js" type="module"></script>
 
 </body>
 
