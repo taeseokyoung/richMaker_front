@@ -162,6 +162,7 @@ export async function getUserInfo(user_id) {
 
 export async function getBookmarkInfo(challenge_id) {
 
+
     const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
     return response
 }
@@ -533,6 +534,7 @@ export async function SavingDelete() {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${token}`,
+            showLikingList
         },
     })
 

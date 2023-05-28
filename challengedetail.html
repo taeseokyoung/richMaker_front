@@ -30,11 +30,12 @@
     <section class="challenge-post container">
         <div class="title flex">
             <h2>챌린지 상세보기</h2>
-            <div class="like-people flex">
-                <button id="like-btn">like</button>
+            <div class="like-people">
+                <div id="like-btn">
+                    <p id="heart">♡</p>
+                </div>
                 <p>like수</p>
             </div>
-
         </div>
 
         <form>
@@ -42,12 +43,12 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">챌린지명</label>
                     <input type="text" class="form-control form-control-lg" id="challenge_title"
-                        placeholder="챌린지명을 입력하세요." name="challenge_title" disabled readonly>
+                        placeholder="챌린지명을 입력하세요." name="challenge_title">
                 </div>
                 <div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">대표이미지</label>
-                        <input id="main_image" class="form-control" type="file" id="formFile" disabled readonly>
+                        <input id="main_image" class="form-control" type="file" id="formFile">
                     </div>
                 </div>
                 <img id="preview-image" src="" alt="">
@@ -55,26 +56,27 @@
             <fieldset class="postField container" name="postField" id="postField">
                 <div class="mb-3 text-area">
                     <label for="exampleFormControlTextarea1" class="form-label">챌린지 소개</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled
-                        readonly></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="flex">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">목표금액(만원)</label>
                         <input type="text" class="form-control form-control-lg" id="amount" placeholder="숫자만 입력하세요."
-                            name="amount" disabled readonly>
+                            name="amount">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">기간(개월)</label>
                         <input type="text" class="form-control form-control-lg" id="period" placeholder="숫자만 입력하세요."
-                            name="period" disabled readonly>
+                            name="period">
                     </div>
                 </div>
-                <div class="challenge-btn">
-                    <button type="button" class="btn btn-secondary"
+                <div class="challenge-form-btn">
+                    <button id="back-btn" type="button" class="btn btn-secondary"
                         style="--bs-btn-padding-y: 0.7rem; --bs-btn-padding-x: 1.7rem; --bs-btn-font-size: 1.5rem;">뒤로가기</button>
                     <button id="edit-btn" type="button" class="btn btn-dark"
                         style="--bs-btn-padding-y: 0.7rem; --bs-btn-padding-x: 1.7rem; --bs-btn-font-size: 1.5rem;">챌린지수정</button>
+                    <button id="submit-btn" type="button" class="btn btn-dark"
+                        style="--bs-btn-padding-y: 0.7rem; --bs-btn-padding-x: 1.7rem; --bs-btn-font-size: 1.5rem;">수정완료</button>
                 </div>
             </fieldset>
         </form>
@@ -85,23 +87,18 @@
                 <button id="challenge-btn" type="button" class="btn btn-dark"
                     style="--bs-btn-padding-y: 0.7rem; --bs-btn-padding-x: 1.7rem; --bs-btn-font-size: 1.5rem;">참가하기</button>
             </div>
-
             <div id="challenge-people-list" class="challenge-people-list">
                 <div class="people">
-                    <p>유저 닉네임</p>
+                    <p>서경</p>
                     <img src="" alt="">
                 </div>
                 <div class="people">
-                    <p>유저 닉네임</p>
-                    <img src="" alt="">
-                </div>
-                <div class="people">
-                    <p>유저 닉네임</p>
+                    <p>지수</p>
                     <img src="" alt="">
                 </div>
             </div>
-
         </div>
+        <h3>챌린지 댓글</h3>
         <form>
             <fieldset class="postField container" name="postField" id="postField2">
                 <div class="input-group">
@@ -123,9 +120,10 @@
     <!-- index.html -->
 
     <!-- script -->
-    <script src="js/api.js" type="module"></script>
+
     <script src="js/conf.js" type="module"></script>
     <script src="js/nav.js" type="module"></script>
+    <script src="js/api.js" type="module"></script>
     <script src="js/challengedetail.js" type="module"></script>
     <!-- script end -->
 </body>
