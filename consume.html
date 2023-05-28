@@ -113,11 +113,22 @@
     <footer>
     </footer>
     <!-- script -->
-    <script src="js/receipt.js"></script>
     <script>
         function handleBtn() {
             document.querySelector(".nav-drop-menu").classList.toggle("on");
             document.querySelector(".menu_btn").classList.toggle("on");
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("preview").src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById("preview").src = "";
+            }
         }
     </script>
     <script src="js/nav.js" type="module"></script>
@@ -126,14 +137,12 @@
     <script type="module" src="/js/consume.js"></script>
     <script src="js/receipt.js"></script>
     <!-- script end -->
-
     <script>
         function handleBtn() {
             document.querySelector(".nav-drop-menu").classList.toggle("on");
             document.querySelector(".menu_btn").classList.toggle("on");
         }
     </script>
-
 </body>
 
 </html>
