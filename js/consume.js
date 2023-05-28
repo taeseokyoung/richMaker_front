@@ -107,9 +107,9 @@ export async function handlePost() {
 
     if (request_post.status == 200) {
         alert("작성 완료!")
-        window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
+        window.location.replace(`${FRONT_BASE_URL}/index.html`);
     } else {
-        alert(request_post.status)
+        alert("입력하지 않은 값이 있습니다.")
     }
 }
 
