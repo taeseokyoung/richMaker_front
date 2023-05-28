@@ -1,5 +1,5 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment } from "./api.js";
+import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
 
 
 export async function getPayloadParse() {
@@ -7,6 +7,7 @@ export async function getPayloadParse() {
     const payload_parse = JSON.parse(payload)
     return payload_parse
 }
+
 
 
 // 챌린지 id 불러오기
@@ -57,6 +58,7 @@ export async function showLikingListAPI(user_id) {
 export async function showBookmarkingListAPI(user_id) {
     const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${user_id}/`)
     return response
+
 }
 
 
@@ -156,7 +158,7 @@ export async function challengeBookmark() {
             // 로그인 필요 또는 찾을 수 없는 챌린지
             console.log(response_json)
 
-            const payload_parse = await payloadParse()
+            const payload_parse = await getPayloadParse()
             if (payload_parse == null) {
                 alert("로그인이 필요합니다.")
                 window.location.replace(`${FRONT_BASE_URL}/login.html`);
@@ -172,6 +174,55 @@ export async function challengeBookmark() {
     }
 }
 
+
+
+// 댓글 리스트 조회
+export async function showCommentList() {
+    const ChallengeId = await getChallengeId()
+    const response = await showCommentListAPI(ChallengeId)
+    const response_json = await response.json()
+
+
+// 댓글 작성
+export async function Comment() {
+
+    const challenge_id = await getChallengeId()
+    const comment = await writeComment(challenge_id)
+    if (comment.status == 201) {
+        alert("작성 완료!")
+        location.reload();
+    } else {
+        alert("작성 실패!")
+    }
+}
+
+ 
+export async function showBookmarkingList() {
+    const challengeId = await getChallengeId()
+    const response = await showBookmarkingListAPI(challengeId)
+    const response_json = await response.json()
+    if (response.status == 200) {
+        console.log(response_json)
+    } else {
+        console.log(response_json)
+    }
+}
+  
+  
+export async function showLikingList() {
+    const challengeId = await getChallengeId()
+    const response = await showLikingListAPI(challengeId)
+    const response_json = await response.json()
+    if (response.status == 200) {
+        console.log(response_json)
+
+    } else {
+        comment_box.style.display = "none"
+        updateCommentForm.style.display = "block"
+        comment_button_group.style.display = "none"
+    }
+    // response = await updateCommentAPI(comment_id)
+}
 
 
 // 댓글 리스트 조회
@@ -219,19 +270,22 @@ export async function showCommentList() {
         const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
         const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
         const sumbitCommentButton = document.getElementById(`sumbitCommentButton_${element.id}`);
-        if (payloadParse.user_id == element.owner) {
-            updateCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                updateComment(comment_id);
-            });
-            deleteCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                deleteComment(comment_id);
-            });
-            sumbitCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                sumbitComment(comment_id);
-            });
+        if (payloadParse != null) {
+
+            if (payloadParse.user_id == element.owner) {
+                updateCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    updateComment(comment_id);
+                });
+                deleteCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    deleteComment(comment_id);
+                });
+                sumbitCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    sumbitComment(comment_id);
+                });
+            }
 
         } else {
             updateCommentButton.style.display = "none"
@@ -239,21 +293,6 @@ export async function showCommentList() {
         }
     })
 }
-
-
-// 댓글 작성
-export async function Comment() {
-
-    const challenge_id = await getChallengeId()
-    const comment = await writeComment(challenge_id)
-    if (comment.status == 201) {
-        alert("작성 완료!")
-        location.reload();
-    } else {
-        alert("작성 실패!")
-    }
-}
-
 
 
 // 댓글 수정
@@ -273,7 +312,7 @@ export async function updateComment(comment_id) {
     // response = await updateCommentAPI(comment_id)
 }
 
-
+  
 export async function sumbitComment(comment_id) {
     const newCommentData = document.getElementById(`newCommentData_${comment_id}`).value
     const commentArr = [
@@ -308,8 +347,8 @@ export async function sumbitComment(comment_id) {
         location.reload();
     }
 }
-
-// 댓글 삭제
+  
+  // 댓글 삭제
 export async function deleteComment(comment_id) {
     const response = await deleteCommentAPI(comment_id)
     try {
@@ -335,9 +374,30 @@ export async function deleteComment(comment_id) {
     }
 
 }
+  
+
+export async function checkUserInfo() {
+    const PayloadParse = await getPayloadParse()
+    console.log(PayloadParse)
+    if (PayloadParse != null) {
+        const ChallengeId = await getChallengeId()
+        const CheckBookmarkResponse = await checkChallengeBookmarkAPI(ChallengeId)
+        if (CheckBookmarkResponse.status == 200) {
+        } else {
+            console.log("로그인을 안했거나")
+        }
+
+        const CheckLikeResponse = await checkChallengeLikeAPI(ChallengeId)
+
+    } else {
+        // 로그인 안한 사용자
+    }
+}
+
 
 window.onload = async function () {
     showCommentList()
+    checkUserInfo()
     document.getElementById("commentbutton").addEventListener("click", Comment)
 }
 

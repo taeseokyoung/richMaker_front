@@ -151,13 +151,14 @@ h3 {
 .line {
     margin-top: 10px;
     margin-bottom: 30px;
-    border: 1px solid #efff5eec;
+    border: 1px solid rgba(134, 127, 115, 0.568);
     width: 100%;
 
 }
 
 .line2 {
     margin-top: 10px;
+
     margin-bottom: 50px;
     border: 1px solid #efff5eec;
     width: 1400px;
@@ -167,7 +168,6 @@ h3 {
     width: 1200px;
     margin: 0 auto;
 }
-
 
 .incomebutton {
     font-size: 20px;
@@ -299,4 +299,21 @@ td {
     height: 50%;
     display: flex;
     justify-content: center;
+
+
+
+}
+
+.card-content-container {
+    background-color: transparent;
+
+    float: left;
+    width: 180px;
+    margin-right: 10px;
+
+}
+
+.card_box {
+    border-color: 1px solid rgba(231, 57, 34, 0.322);
+    display: inline;
 }
