@@ -534,7 +534,6 @@ export async function SavingDelete() {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${token}`,
-            showLikingList
         },
     })
 

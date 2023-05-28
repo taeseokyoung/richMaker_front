@@ -327,7 +327,6 @@ export async function deleteComment(comment_id) {
         location.reload();
     }
 }
-}
 
 
 // 댓글 리스트 조회
@@ -337,7 +336,7 @@ export async function showCommentList() {
     const response_json = await response.json()
 }
 
-}
+
 // 댓글 작성
 export async function Comment() {
 
