@@ -161,7 +161,7 @@ export async function getUserInfo(user_id) {
 }
 
 export async function getBookmarkInfo(challenge_id) {
-   
+
     const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
     return response
 }
@@ -501,6 +501,7 @@ export async function SavingDelete() {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${token}`,
+            showLikingList
         },
     })
 
@@ -547,3 +548,27 @@ export async function challengeBookmarkAPI(challenge_id) {
     })
     return response
 }
+
+// 챌린지별 댓글 작성
+export async function writeComment(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const comment_content = document.getElementById("comment-write").value
+    //console.log(comment_content)
+    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "comment": comment_content
+        })
+    })
+    return response_comment
+}
+
+export async function showCommentListAPI(ChallengeId) {
+    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
+    return response
+}
+
