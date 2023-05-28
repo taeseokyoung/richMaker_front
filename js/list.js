@@ -41,7 +41,7 @@ async function ChallengeList(query, page) {
 
   /* 게시글 삽입 */
   challengeResults.forEach((element) => {
-    cardContainer.innerHTML += `<a class="challenge-check" href="/challengedetail.html?query=${element.id}">
+    cardContainer.innerHTML += `<a class="challenge-check" href="/challengedetail.html?challenge_id=${element.id}">
     <div class="top-card">
       <div class="top-card-image-container">
         <img src=${BACK_BASE_URL}/${element.main_image}>

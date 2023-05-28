@@ -1,9 +1,9 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
+import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, checkChallengeBookmarkAPI, checkChallengeLikeAPI, writeComment } from "./api.js";
 
 
 // user_id - 서경
-export async function getPayloadParse() {
+function getPayloadParse() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
     return payload_parse
@@ -11,7 +11,7 @@ export async function getPayloadParse() {
 
 
 // 챌린지 id 불러오기 - 서경
-export async function getChallengeId() {
+function getChallengeId() {
     const urlParams = new URLSearchParams(window.location.search);
     const challenge_id = urlParams.get('challenge_id')
     return challenge_id
@@ -144,19 +144,18 @@ function readURL(input) {
 
 
 //  챌린지에 참여하는 유저 정보 불러오기 (username, profile_img, bookmark, like) - 서경 작업중
-export async function showBookmarkingListAPI() {
+async function showBookmarkingListAPI() {
     const token = localStorage.getItem("access")
-    const challenge_id = await getChallengeId()
+    const challenge_id = getChallengeId()
     const response_challenge_user = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${challenge_id}/`, {
         method: 'GET',
         headers: {
             "Authorization": `Bearer ${token}`,
         },
     },)
-    console.log(response_challenge_user)
-    return response_challenge_user
+    const response_data = await response_challenge_user.json()
+    return response_data
 }
-
 // export async function showBookmarkingList() {
 //     const challenge_id = await getChallengeId()
 //     const response = await showBookmarkingListAPI(challenge_id)
@@ -171,7 +170,7 @@ export async function showBookmarkingListAPI() {
 
 
 // 챌린지 유저 네임 프로필 사진 가져오기 테스트 - 서경
-document.getElementById("challenge-btn").addEventListener("click", showBookmarkingListAPI)
+document.getElementById("challenge-btn").addEventListener("click", challengeBookmark)
 
 // 챌린지 시작 등록, 취소하기 - 서경 주석
 // document.getElementById("challenge-btn").addEventListener("click", showBookmarkingList)
@@ -231,17 +230,19 @@ export async function challengeLike() {
 // }
 
 // 사용자가 챌린지 북마크 등록 및 취소
-export async function challengeBookmark() {
-    const challengeId = await getChallengeId()
+async function challengeBookmark() {
+    const challengeId = getChallengeId()
     const response = await challengeBookmarkAPI(challengeId)
+    console.log(response)
     try {
         const response_json = await response.json()
         if (response.status == 204) {
             // 챌린지 북마크 취소
-            console.log(response_json)
+            alert(response_json);
         } else if (response.status == 201) {
             // 챌린지 북마크 등록
-            console.log(response_json)
+            alert(response_json.message)
+            window.location.reload(`${FRONT_BASE_URL}/challengedetail.html?challenge_id=${challengeId}`)
         } else {
             // 로그인 필요 또는 찾을 수 없는 챌린지
             console.log(response_json)
@@ -533,6 +534,23 @@ export async function checkUserInfo() {
 window.onload = async function () {
     showCommentList()
     checkUserInfo()
+    const kimchi = await showBookmarkingListAPI()
+    console.log(kimchi.bookmarking_people)
+    kimchi.bookmarking_people.forEach((e)=> {
+        let image_a = 0;
+        if (e.profile_image !== null) {
+            image_a = e.profile_image;
+        } else {
+            image_a = './img/richmaker-logo.png';
+        }
+        console.log(e)
+        document.querySelector("#challenge-people-list").innerHTML += `<div class="people">
+                                                            <p>${e.username}</p>
+                                                            <img src="${image_a}" alt="">
+                                                        </div>`;
+    })
+    
+
     document.getElementById("commentbutton").addEventListener("click", Comment)
 }
 
