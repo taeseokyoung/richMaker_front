@@ -82,6 +82,35 @@ function buildCalendar() {
   }
 }
 
+// 적정소비금액 코드
+async function handleListLoad() {
+  const token = localStorage.getItem("access")
+  let response;
+  if (token === null) {
+    response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
+      method: "GET"
+    });
+  } else {
+    response = await fetch(`${BACK_BASE_URL}/api/challenge/list`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+  }
+
+  // IndexLoadData
+  const responseJson = await response.json();
+
+  document.querySelector('#totalIncome').textContent = Number(responseJson.total_income["total"])
+  document.querySelector('#totalMinus').textContent = Number(responseJson.total_minus["total"])
+  document.querySelector('#totalSaving').textContent = Number(responseJson.total_saving["total"])
+  document.querySelector('#idealIncome').textContent = Number(responseJson.ideal_expanse) / 10000
+  document.querySelector('#remainingAmount').textContent = Number(responseJson.ideal_expanse) / 10000 - Number(responseJson.total_expanse) / 10000
+
+}
+
+
 // 선택한 날짜에 대한 정보 불러오기
 async function Choicelist() {
   const year = document.getElementById("calYear").innerText
@@ -125,7 +154,7 @@ async function Choicelist() {
 
   const response_plus = await getPlus(day)
   const response_plus_json = await response_plus.json()
-  console.log(response_plus_json)
+  //console.log(response_plus_json)
 
   const newbox2 = document.getElementById('plus-box-choice')
   newbox2.setAttribute("style", "margin-top:10px;")
@@ -225,7 +254,7 @@ async function gettoday() {
 
   const response_plus = await getPlus(nowday)
   const pluslist = await response_plus.json()
-  console.log(pluslist)
+  //console.log(pluslist)
 
   const newbox2 = document.getElementById('plus-box')
 
@@ -284,11 +313,11 @@ document.getElementById("income_write").addEventListener("click", handleIncome);
 export async function handleIncome() {
   const request_income = await Income()
 
-  if (request_income.status == 200) {
+  if (request_income == 200) {
     alert("작성 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_income.status)
+    alert("이미 작성하셨습니다.")
   }
 }
 
@@ -302,7 +331,7 @@ export async function handleIncomeUpdate() {
     alert("수정 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_income.status)
+    alert("작성내용을 다시 한 번 확인해주세요. 기록되지 않은 수입은 수정할 수 없습니다.")
   }
 }
 
@@ -317,7 +346,7 @@ export async function handleIncomeDelete() {
     alert("삭제 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_income.status)
+    alert("기록되지 않은 저축은 삭제할 수 없습니다.")
   }
 }
 
@@ -327,11 +356,11 @@ document.getElementById("plus_write").addEventListener("click", handleSaving);
 export async function handleSaving() {
   const request_saving = await Saving()
 
-  if (request_saving.status == 200) {
+  if (request_saving == 200) {
     alert("작성 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_saving.status)
+    alert("이미 작성하셨습니다!")
   }
 }
 
@@ -345,7 +374,7 @@ async function handleSavingUpdate() {
     alert("수정 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_saving.status)
+    alert("작성내용을 다시 한 번 확인해주세요. 기록되지 않은 저축은 수정할 수 없습니다.")
   }
 }
 
@@ -358,7 +387,7 @@ export async function handleSavingDelete() {
     alert("삭제 완료!")
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_saving.status)
+    alert("기록되지 않은 저축은 삭제할 수 없습니다.")
   }
 }
 
@@ -369,10 +398,12 @@ export async function handleSavingDelete() {
 window.onload = async function () {
 
   buildCalendar();
+  handleListLoad();
   gettoday();
 
   const response_challenge = await getChallenge()
   const response_challenge_json = await response_challenge.json()
+  console.log(response_challenge_json)
 
   const challenges = document.getElementById("challenge-sort")
   const challenges2 = document.getElementById("challenge-sort2")

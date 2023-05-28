@@ -17,12 +17,17 @@
     font-family: 'MapoFlowerIsland';
 }
 
+.desc {
+    font-family: 'OTWelcomeRA';
+}
+
 .main {
     width: 900px;
     height: 2000px;
 }
 
-p {
+p,
+h3 {
     font-family: 'OTWelcomeRA';
 }
 
@@ -76,11 +81,13 @@ p {
     font-size: 30px;
 
 }
+
 .row-cols-md-3>* {
     flex: 0 0 auto;
     width: 340px;
     height: 400px;
 }
+
 .myProfile {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -119,18 +126,26 @@ p {
     height: 300px;
 }
 
-.mybank {
-    margin-top: 300px;
-    position: absolute;
-    text-align: left;
-    font-size: 30px;
+.myconsumeinfo {
     padding-left: 30px;
-    height: 300px;
 }
 
 .smallfont {
     font-size: 20px;
     padding-top: 10px;
+    padding-left: 30px;
+}
+
+.mybank {
+    margin-top: 400px;
+    position: absolute;
+    text-align: left;
+    font-size: 30px;
+    padding-left: 30px;
+    height: 300px;
+    font-family: 'MapoFlowerIsland';
+    padding-top: 500px;
+    padding-left: 600px;
 }
 
 .line {
@@ -143,7 +158,7 @@ p {
 
 .line2 {
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     border: 1px solid #efff5eec;
     width: 1400px;
 }
@@ -153,11 +168,6 @@ p {
     margin: 0 auto;
 }
 
-.mybank {
-    font-family: 'MapoFlowerIsland';
-    padding-top: 500px;
-    padding-left: 600px;
-}
 
 .incomebutton {
     font-size: 20px;
@@ -187,11 +197,11 @@ p {
 }
 
 .imagebox {
-    padding: 20px 0px 20px 75px;
+    padding: 20px 0px 20px 70px;
 }
 
 .imagebox2 {
-    padding: 20px 0px 20px 160px;
+    padding: 20px 0px 20px 70px;
 }
 
 .card-title {
@@ -223,6 +233,8 @@ td {
 
 .calendar-section {
     background-color: white;
+    margin-left: 30px;
+    margin-top: 30px;
     margin-bottom: 10px;
     width: 500px;
     height: 350px;
