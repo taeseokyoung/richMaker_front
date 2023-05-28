@@ -38,7 +38,7 @@ async function handleListLoad() {
   newChallengeCount.innerHTML = newChallengeCountData;
 
   newChallengeListData.forEach((element) => {
-    newChallengeList.innerHTML += `<a class="challenge-check" href="/challenge-detail.html?challenge_id=${element.id}">
+    newChallengeList.innerHTML += `<a class="challenge-check" href="/challengedetail.html?challenge_id=${element.id}">
                                       <div class="card">
                                         <div class="card-image-container">
                                           <img src=${BACK_BASE_URL}/${element.main_image}>
@@ -63,7 +63,7 @@ async function handleListLoad() {
   const topChallengeList = document.querySelector(".top-card-container");
 
   topChallengeListData.forEach((element) => {
-    topChallengeList.innerHTML += `<a class="challenge-check" href="/challenge-detail.html?challenge_id=${element.id}">
+    topChallengeList.innerHTML += `<a class="challenge-check" href="/challengedetail.html?challenge_id=${element.id}">
                                     <div class="top-card">
                                       <div class="top-card-image-container">
                                         <img src=${BACK_BASE_URL}/${element.main_image}>

@@ -129,7 +129,7 @@ export async function handlePost() {
     alert("작성 완료!");
     window.location.replace(`${FRONT_BASE_URL}/mypage.html`);
   } else {
-    alert(request_post.status);
+    alert("입력하지 않은 값이 있습니다.")
   }
 }
 
