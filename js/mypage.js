@@ -3,7 +3,8 @@
 //const BACK_BASE_URL = "http://127.0.0.1:8000";
 //const FRONT_BASE_URL = "http://127.0.0.1:5500";
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { Income, getIncome, getMinus, getPlus, IncomeUpdate, IncomeDelete, Saving, SavingUpdate, SavingDelete, getChallenge, showBookmarkChallengesAPI, showlikeChallengesAPI, getUserInfo, getBookmarkInfo, } from "./api.js";
+import { Income, getIncome, getMinus, getPlus, IncomeUpdate, IncomeDelete, Saving, SavingUpdate, SavingDelete, getChallenge, showBookmarkChallengesAPI, showlikeChallengesAPI, getUserInfo, getBookmarkInfo } from "./api.js";
+// showBookmarkChallengesAPI, showlikeChallengesAPI, getUserInfo, getBookmarkInfo
 // import { getUserInfo, getBookmarkInfo, showBookmarkChallengesAPI, showlikeChallengesAPI } from "./api.js";
 
 // 달력

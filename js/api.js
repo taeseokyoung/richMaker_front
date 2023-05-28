@@ -699,3 +699,13 @@ export async function updateUserProfileAPI() {
         console.log(err)
     }
 }
+
+export async function showBookmarkChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
+    return response
+}
+
+export async function showlikeChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
+}
