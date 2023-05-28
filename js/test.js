@@ -114,8 +114,8 @@ export async function showlikeChallenges(user_id) {
     const newChallengeListData = newChallenge;
     console.log(newChallengeListData)
 
-    const newChallengeList = document.querySelector(".slider2");
-    const newChallengeCount = document.querySelector(".new-challenge-count2");
+    const newChallengeList = document.querySelector(".slider_box");
+    const newChallengeCount = document.querySelector(".like_box");
 
     // if (response_json.main_image == null) {
     //     document.getElementById('preview').src = "./fake-img/paris.png";
@@ -126,7 +126,8 @@ export async function showlikeChallenges(user_id) {
 
     newChallengeListData.forEach((element) => {
         const main_image = element.main_image == '/media/media/no_image.jpg' ? './fake-img/paris.png' : `${BACK_BASE_URL}${element.main_image}`
-        newChallengeList.innerHTML += `<div class="card">
+        newChallengeList.innerHTML += `<div class="card_box">
+        
                                       <a href="/challenge-detail.html?challenge_id=${element.id}">
                                           <div class="card-image-container">
                                             <img src="${main_image}">
@@ -137,7 +138,9 @@ export async function showlikeChallenges(user_id) {
                                             <h3>${element.period}개월</h3>
                                             
                                           </div>
+                                          
                                       </a>
+                                      
                                     </div>`;
 
     })

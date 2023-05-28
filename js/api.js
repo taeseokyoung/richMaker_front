@@ -161,7 +161,7 @@ export async function getUserInfo(user_id) {
 }
 
 export async function getBookmarkInfo(challenge_id) {
-   
+
     const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
     return response
 }
@@ -546,4 +546,71 @@ export async function challengeBookmarkAPI(challenge_id) {
         method: 'POST',
     })
     return response
+}
+
+export async function showBookmarkChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
+    return response
+}
+
+export async function showlikeChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
+}
+
+
+// 댓글 수정
+export async function updateCommentAPI(commentArr) {
+    const comment_title = commentArr[0]
+    const comment_id = commentArr[1]
+    console.log(comment_title)
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/update-comment/${comment_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'PUT',
+        body: JSON.stringify({
+            "comment": comment_title,
+        })
+    })
+    return response
+}
+
+// 댓글 삭제
+export async function deleteCommentAPI(comment_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/update-comment/${comment_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'DELETE',
+    })
+    return response
+}
+
+//  댓글 가져오기
+export async function showCommentListAPI(ChallengeId) {
+    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
+    return response
+}
+
+// 챌린지별 댓글 작성
+export async function writeComment(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const comment_content = document.getElementById("comment-write").value
+    //console.log(comment_content)
+    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "comment": comment_content
+        })
+    })
+    return response_comment
 }
