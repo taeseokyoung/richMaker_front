@@ -49,7 +49,7 @@ document.getElementById('press-btn').addEventListener('click', async function ()
 
         if (response.status == 201) {
             alert("챌린지 작성완료");
-            window.location.replace(`${FRONT_BASE_URL}/list.html`);
+            window.location.replace(`${FRONT_BASE_URL}/index.html`);
         } else {
             const result = await response.json()
             console.log(result)
