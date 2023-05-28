@@ -136,7 +136,6 @@ export async function showlikeChallenges(user_id) {
                                             <h2>${element.challenge_title}</h2>
                                             <h3>목표: ${element.amount}만원</h3>
                                             <h3>${element.period}개월</h3>
-                                            
                                           </div>
                                           
                                       </a>

@@ -1,5 +1,5 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment } from "./api.js";
+import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
 
 
 
@@ -212,19 +212,22 @@ export async function showCommentList() {
         const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
         const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
         const sumbitCommentButton = document.getElementById(`sumbitCommentButton_${element.id}`);
-        if (payloadParse.user_id == element.owner) {
-            updateCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                updateComment(comment_id);
-            });
-            deleteCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                deleteComment(comment_id);
-            });
-            sumbitCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                sumbitComment(comment_id);
-            });
+        if (payloadParse != null) {
+
+            if (payloadParse.user_id == element.owner) {
+                updateCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    updateComment(comment_id);
+                });
+                deleteCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    deleteComment(comment_id);
+                });
+                sumbitCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    sumbitComment(comment_id);
+                });
+            }
 
         } else {
             updateCommentButton.style.display = "none"
@@ -255,7 +258,6 @@ export async function Comment() {
 
 
 // 댓글 수정
-
 export async function updateComment(comment_id) {
     const comment_box = document.getElementById(`comment_box_${comment_id}`)
     const updateCommentForm = document.getElementById(`updateCommentForm_${comment_id}`)
@@ -335,7 +337,28 @@ export async function deleteComment(comment_id) {
 
 }
 
+export async function checkUserInfo() {
+    const PayloadParse = await getPayloadParse()
+    console.log(PayloadParse)
+    if (PayloadParse != null) {
+        const ChallengeId = await getChallengeId()
+        const CheckBookmarkResponse = await checkChallengeBookmarkAPI(ChallengeId)
+        if (CheckBookmarkResponse.status ==200){
+        }else{
+            console.log("로그인을 안했거나")
+        }
+
+        const CheckLikeResponse = await checkChallengeLikeAPI(ChallengeId)
+        
+    } else {
+        // 로그인 안한 사용자
+    }
+}
+
+
+
 window.onload = async function () {
     showCommentList()
+    checkUserInfo()
     document.getElementById("commentbutton").addEventListener("click", Comment)
 }
