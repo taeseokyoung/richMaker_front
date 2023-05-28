@@ -161,7 +161,7 @@ export async function getUserInfo(user_id) {
 }
 
 export async function getBookmarkInfo(challenge_id) {
-   
+
     const response = await fetch(`${BACK_BASE_URL}/api/get-challenge/${challenge_id}/`)
     return response
 }
@@ -171,7 +171,7 @@ export async function getBookmarkInfo(challenge_id) {
 // 수입 코드
 // 수입 기록
 export async function Income() {
-    console.log("연결")
+    //console.log("연결")
     let token = localStorage.getItem("access")
 
     // date, income_money를 받는다.
@@ -180,20 +180,36 @@ export async function Income() {
     const income_money = await document.getElementById('income_money').value
     //console.log(income_money)
 
-    const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
-        method: 'POST',
+    const request_already_income = await fetch(`${BACK_BASE_URL}/api/post/income/${date}/`, {
         headers: {
-            "Authorization": `Bearer ${token}`,
-            'content-type': 'application/json'
+            "Authorization": "Bearer " + localStorage.getItem("access")
         },
-        body: JSON.stringify({
-            "date": date,
-            "income_money": income_money
-        })
+        method: 'GET',
     })
 
-    // console.log(request_income)
-    return request_income
+    const request_already_income_json = await request_already_income.json()
+    //console.log(request_already_income_json)
+
+    if (request_already_income_json == "") {
+        const request_income = await fetch(`${BACK_BASE_URL}/api/post/income/`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                "date": date,
+                "income_money": income_money
+            })
+        })
+        // console.log(request_income)
+        return request_income.status
+    } else {
+        const request_status = 400
+        return request_status
+    }
+
+
 }
 
 
@@ -201,7 +217,6 @@ export async function Income() {
 export async function getIncome(day) {
     const response_income = await fetch(`${BACK_BASE_URL}/api/post/income/${day}/`, {
         headers: {
-            'content-type': 'application/json',
             "Authorization": "Bearer " + localStorage.getItem("access")
         },
         method: 'GET',
@@ -431,20 +446,37 @@ export async function Saving() {
         challenge = parseInt(el.value)
     })
 
-    const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
-        method: 'POST',
+    const request_already_plus = await fetch(`${BACK_BASE_URL}/api/post/plus/${challenge}/${date}/`, {
         headers: {
-            "Authorization": `Bearer ${token}`,
-            'content-type': 'application/json'
+            "Authorization": "Bearer " + localStorage.getItem("access")
         },
-        body: JSON.stringify({
-            "date": date,
-            "plus_money": plus_money,
-            "challenge": challenge
-        })
+        method: 'GET',
     })
 
-    return request_saving
+    const request_already_plus_json = await request_already_plus.json()
+    //console.log(request_already_plus_json)
+
+    if (request_already_plus_json == "") {
+        const request_saving = await fetch(`${BACK_BASE_URL}/api/post/plus/`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                "date": date,
+                "plus_money": plus_money,
+                "challenge": challenge
+            })
+        })
+
+        return request_saving.status
+    } else {
+        const request_status = 400
+        return request_status
+    }
+
+
 }
 
 
@@ -544,6 +576,65 @@ export async function challengeBookmarkAPI(challenge_id) {
             "Authorization": `Bearer ${access_token}`,
         },
         method: 'POST',
+    })
+    return response
+}
+
+
+// 챌린지별 댓글 작성
+export async function writeComment(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const comment_content = document.getElementById("comment-write").value
+    //console.log(comment_content)
+
+    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "comment": comment_content
+        })
+    })
+
+    return response_comment
+}
+
+//  댓글 가져오기
+export async function showCommentListAPI(ChallengeId) {
+    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
+    return response
+}
+
+// 댓글 수정
+export async function updateCommentAPI(commentArr) {
+    const comment_title = commentArr[0]
+    const comment_id = commentArr[1]
+    console.log(comment_title)
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/update-comment/${comment_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'PUT',
+        body: JSON.stringify({
+            "comment": comment_title,
+        })
+    })
+    return response
+}
+
+// 댓글 삭제
+export async function deleteCommentAPI(comment_id) {
+    const access_token = localStorage.getItem("access")
+    const response = await fetch(`${BACK_BASE_URL}/api/update-comment/${comment_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'DELETE',
     })
     return response
 }

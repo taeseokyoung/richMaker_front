@@ -76,26 +76,7 @@
         <p>내 챌린지 관리</p>
         <hr class="line">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- <div class="col" id="bookmark_box">
-            <div class="card h-100" style="border-radius: 10px;">
-              <div class="imagebox">
-                <div class="box" style="background: rgba(231, 57, 34, 0.322);">
-                  <img class="profile" id = "bookmark-image" src="">
-                </div>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title" id="bookmark-title">Card title</h5>
-                <p class="card-text" id="bookmark-content">This is a wider card with supporting text below as a natural
-                  lead-in to additional
-                  content. This content is a little bit longer.</p>
-              </div>
-              <div class="card-footer" >
-                <small class="text-body-secondary" id="bookmark-money">목표 금액</small>
-              </div>
-            </div>
-          </div> -->
           <div class="slider">
-
           </div>
         </div>
       </div>
@@ -126,11 +107,14 @@
         </div>
       </div>
       <!-- 소비 달력 들어가는 부분 -->
-
+      <hr class="line2">
       <div class="myconsumestatus">
-        <p>이번달 나의 적정 소비량은?</p>
+        <h3 class="myconsumeinfo">이번 달 총 수입 : <span id='totalIncome'></span>원 / 총 지출 : <span id='totalMinus'></span>원 /
+          총 저축 : <span id='totalSaving'></span>원</h3>
+        <h3 class="myconsumeinfo">이번 달 나의 적정 소비 금액 : <span id='idealIncome'></span>만원 / 소비 가능 잔액 : <span
+            id='remainingAmount'></span>만원</h3>
         <hr class="line2">
-        <p class="smallfont">나의 소비패턴으로 보는 적정 소비량 알아보기</p>
+        <p class="myconsumeinfo">관리하기</p>
         <!-- 달력 들어가는 부분 147~172 -->
         <div class="calendar-section">
           <table class="Calendar">
@@ -165,19 +149,21 @@
         <div class="card" style="width: 80rem; ">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
-                기록하기</button>
-              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
-                기록하기</button>
+              <div class="button-box" style="float:right;">
+                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수입
+                  기록하기</button>
+                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">수입
+                  수정하기</button>
+                <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">수입
+                  삭제하기</button>
+              </div>
               <div style="display:inline-flex">
-                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
-                <div class="card" id="income-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="income-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 수입</button>
                   <div id="income-box" style="display:inline-block;"></div>
                   <div id="total-income" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
-                <div class="card" id="income-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="income-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 수입</button>
                   <span id="income-box-choice"></span>
                   <div id="total-income-choice" style="margin-top:10px;"></div>
@@ -185,17 +171,17 @@
               </div>
             </li>
             <li class="list-group-item">
-              <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
-              <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
+              <div class="button-box" style="float:right;">
+                <button class=" consumebutton" onclick="location.href='consume.html'">지출 기록하기</button>
+                <button class=" consumebutton" onclick="location.href='consumedetail.html'">지출 자세히보기</button>
+              </div>
               <div style="display:inline-flex">
-                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
-                <div class="card" id="minus-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="minus-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 지출액</button>
                   <div id="minus-box" style="display:inline-block;"></div>
                   <div id="total-minus" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
-                <div class="card" id="minus-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="minus-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 지출액</button>
                   <span id="minus-box-choice"></span>
                   <div id="total-minus-choice" style="margin-top:10px;"></div>
@@ -203,19 +189,21 @@
               </div>
             </li>
             <li class="list-group-item">
-              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
-                하러가기</button>
-              <button type="button" class="incomebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">저축
-                하러가기</button>
+              <div class="button-box" style="float:right;">
+                <button type="button" class="banksavebutton" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop2">저축하러가기</button>
+                <button type="button" class="banksavebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop5">저축
+                  수정하기</button>
+                <button type="button" class="banksavebutton" data-bs-toggle="modal" data-bs-target="#staticBackdrop6">저축
+                  삭제하기</button>
+              </div>
               <div style="display:inline-flex">
-                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
-                <div class="card" id="plus-today" style="width:370px; border-radius:10px;">
+                <div class="card" id="plus-today" style="width:385px; border-radius:10px;">
                   <button style="font-size:20px;">오늘의 저축</button>
                   <div id="plus-box" style="display:inline-block;"></div>
                   <div id="total-plus" style="margin-top:10px;"></div>
                 </div>
-                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
-                <div class="card" id="plus-choice" style="width:370px; border-radius:10px; float:right;">
+                <div class="card" id="plus-choice" style="width:385px; border-radius:10px; float:right;">
                   <button style="font-size:20px;">선택한 날짜의 저축</button>
                   <span id="plus-box-choice"></span>
                   <div id="total-plus-choice" style="margin-top:10px;"></div>
@@ -235,6 +223,8 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <h6 class="desc" id="income-desc" style="font-weight:lighter;">잠깐! 해당 날짜에 대한 수입을 이미 적으셨나요?</h6>
+              <h6 class="desc" id="income-desc" style="font-weight:lighter;">수정을 원하신다면 수정하기로 들어가주세요!</h6>
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">날짜</span>
                 <input type="text" class="form-control" id="date-income" placeholder="YYYY-MM-DD 이렇게 입력해주세요."
@@ -318,18 +308,18 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <h6 class="desc" id="plus-desc" style="font-weight:lighter;">잠깐! 해당 챌린지에 대한 저축을 이미 적으셨나요?</h6>
+              <h6 class="desc" id="plus-desc" style="font-weight:lighter;">수정을 원하신다면 수정하기로 들어가주세요!</h6>
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">날짜</span>
                 <input type="text" class="form-control" id="date-plus" placeholder="YYYY-MM-DD 이렇게 입력해주세요."
                   aria-label="date" aria-describedby="addon-wrapping">
               </div>
-              <span class="challenge">챌린지 선택하기</span>
-              <span class="challenge">챌린지 선택하기</span>
+              <p class="challenge" style="margin-top:10px;">챌린지 선택하기</p>
               <div class="challenge-sort" id="challenge-sort"></div>
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">저축금액</span>
-                <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
-                <input type="text" class="form-control" placeholder="수입을 입력해주세요." aria-label="income" id="plus_money"
+                <input type="text" class="form-control" placeholder="저축금액을 입력해주세요." aria-label="income" id="plus_money"
                   aria-describedby="addon-wrapping">
               </div>
             </div>
