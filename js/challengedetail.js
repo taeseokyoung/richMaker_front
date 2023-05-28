@@ -1,9 +1,5 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
-import { challengeLikeAPI, updateCommentAPI, deleteCommentAPI, checkChallengeBookmarkAPI, checkChallengeLikeAPI, writeComment } from "./api.js";
-
-
-
-// 챌린지 //////////////////////////////////////////////////////////////
+import { challengeLikeAPI, challengeBookmarkAPI, updateCommentAPI, deleteCommentAPI, showCommentListAPI, writeComment, checkChallengeBookmarkAPI, checkChallengeLikeAPI } from "./api.js";
 
 
 // user_id - 서경
@@ -13,12 +9,14 @@ export async function getPayloadParse() {
     return payload_parse
 }
 
+
 // 챌린지 id 불러오기 - 서경
 export async function getChallengeId() {
     const urlParams = new URLSearchParams(window.location.search);
     const challenge_id = urlParams.get('challenge_id')
     return challenge_id
 }
+
 
 // 서경 쓰지 않음 - 다른분들도 안쓰셔도 되는 부분
 // // 챌린지 북마크 등록, 취소하기
@@ -31,7 +29,6 @@ export async function getChallengeId() {
 // document.getElementById("showBookmarkingList").addEventListener("click", showBookmarkingList);
 // // 해당 챌린지에 관심등록(좋아요 누른) 유저 리스트 뽑아오기
 // document.getElementById("showLikingList").addEventListener("click", showLikingList);
-
 
 
 // 챌린지 가져오기 - 서경
@@ -68,8 +65,7 @@ handleChallenge()
 //     const response = await fetch(`${BACK_BASE_URL}/api/users/bookmark/${user_id}/`)
 //     return response
 
-// }
-
+//}
 
 // 챌린지 수정하기 : input 값들을 수정 가능한 상태로 변경 - 서경
 document.getElementById('edit-btn').addEventListener('click', async function () {
@@ -234,9 +230,37 @@ export async function challengeLike() {
 //     // response = await updateCommentAPI(comment_id)
 // }
 
+// 사용자가 챌린지 북마크 등록 및 취소
+export async function challengeBookmark() {
+    const challengeId = await getChallengeId()
+    const response = await challengeBookmarkAPI(challengeId)
+    try {
+        const response_json = await response.json()
+        if (response.status == 204) {
+            // 챌린지 북마크 취소
+            console.log(response_json)
+        } else if (response.status == 201) {
+            // 챌린지 북마크 등록
+            console.log(response_json)
+        } else {
+            // 로그인 필요 또는 찾을 수 없는 챌린지
+            console.log(response_json)
 
-// 댓글 /////////////////////////////////////////////////////////////////
+            const payload_parse = await getPayloadParse()
+            if (payload_parse == null) {
+                alert("로그인이 필요합니다.")
+                window.location.replace(`${FRONT_BASE_URL}/login.html`);
+            } else {
+                alert("챌린지 게시글을 찾을 수 없습니다.")
+                window.location.replace(`${FRONT_BASE_URL}/index.html`);
+            }
 
+        }
+    } catch (error) {
+        // 챌린지 북마크 취소 비동기 에러
+        console.log("북마크 등록 취소")
+    }
+}
 
 //  댓글 가져오기
 export async function showCommentListAPI(challenge_id) {
@@ -244,6 +268,13 @@ export async function showCommentListAPI(challenge_id) {
 
     return response
 }
+
+// 댓글 리스트 조회
+// export async function showCommentList() {
+//     const ChallengeId = await getChallengeId()
+//     const response = await showCommentListAPI(ChallengeId)
+//     const response_json = await response.json()
+// }
 
 // 댓글
 export async function Comment() {
@@ -253,8 +284,49 @@ export async function Comment() {
     const comment_json = await comment.json();
     console.log(comment_json.status, comment_json)
     window.location.replace(`${FRONT_BASE_URL}/challengedetail.html?challenge_id=${challenge_id}`);
-
 }
+
+// 댓글 작성
+// export async function Comment() {
+
+//     const challenge_id = await getChallengeId()
+//     const comment = await writeComment(challenge_id)
+//     if (comment.status == 201) {
+//         alert("작성 완료!")
+//         location.reload();
+//     } else {
+//         alert("작성 실패!")
+//     }
+// }
+
+
+// export async function showBookmarkingList() {
+//     const challengeId = await getChallengeId()
+//     const response = await showBookmarkingListAPI(challengeId)
+//     const response_json = await response.json()
+//     if (response.status == 200) {
+//         console.log(response_json)
+//     } else {
+//         console.log(response_json)
+//     }
+// }
+
+
+// export async function showLikingList() {
+//     const challengeId = await getChallengeId()
+//     const response = await showLikingListAPI(challengeId)
+//     const response_json = await response.json()
+//     if (response.status == 200) {
+//         console.log(response_json)
+
+//     } else {
+//         comment_box.style.display = "none"
+//         updateCommentForm.style.display = "block"
+//         comment_button_group.style.display = "none"
+//     }
+//     // response = await updateCommentAPI(comment_id)
+// }
+
 
 // 댓글 리스트 조회
 export async function showCommentList() {
@@ -280,6 +352,7 @@ export async function showCommentList() {
                         </small>
                     </p>
                 </div>
+                
                 <div class="comment_box" id="comment_box_${element.id}">
                     <p>${element.comment}</p>
                 </div>
@@ -299,21 +372,45 @@ export async function showCommentList() {
     response_json.forEach(element => {
         const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
         const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
-        if (payloadParse.user_id == element.owner) {
-            updateCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                updateComment(comment_id);
-            });
-            deleteCommentButton.addEventListener("click", function () {
-                const comment_id = element.id;
-                deleteComment(comment_id);
-            });
+        const sumbitCommentButton = document.getElementById(`sumbitCommentButton_${element.id}`);
+        if (payloadParse != null) {
+
+            if (payloadParse.user_id == element.owner) {
+                updateCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    updateComment(comment_id);
+                });
+                deleteCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    deleteComment(comment_id);
+                });
+                sumbitCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    sumbitComment(comment_id);
+                });
+            }
+
         } else {
             updateCommentButton.style.display = "none"
             deleteCommentButton.style.display = "none"
         }
     })
 }
+
+// response_json.forEach(element => {
+//     const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
+//     const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
+//     if (payloadParse.user_id == element.owner) {
+//         updateCommentButton.addEventListener("click", function () {
+//             const comment_id = element.id;
+//             updateComment(comment_id);
+//         });
+//         deleteCommentButton.addEventListener("click", function () {
+//             const comment_id = element.id;
+//             deleteComment(comment_id);
+//         });
+//     }
+// })
 
 // // 댓글 리스트 조회
 // export async function showCommentList() {
@@ -332,9 +429,6 @@ export async function showCommentList() {
 //         location.reload();
 //     } else {
 //         alert("작성 실패!")
-//     }
-// }
-
 
 // 댓글 수정
 export async function updateComment(comment_id) {
