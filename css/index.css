@@ -14,7 +14,7 @@
 
 /* 전체 글씨 적용 */
 * {
-
+  /* outline: 1px solid #ec3434; */
   font-family: "LINESeedKR-Bd";
   ;
 
@@ -78,17 +78,9 @@ h3 {
   background-color: rgba(138, 138, 138, 0.5);
 }
 
-.header_btn {
-  padding-left: 50px;
-}
-
 .consume-cover {
   display: flex;
   flex-direction: row;
-}
-
-.menu_btn {
-  padding-right: 150px;
 }
 
 .graph-container {

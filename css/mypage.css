@@ -13,6 +13,22 @@
     font-style: normal;
 }
 
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.top {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+nav {
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
 .numbers {
     font-family: 'MapoFlowerIsland';
 }
@@ -24,8 +40,11 @@
 .main {
     margin: 0 auto;
     width: 1200px;
-}
 
+.numbers p {
+    margin-bottom: 15px;
+}
+  
 p,
 h3 {
     font-family: 'OTWelcomeRA';
@@ -33,30 +52,32 @@ h3 {
 
 /* 프로필 카드 */
 .profile-card {
-    margin: 20px 20px;
-    width: 400px;
-    height: 400px;
+    width: 360px;
+    height: auto;
     text-align: center;
     border-radius: 8px;
     border: 2px solid black;
-    overflow: hidden;
-}
-
-.update {
-    font-size: 20px;
-    background-color: rgba(109, 86, 68, 0.822);
-    color: white;
-    font-family: 'MapoFlowerIsland';
-    margin-bottom: 20px;
-    border-radius: 10px;
-    height: 30px;
+    margin: 0 30px 0 0;
 }
 
 /*프로필 기본 사진*/
 .bigbox {
-    padding-left: 120px;
-    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
 }
+
+.update {
+    height: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: 'MapoFlowerIsland';
+    color: white;
+    border-radius: 10px;
+    background-color: rgba(109, 86, 68, 0.822);
+}
+
+
 
 .box {
     width: 150px;
@@ -104,7 +125,7 @@ h3 {
 }
 
 .card-footer {
-    padding-top: 20px;
+    padding-top: 30px;
     background-color: transparent;
     font-family: 'MapoFlowerIsland';
     font-size: 20px;
@@ -112,25 +133,15 @@ h3 {
 
 /* 관심있는 챌린지 카드 비율 */
 .myinterestingchallenge {
-    position: absolute;
     text-align: left;
     font-size: 30px;
-    padding-left: 30px;
-    padding-top: 170px;
-
+    margin-bottom: 50px;
 }
 
 .myconsumestatus {
-    padding-top: 700px;
-    position: absolute;
     text-align: left;
     font-size: 30px;
-
     height: 300px;
-}
-
-.myconsumeinfo {
-    padding-left: 30px;
 }
 
 .smallfont {
@@ -139,37 +150,18 @@ h3 {
     padding-left: 30px;
 }
 
-.mybank {
-    margin-top: 400px;
-    position: absolute;
-    text-align: left;
-    font-size: 30px;
-    padding-left: 30px;
-    height: 300px;
-    font-family: 'MapoFlowerIsland';
-    padding-top: 500px;
-    padding-left: 600px;
-}
-
 .line {
     margin-top: 10px;
     margin-bottom: 30px;
     border: 1px solid rgba(134, 127, 115, 0.568);
     width: 100%;
-
 }
 
 .line2 {
     margin-top: 10px;
-
     margin-bottom: 50px;
-    border: 1px solid #efff5eec;
+    border: 1px solid rgba(134, 127, 115, 0.568);
     width: 1400px;
-}
-
-.container {
-    width: 1200px;
-    margin: 0 auto;
 }
 
 .incomebutton {
@@ -222,7 +214,37 @@ h3 {
     padding-left: 20px;
 }
 
+.myconsumeinfo {
+    padding-left: 30px;
+}
+
 /* section calendar 지수*/
+
+.mybank {
+    text-align: left;
+    font-size: 25px;
+    font-family: 'MapoFlowerIsland';
+    margin-bottom: 50px;
+}
+
+.mybank .card {
+   width: 100%;
+}
+
+.card ul li div .card{
+   width: 450px;
+   border-radius: 10px;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+}
+
+#income-today {
+    width: 450px;
+    margin: 0;
+}
 
 td {
     width: 30px;
@@ -236,8 +258,7 @@ td {
 
 .calendar-section {
     background-color: white;
-    margin-left: 30px;
-    margin-top: 30px;
+    margin-left: 10px;
     margin-bottom: 10px;
     width: 500px;
     height: 350px;
@@ -269,6 +290,11 @@ td {
     font-family: 'MapoFlowerIsland';
     color: #fff;
     cursor: pointer;
+}
+
+.consume-view-top {
+    display: flex;
+    margin-bottom: 50px;
 }
 
 /* section calendar 끝 */
