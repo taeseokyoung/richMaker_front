@@ -181,6 +181,7 @@ export async function showCommentList() {
     const ChallengeId = await getChallengeId()
     const response = await showCommentListAPI(ChallengeId)
     const response_json = await response.json()
+}
 
 
 // 댓글 작성
@@ -196,7 +197,7 @@ export async function Comment() {
     }
 }
 
- 
+
 export async function showBookmarkingList() {
     const challengeId = await getChallengeId()
     const response = await showBookmarkingListAPI(challengeId)
@@ -207,8 +208,8 @@ export async function showBookmarkingList() {
         console.log(response_json)
     }
 }
-  
-  
+
+
 export async function showLikingList() {
     const challengeId = await getChallengeId()
     const response = await showLikingListAPI(challengeId)
@@ -312,7 +313,7 @@ export async function updateComment(comment_id) {
     // response = await updateCommentAPI(comment_id)
 }
 
-  
+
 export async function sumbitComment(comment_id) {
     const newCommentData = document.getElementById(`newCommentData_${comment_id}`).value
     const commentArr = [
@@ -347,8 +348,8 @@ export async function sumbitComment(comment_id) {
         location.reload();
     }
 }
-  
-  // 댓글 삭제
+
+// 댓글 삭제
 export async function deleteComment(comment_id) {
     const response = await deleteCommentAPI(comment_id)
     try {
@@ -374,7 +375,7 @@ export async function deleteComment(comment_id) {
     }
 
 }
-  
+
 
 export async function checkUserInfo() {
     const PayloadParse = await getPayloadParse()
