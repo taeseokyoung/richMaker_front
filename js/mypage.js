@@ -481,8 +481,12 @@ export async function getUserProfile() {
     email.innerText = response_json.email
     username.innerText = response_json.username
     bio.innerText = response_json.bio
-    if (payload_parse.email != response_json.email) {
-      document.getElementById("ProfileButton").style.display = "none"
+
+    console.log(payload_parse != response_json.email)
+    if (payload_parse == null) {
+      document.getElementById("updateUserProfileButton").style.display = "none"
+    } else if (payload_parse != response_json.email) {
+      document.getElementById("updateUserProfileButton").style.display = "none"
     }
 
     // 이미지 값 변경이 있을때만 수정
@@ -539,13 +543,12 @@ export async function showlikeChallenges(user_id) {
   const newChallengeListData = newChallenge;
   console.log(newChallengeListData)
 
-  const newChallengeList = document.querySelector(".slider_box");
-  const newChallengeCount = document.querySelector(".like_box");
-
+  const newChallengeList = document.querySelector(".slider_2");
+  // const newChallengeCount = document.querySelector(".like_box");
+  // console.log(newChallengeList)
   newChallengeListData.forEach((element) => {
     const main_image = element.main_image == '/media/media/no_image.jpg' ? './fake-img/paris.png' : `${BACK_BASE_URL}${element.main_image}`
-    newChallengeList.innerHTML += `<div class="card_box">
-      
+    newChallengeList.innerHTML += `<div class="card_box" style = "background-color: #fff;">
                                     <a href="/challengedetail.html?challenge_id=${element.id}">
                                         <div class="card-image-container">
                                           <img src="${main_image}">
@@ -555,10 +558,12 @@ export async function showlikeChallenges(user_id) {
                                           <h3>목표: ${element.amount}만원</h3>
                                           <h3>${element.period}개월</h3>
                                         </div>
-                                        
+
                                     </a>
-                                    
+
                                   </div>`;
 
   })
 }
+
+

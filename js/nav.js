@@ -27,6 +27,7 @@ async function injectNavbar() {
   if (payload_parse == null) {
     document.getElementById("dropDownMenu_1").style.display = "none"
     document.getElementById("dropDownMenu_3").style.display = "none"
+    document.getElementById("dropDownMenu_2").style.display = "none"
     document.getElementById("dropDownMenu_4").innerText = "비밀 번호 찾기"
 
   }

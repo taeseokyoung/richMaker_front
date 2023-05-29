@@ -40,6 +40,7 @@ nav {
 .numbers p {
     margin-bottom: 15px;
 }
+
 p,
 h3 {
     font-family: 'OTWelcomeRA';
@@ -90,12 +91,7 @@ h3 {
 
 /* 내 챌린지 관리 카드 비율 */
 .consumecontainer {
-<<<<<<< HEAD
-    position: absolute;
-    top: 250px;
-=======
     top: 300px;
->>>>>>> b92f6ff2e7ed00405f70881681d264c600d4ba37
     left: 500px;
     text-align: left;
     font-size: 30px;
@@ -224,12 +220,12 @@ h3 {
 }
 
 .mybank .card {
-   width: 100%;
+    width: 100%;
 }
 
-.card ul li div .card{
-   width: 450px;
-   border-radius: 10px;
+.card ul li div .card {
+    width: 450px;
+    border-radius: 10px;
 }
 
 .flex {
