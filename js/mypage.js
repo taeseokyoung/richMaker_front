@@ -52,36 +52,38 @@ function buildCalendar() {
       choiceDate(this);
     }
   }
+}
 
-  // 날짜 선택
-  function choiceDate(nowColumn) {
-    if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
-      document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
-    }
-    nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
-    Choicelist();
+// 날짜 선택
+function choiceDate(nowColumn) {
+  if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
+    document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
   }
+  nowColumn.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
+  Choicelist();
+}
 
-  // 이전달 버튼 클릭
-  function prevCalendar() {
-    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
-    buildCalendar();    // 달력 다시 생성
-  }
-  // 다음달 버튼 클릭
-  function nextCalendar() {
-    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
-    buildCalendar();    // 달력 다시 생성
-  }
+// 이전달 버튼 클릭
+function prevCalendar() {
+  nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+  buildCalendar();    // 달력 다시 생성
+}
 
-  // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-  function leftPad(value) {
-    if (value < 10) {
-      value = "0" + value;
-      return value;
-    }
+// 다음달 버튼 클릭
+function nextCalendar() {
+  nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
+  buildCalendar();    // 달력 다시 생성
+}
+
+// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+function leftPad(value) {
+  if (value < 10) {
+    value = "0" + value;
     return value;
   }
+  return value;
 }
+
 
 // 적정소비금액 코드
 async function handleListLoad() {
@@ -399,6 +401,10 @@ export async function handleSavingDelete() {
 window.onload = async function () {
   getUserProfile()
   buildCalendar();
+
+  document.getElementById("prevCalendar").addEventListener("click", prevCalendar)
+  document.getElementById("nextCalendar").addEventListener("click", nextCalendar)
+
   handleListLoad();
   gettoday();
 

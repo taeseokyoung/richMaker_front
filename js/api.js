@@ -534,7 +534,6 @@ export async function SavingDelete() {
         method: 'DELETE',
         headers: {
             "Authorization": `Bearer ${token}`,
-            showLikingList
         },
     })
 
@@ -604,18 +603,37 @@ export async function checkChallengeLikeAPI(challenge_id) {
             'content-type': 'application/json',
             "Authorization": `Bearer ${access_token}`,
         },
-        method: 'POST',
+        method: 'GET',
     })
     return response
 }
 
 
+// 챌린지별 댓글 작성
+export async function writeComment(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const comment_content = document.getElementById("comment-write").value
+    console.log(comment_content)
 
-//  댓글 가져오기
-export async function showCommentListAPI(ChallengeId) {
-    const response = await fetch(`${BACK_BASE_URL}/api/comment/${ChallengeId}/`)
-    return response
+    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "comment": comment_content
+        })
+    })
+
+    return response_comment
 }
+
+// //  댓글 가져오기 - challengedetail.js로 이동
+// export async function showCommentListAPI(challenge_id) {
+//     const response = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`)
+//     return response
+// }
 
 
 // 댓글 수정
