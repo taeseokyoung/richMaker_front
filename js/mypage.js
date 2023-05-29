@@ -485,7 +485,7 @@ export async function getUserProfile() {
     console.log(payload_parse != response_json.email)
     if (payload_parse == null) {
       document.getElementById("updateUserProfileButton").style.display = "none"
-    } else if (payload_parse != response_json.email) {
+    } else if (payload_parse.email != response_json.email) {
       document.getElementById("updateUserProfileButton").style.display = "none"
     }
 
@@ -565,5 +565,3 @@ export async function showlikeChallenges(user_id) {
 
   })
 }
-
-

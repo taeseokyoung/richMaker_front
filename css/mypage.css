@@ -327,15 +327,26 @@ td {
 
 .card-content-container {
     background-color: transparent;
-
     float: left;
     width: 180px;
-    margin-right: 10px;
-
 }
 
 .card_box {
     border-color: 1px solid rgba(231, 57, 34, 0.322);
     background-color: #fff;
     display: inline;
+    margin-right: 40px;
+    border: 1px solid black;
+
+}
+
+.card-image-container>img {
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.slider_2 {
+    display: flex;
+
 }

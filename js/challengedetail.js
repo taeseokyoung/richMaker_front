@@ -361,6 +361,7 @@ export async function showCommentList() {
         const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
         const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
         const sumbitCommentButton = document.getElementById(`sumbitCommentButton_${element.id}`);
+        const comment_button_group = document.getElementById(`comment_button_group_${element.id}`)
         if (payloadParse != null) {
 
             if (payloadParse.user_id == element.owner) {
@@ -376,12 +377,15 @@ export async function showCommentList() {
                     const comment_id = element.id;
                     sumbitComment(comment_id);
                 });
+            } else {
+                comment_button_group.style.display = "none"
             }
 
         } else {
-            updateCommentButton.style.display = "none"
-            deleteCommentButton.style.display = "none"
+
+            comment_button_group.style.display = "none"
         }
+
     })
 }
 

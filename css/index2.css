@@ -54,4 +54,27 @@ section .new-card-container .next {
   cursor: pointer;
 }
 
+.myinterestingchallenge .addAAA .slider_2 {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.myinterestingchallenge .addAAA .slider_2::-webkit-scrollbar {
+  display: none;
+}
+
+.myinterestingchallenge .addAAA .slider_2 .card {
+  min-width: 450px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.myinterestingchallenge .addAAA .slider_2 .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /*# sourceMappingURL=index2.css.map */
