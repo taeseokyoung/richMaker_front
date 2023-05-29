@@ -506,7 +506,7 @@ export async function showBookmarkChallenges(user_id) {
   newChallengeListData.forEach((element) => {
     const main_image = element.main_image == '/media/media/no_image.jpg' ? './fake-img/paris.png' : `${BACK_BASE_URL}${element.main_image}`
     newChallengeList.innerHTML += `<div class="card">
-                                    <a href="/challenge-detail.html?challenge_id=${element.id}">
+                                    <a href="/challengedetail.html?challenge_id=${element.id}">
                                         <div class="card-image-container">
                                           <img src="${main_image}">
                                         </div> 
@@ -540,7 +540,7 @@ export async function showlikeChallenges(user_id) {
     const main_image = element.main_image == '/media/media/no_image.jpg' ? './fake-img/paris.png' : `${BACK_BASE_URL}${element.main_image}`
     newChallengeList.innerHTML += `<div class="card_box">
       
-                                    <a href="/challenge-detail.html?challenge_id=${element.id}">
+                                    <a href="/challengedetail.html?challenge_id=${element.id}">
                                         <div class="card-image-container">
                                           <img src="${main_image}">
                                         </div> 

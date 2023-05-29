@@ -709,3 +709,8 @@ export async function showlikeChallengesAPI(user_id) {
     const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
     return response
 }
+
+export async function showBookmarkingListAPI() {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
+}
