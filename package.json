@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./css/index.scss ./css/index2.css",
+    "sass": "sass --watch ./css/index3.scss ./css/index3.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -40,6 +40,7 @@ nav {
 .numbers p {
     margin-bottom: 15px;
 }
+
 p,
 h3 {
     font-family: 'OTWelcomeRA';
@@ -219,12 +220,12 @@ h3 {
 }
 
 .mybank .card {
-   width: 100%;
+    width: 100%;
 }
 
-.card ul li div .card{
-   width: 450px;
-   border-radius: 10px;
+.card ul li div .card {
+    width: 450px;
+    border-radius: 10px;
 }
 
 .flex {
@@ -326,14 +327,26 @@ td {
 
 .card-content-container {
     background-color: transparent;
-
     float: left;
     width: 180px;
-    margin-right: 10px;
-
 }
 
 .card_box {
     border-color: 1px solid rgba(231, 57, 34, 0.322);
+    background-color: #fff;
     display: inline;
+    margin-right: 40px;
+    border: 1px solid black;
+
+}
+
+.card-image-container>img {
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.slider_2 {
+    display: flex;
+
 }

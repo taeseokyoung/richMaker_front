@@ -1,5 +1,5 @@
 const BACK_BASE_URL = "http://127.0.0.1:8000";
-const FRONT_BASE_URL = "http://127.0.0.1:5500";
+const FRONT_BASE_URL = "http://127.0.0.1:5501";
 
 //  회원 가입 API
 export async function signupAPI() {
@@ -609,25 +609,6 @@ export async function checkChallengeLikeAPI(challenge_id) {
 }
 
 
-// 챌린지별 댓글 작성
-export async function writeComment(challenge_id) {
-    const access_token = localStorage.getItem("access")
-    const comment_content = document.getElementById("comment-write").value
-    console.log(comment_content)
-
-    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
-        headers: {
-            'content-type': 'application/json',
-            "Authorization": `Bearer ${access_token}`,
-        },
-        method: 'POST',
-        body: JSON.stringify({
-            "comment": comment_content
-        })
-    })
-
-    return response_comment
-}
 
 // //  댓글 가져오기 - challengedetail.js로 이동
 // export async function showCommentListAPI(challenge_id) {
@@ -665,5 +646,70 @@ export async function deleteCommentAPI(comment_id) {
         },
         method: 'DELETE',
     })
+    return response
+}
+// 챌린지별 댓글 작성
+export async function writeComment(challenge_id) {
+    const access_token = localStorage.getItem("access")
+    const comment_content = document.getElementById("comment-write").value
+    //console.log(comment_content)
+    const response_comment = await fetch(`${BACK_BASE_URL}/api/comment/${challenge_id}/`, {
+        headers: {
+            'content-type': 'application/json',
+            "Authorization": `Bearer ${access_token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "comment": comment_content
+        })
+    })
+    return response_comment
+}
+// 유저 프로필 수정
+export async function updateUserProfileAPI() {
+    const username = document.getElementById("username").value
+    const bio = document.getElementById("bio").value
+    const profile_image = document.getElementById("image").files[0]
+
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const user_id = payload_parse.user_id
+    const formdata = new FormData();
+    formdata.append('username', username)
+    formdata.append('bio', bio)
+
+    const access_token = localStorage.getItem("access")
+    if (profile_image) {
+        formdata.append('profile_image', profile_image)
+    } else {
+        formdata.append('profile_image', '')
+    }
+
+    try {
+        const response = await fetch(`${BACK_BASE_URL}/api/users/profile/${user_id}/`, {
+            headers: {
+                "Authorization": `Bearer ${access_token}`
+            },
+            method: 'PATCH',
+            body: formdata
+        })
+        return response
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export async function showBookmarkChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-bookmarking-challenge/${user_id}/`)
+    return response
+}
+
+export async function showlikeChallengesAPI(user_id) {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
+    return response
+}
+
+export async function showBookmarkingListAPI() {
+    const response = await fetch(`${BACK_BASE_URL}/api/users/get-liking-challenge/${user_id}/`)
     return response
 }

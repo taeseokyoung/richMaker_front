@@ -20,13 +20,14 @@ async function injectNavbar() {
   document.getElementById("logout_button").addEventListener("click", logout);
 
   if (payload_parse == null) {
-    user_view.style.display = "none"
+    // user_view.style.display = "none"
   } else {
-    anonymous_view.style.display = "none"
+    // anonymous_view.style.display = "none"
   }
   if (payload_parse == null) {
     document.getElementById("dropDownMenu_1").style.display = "none"
     document.getElementById("dropDownMenu_3").style.display = "none"
+    document.getElementById("dropDownMenu_2").style.display = "none"
     document.getElementById("dropDownMenu_4").innerText = "비밀 번호 찾기"
 
   }

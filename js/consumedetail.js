@@ -255,4 +255,3 @@ window.onload = async function ConsumeDetail() {
     handleDetailget();
     gettoday();
 }
-

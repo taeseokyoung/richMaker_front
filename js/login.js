@@ -1,6 +1,7 @@
 import { BACK_BASE_URL, FRONT_BASE_URL } from "./conf.js";
 import { LoginAPI } from "./api.js";
 document.getElementById("login_button").addEventListener("click", handleLogin);
+// document.getElementById("googleLogin").addEventListener("click", googleLoginBtn);
 
 window.onload = async () => {
     const payload = localStorage.getItem("payload");
@@ -33,11 +34,12 @@ export async function handleLogin() {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
         localStorage.setItem("payload", jsonPayload)
-        window.location.replace(`${FRONT_BASE_URL}/index.html`);
+        window.location.reload()
     } else {
         document.getElementById("password").value = ""
         alert("회원정보가 일치하지 않습니다.")
     }
 
 }
+
 

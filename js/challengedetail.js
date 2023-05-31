@@ -101,7 +101,6 @@ document.getElementById('submit-btn').addEventListener('click', async function (
     }
 
     if (challenge_title && challenge_content) {
-        console.log(formData);
         const response = await fetch(`${BACK_BASE_URL}/api/challenge/${challenge_id}/`, {
             method: "PUT",
             headers: {
@@ -115,7 +114,6 @@ document.getElementById('submit-btn').addEventListener('click', async function (
             window.location.replace(`${FRONT_BASE_URL}/challengedetail.html?challenge_id=${challenge_id}`);
         } else {
             const result = await response.json()
-            console.log(result)
             alert("작성이 취소되었습니다.");
         }
     } else {
@@ -130,7 +128,6 @@ document.getElementById('main_image').addEventListener('change', function () {
 })
 
 function readURL(input) {
-    console.log("이미지 입력!")
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -186,7 +183,6 @@ export async function challengeLike() {
     const response = await challengeLikeAPI(challenge_id)
     try {
         const response_json = await response.json()
-        console.log(response_json.status)
         if (response.status == 204) {
             // 챌린지 좋아요 취소
             document.querySelector('#heart').innerHTML = '<p id="heart">♡</p>'
@@ -233,7 +229,6 @@ export async function challengeLike() {
 async function challengeBookmark() {
     const challengeId = getChallengeId()
     const response = await challengeBookmarkAPI(challengeId)
-    console.log(response)
     try {
         const response_json = await response.json()
         if (response.status == 204) {
@@ -270,20 +265,12 @@ export async function showCommentListAPI(challenge_id) {
     return response
 }
 
-// 댓글 리스트 조회
-// export async function showCommentList() {
-//     const ChallengeId = await getChallengeId()
-//     const response = await showCommentListAPI(ChallengeId)
-//     const response_json = await response.json()
-// }
 
 // 댓글
 export async function Comment() {
     const challenge_id = await getChallengeId()
     const comment = await writeComment(challenge_id);
-    console.log(comment)
     const comment_json = await comment.json();
-    console.log(comment_json.status, comment_json)
     window.location.replace(`${FRONT_BASE_URL}/challengedetail.html?challenge_id=${challenge_id}`);
 }
 
@@ -346,8 +333,8 @@ export async function showCommentList() {
                         <img class="user-image" src=${owner_image} alt="User Image">
                         <h5 class="comment-title" id="comment-title">${element.owner_name}</h5>
                     </a>
-                    <p class="card-text" id="comment-date"></p>
-                        <small class="text-muted">
+                    <p class="card-text"></p>
+                        <small class="text-muted" id="comment_button_group_${element.id}">
                                 <button type="button" id="updateCommentButton_${element.id}" value="${element.id}">수정</button>
                                 <button type="button" id="deleteCommentButton_${element.id}" value="${element.id}">삭제</button>
                         </small>
@@ -359,11 +346,11 @@ export async function showCommentList() {
                 </div>
                 <div id="updateCommentForm_${element.id}" class="comment_box" style="display: none;">
                     <div class="col-auto">
-                        <input type="text" class="form-control-plaintext" id="staticEmail2"
+                        <input type="text" class="form-control-plaintext" id="newCommentData_${element.id}"
                             value="${element.comment}">
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-primary mb-3" id="sumbitCommentButton">제출</button>
+                        <button type="button" class="btn btn-primary mb-3" id="sumbitCommentButton_${element.id}">제출</button>
                     </div>
                 </div>
         </div>
@@ -374,6 +361,7 @@ export async function showCommentList() {
         const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
         const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
         const sumbitCommentButton = document.getElementById(`sumbitCommentButton_${element.id}`);
+        const comment_button_group = document.getElementById(`comment_button_group_${element.id}`)
         if (payloadParse != null) {
 
             if (payloadParse.user_id == element.owner) {
@@ -385,67 +373,42 @@ export async function showCommentList() {
                     const comment_id = element.id;
                     deleteComment(comment_id);
                 });
-                // sumbitCommentButton.addEventListener("click", function () {
-                //     const comment_id = element.id;
-                //     sumbitComment(comment_id);
-                // });
+                sumbitCommentButton.addEventListener("click", function () {
+                    const comment_id = element.id;
+                    sumbitComment(comment_id);
+                });
+            } else {
+                comment_button_group.style.display = "none"
             }
 
         } else {
-            updateCommentButton.style.display = "none"
-            deleteCommentButton.style.display = "none"
+
+            comment_button_group.style.display = "none"
         }
+
     })
 }
 
-// response_json.forEach(element => {
-//     const updateCommentButton = document.getElementById(`updateCommentButton_${element.id}`);
-//     const deleteCommentButton = document.getElementById(`deleteCommentButton_${element.id}`);
-//     if (payloadParse.user_id == element.owner) {
-//         updateCommentButton.addEventListener("click", function () {
-//             const comment_id = element.id;
-//             updateComment(comment_id);
-//         });
-//         deleteCommentButton.addEventListener("click", function () {
-//             const comment_id = element.id;
-//             deleteComment(comment_id);
-//         });
-//     }
-// })
-
-// // 댓글 리스트 조회
-// export async function showCommentList() {
-//     const challenge_id = await getChallengeId()
-//     const response = await showCommentListAPI(challenge_id)
-//     const response_json = await response.json()
-
-// }
-// 댓글 작성
-// export async function Comment() {
-
-//     const challenge_id = await getChallengeId()
-//     const comment = await writeComment(challenge_id)
-//     if (comment.status == 201) {
-//         alert("작성 완료!")
-//         location.reload();
-//     } else {
-//         alert("작성 실패!")
 
 // 댓글 수정
 export async function updateComment(comment_id) {
     const comment_box = document.getElementById(`comment_box_${comment_id}`)
     const updateCommentForm = document.getElementById(`updateCommentForm_${comment_id}`)
     const comment_button_group = document.getElementById(`comment_button_group_${comment_id}`)
+    console.log(comment_button_group)
     if (comment_box.style.display == "none") {
+
         comment_box.style.display = "block"
         updateCommentForm.style.display = "none"
-        // comment_button_group.style.display = "block"
+        comment_button_group.style.display = "none"
     } else {
+
         comment_box.style.display = "none"
         updateCommentForm.style.display = "block"
-        // comment_button_group.style.display = "none"
+        comment_button_group.style.display = "none"
     }
     // response = await updateCommentAPI(comment_id)
+    comment_button_group.style.display = "none"
 }
 
 
@@ -489,7 +452,7 @@ export async function deleteComment(comment_id) {
     const response = await deleteCommentAPI(comment_id)
     try {
         const response_json = await response.json()
-        console.log(response_json)
+
         if (response.status == 204) {
             alert(response_json.message)
             location.reload();
@@ -514,13 +477,13 @@ export async function deleteComment(comment_id) {
 
 export async function checkUserInfo() {
     const PayloadParse = await getPayloadParse()
-    console.log(PayloadParse)
+
     if (PayloadParse != null) {
         const challenge_id = await getChallengeId()
         const CheckBookmarkResponse = await checkChallengeBookmarkAPI(challenge_id)
         if (CheckBookmarkResponse.status == 200) {
         } else {
-            console.log("로그인을 안했거나")
+
         }
 
         const CheckLikeResponse = await checkChallengeLikeAPI(challenge_id)
@@ -535,22 +498,23 @@ window.onload = async function () {
     showCommentList()
     checkUserInfo()
     const kimchi = await showBookmarkingListAPI()
-    console.log(kimchi.bookmarking_people)
-    kimchi.bookmarking_people.forEach((e)=> {
+
+    kimchi.bookmarking_people.forEach((e) => {
         let image_a = 0;
         if (e.profile_image !== null) {
             image_a = e.profile_image;
         } else {
             image_a = './img/richmaker-logo.png';
         }
-        console.log(e)
+
         document.querySelector("#challenge-people-list").innerHTML += `<div class="people">
+                                                            <a href="/mypage.html?user_id=${e.id}">
                                                             <p>${e.username}</p>
-                                                            <img src="${image_a}" alt="">
+                                                            <img src="${BACK_BASE_URL}/${image_a}" alt="">
+                                                            </a>
                                                         </div>`;
     })
-    
+
 
     document.getElementById("commentbutton").addEventListener("click", Comment)
 }
-
