@@ -1,5 +1,5 @@
 const BACK_BASE_URL = "http://127.0.0.1:8000";
-const FRONT_BASE_URL = "http://127.0.0.1:5500";
+const FRONT_BASE_URL = "http://127.0.0.1:5501";
 
 //  회원 가입 API
 export async function signupAPI() {
